@@ -3,6 +3,6 @@ module group6.citywalk {
     requires javafx.fxml;
 
 
-    opens group6.citywalk to javafx.fxml;
-    exports group6.citywalk;
+    opens groupsix.citywalk to javafx.fxml;
+    exports groupsix.citywalk;
 }

@@ -1,4 +1,4 @@
-package group6.citywalk;
+package groupsix.citywalk;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
