@@ -2,21 +2,27 @@ package groupsix.citywalk;
 
 import java.util.HashMap;
 
-public class Map {
+public class City {
     private final int width;
     private final int height;
-    private Location[] bicycleRegion = new Location[2];
+    private static final MapConfig mapConfig = new MapConfig();
+    private final Location[] bicycleRegion = new Location[2];
     private HashMap<String, TransportMode> transportList = new HashMap<>();
     private HashMap<String, PublicTransportMode> publicList = new HashMap<>();
     private HashMap<String, Station> stationList = new HashMap<>();
 
 
-    public Map(int w, int h){
-        width = w;
-        height = h;
+    public City(){
+        //Initialise the city map
+        width = mapConfig.mapSize[0];
+        height = mapConfig.mapSize[1];
+        initBicycleRegion();
+        initStations();
+        initTransport();
+        initPublicTransport();
     }
 
-    public int[] getMap(){
+    public int[] getCitySize(){
         //Return the width and height of the map
         int[] shape = new int[2];
         shape[0] = width;
@@ -24,25 +30,25 @@ public class Map {
         return shape;
     }
 
-    public void setBicycleRegion(Location l1, Location l2){
-        bicycleRegion[0] = l1;
-        bicycleRegion[1] = l2;
-    }
     public Location[] getBicycleRegion(){
         return bicycleRegion;
     }
 
     public void initStations(){
         // Initialise all stations on the map
-        MapConfig mapConfig = new MapConfig();
         for (int i=0; i<mapConfig.stationNames.length; i++){
             String name = mapConfig.stationNames[i];
-            int x = mapConfig.stationXs[i];
-            int y = mapConfig.stationYs[i];
+            int x = mapConfig.stationLocs[i][0];
+            int y = mapConfig.stationLocs[i][1];
             Station station = new Station(name, x, y);
             stationList.put(name, station);
         }
 
+    }
+    public void initBicycleRegion(){
+        //Initialise the bicycle region on the map
+        bicycleRegion[0] = new Location(mapConfig.bicycleLocs[0][0],mapConfig.bicycleLocs[0][1]);
+        bicycleRegion[1] = new Location(mapConfig.bicycleLocs[1][0],mapConfig.bicycleLocs[1][1]);
     }
     public void initTransport(){
 
