@@ -54,16 +54,26 @@ public class Education {
     }
 
     // Generates an education pop-up while traveling.
+    @Override
     public void travelPopUp(TransportMode mode) {
-        // Randomly select positive or negative list based on the mode
-        ArrayList<String> selectedList = new Random().nextBoolean() ? positiveEdList.get(mode.name()) : negativeEdList.get(mode.name());
+        try {
+            // Attempt to get a list of messages for the given mode
+            ArrayList<String> selectedList = positiveEdList.getOrDefault(mode.name(), new ArrayList<>());
+            selectedList.addAll(negativeEdList.getOrDefault(mode.name(), new ArrayList<>()));
 
-        if (selectedList != null && !selectedList.isEmpty()) {
-            String message = selectedList.get(new Random().nextInt(selectedList.size()));
-            // Logic to display the message as a pop-up
-            System.out.println(message); // Placeholder for pop-up logic
+            if (!selectedList.isEmpty()) {
+                String message = selectedList.get(new Random().nextInt(selectedList.size()));
+                // Logic to display the message as a pop-up
+                System.out.println(message); // Placeholder for pop-up logic
+            } else {
+                throw new IllegalArgumentException("No messages available for transport mode: " + mode);
+            }
+        } catch (IllegalArgumentException e) {
+            // Handle the case where there are no messages for the mode
+            System.out.println("Error: " + e.getMessage());
         }
     }
+
 
     // Provides end-level education feedback based on route selection.
     public String edFeedback(TransportMode mode, double playerFP, int endStoreFeedback) {
