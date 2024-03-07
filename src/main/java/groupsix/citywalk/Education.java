@@ -32,7 +32,7 @@ public class Education {
 
         ArrayList<String> busPositive = new ArrayList<>();
         busPositive.add("Shared journeys, greener cities: Buses mean less traffic and cleaner air for everyone.");
-        busPositive.add("Hop on the eco-friendly bus: Each ride helps cut down on urban smog and carbon emissions.");
+        busPositive.add("Hop on the eco-friendly bus: Each ride helps cut down on carbon emissions.");
         positiveEdList.put("BUS", busPositive);
 
         ArrayList<String> dartPositive = new ArrayList<>();
