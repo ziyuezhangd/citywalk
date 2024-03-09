@@ -1,5 +1,6 @@
 package groupsix.citywalk;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class City {
@@ -7,7 +8,7 @@ public class City {
     private final int height;
     private final Location[] bicycleRegion = new Location[2];
     private static HashMap<String, TransportMode> transportList = new HashMap<>();
-    private static HashMap<String, PublicTransportMode> publicList = new HashMap<>();
+    private static HashMap<String, PublicTransportMode> publicTransportList = new HashMap<>();
     private static HashMap<String, Station> stationList = new HashMap<>();
 
     public City(){
@@ -65,6 +66,12 @@ public class City {
 
     public void initPublicTransport(){
         //Initialise the public transport mode on the map
+        for (int i=0; i<MapConfig.publicTransportNames.length; i++){
+            String name = MapConfig.publicTransportNames[i];
+            PublicTransportMode publicTransport = new PublicTransportMode(name);
+            publicTransportList.put(name, publicTransport);
+            transportList.put(name, publicTransport);
+        }
     }
 
 
