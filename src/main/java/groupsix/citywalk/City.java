@@ -9,6 +9,7 @@ public class City {
     private static HashMap<String, TransportMode> transportList = new HashMap<>();
     private static HashMap<String, PublicTransportMode> publicList = new HashMap<>();
     private static HashMap<String, Station> stationList = new HashMap<>();
+
     public City(){
         //Initialise the city map
         width = MapConfig.mapSize[0];
@@ -24,6 +25,7 @@ public class City {
     public static TransportMode getTransportByName(String name){
         return transportList.get(name);
     }
+
     public int[] getCitySize(){
         //Return the width and height of the map
         int[] shape = new int[2];
@@ -53,11 +55,16 @@ public class City {
         bicycleRegion[1] = new Location(MapConfig.bicycleLocs[1][0],MapConfig.bicycleLocs[1][1]);
     }
     public void initTransport(){
-
+        //Initialise the transport mode on the map
+        for (int i=0; i<MapConfig.basicTransportNames.length; i++){
+            String name = MapConfig.basicTransportNames[i];
+            TransportMode transport = new TransportMode(name);
+            transportList.put(name, transport);
+        }
     }
 
     public void initPublicTransport(){
-
+        //Initialise the public transport mode on the map
     }
 
 

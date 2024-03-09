@@ -15,7 +15,8 @@ public class MapConfig {
     //Define the bicycle region
     static final int[][] bicycleLocs = {{1,2},{3,4}};
 
-    //Define the public tranport modes
+    //Define the transport modes
+    static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
     static final String[] publicTransportNames = {"Bus", "Luas"};
     static final HashMap<String,String[]> transportStops;
     static {
