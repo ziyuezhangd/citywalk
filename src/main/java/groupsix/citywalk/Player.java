@@ -22,7 +22,7 @@ public class Player {
     // Time the user has spent in the current level
     private int timeSpent;
 
-    private Station location;
+    private Location location;
 
     // Constructor
     public Player(String playerName, Station location) {
@@ -38,18 +38,14 @@ public class Player {
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-    //Initialise player status after a level
-    public void initStatus(){
-        this.carbonFP = 0;
-        this.gemCollect = 0;
-        this.timeSpent = 0;
-    }
+
     // Update time and carbonFP after each trip
     public void finishTrip(Route route) {
         timeSpent += route.getTime();
         carbonFP += route.getCarbonFP();
+        location = route.getEnd();
     }
-    public void finishLevel(){
+    public void startNewLevel(){
         this.carbonFP = 0;
         this.gemCollect = 0;
         this.timeSpent = 0;
@@ -69,6 +65,18 @@ public class Player {
 
     public int gemCollect(){
         gemCollect += 1;
+        return gemCollect;
+    }
+
+    public Location getLocation(){
+        return location;
+    }
+
+    public int getTimeSpent(){
+        return timeSpent;
+    }
+
+    public int getGemCollect(){
         return gemCollect;
     }
 }

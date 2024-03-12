@@ -25,7 +25,9 @@ public class City {
     public static TransportMode getTransportByName(String name){
         return transportList.get(name);
     }
-
+    public static Station getStationByLocation(Location location){
+        ;
+    }
     public int[] getCitySize(){
         //Return the width and height of the map
         int[] shape = new int[2];
