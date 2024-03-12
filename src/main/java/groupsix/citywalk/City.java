@@ -26,8 +26,14 @@ public class City {
         return transportList.get(name);
     }
     public static Station getStationByLocation(Location location){
-        ;
+        for (int i=0; i<MapConfig.stationLocations.length; i++){
+            if (MapConfig.stationLocations[i][0] == location.getX() && MapConfig.stationLocations[i][1] == location.getY()) {
+                return getStationByName(MapConfig.stationNames[i]);
+            }
+        }
+        return null;
     }
+
     public int[] getCitySize(){
         //Return the width and height of the map
         int[] shape = new int[2];
@@ -46,7 +52,7 @@ public class City {
             String name = MapConfig.stationNames[i];
             int x = MapConfig.stationLocations[i][0];
             int y = MapConfig.stationLocations[i][1];
-            Station station = new Station(name, x, y);
+            Station station = new Station(x, y, name);
             stationList.put(name, station);
         }
 
