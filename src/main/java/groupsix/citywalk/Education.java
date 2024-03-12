@@ -54,7 +54,6 @@ public class Education {
     }
 
     // Generates an education pop-up while traveling.
-    @Override
     public void travelPopUp(TransportMode mode) {
         try {
             // Attempt to get a list of messages for the given mode
