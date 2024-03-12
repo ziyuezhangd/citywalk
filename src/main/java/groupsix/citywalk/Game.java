@@ -12,7 +12,8 @@ public class Game {
     public Game() {
     }
     public void startGame(){
-        player = new Player("TestPlayer");
+        Station location = City.getStationByName("UCD");
+        player = new Player("TestPlayer", location);
         city = new City();
         levelCount = 1;
     }
