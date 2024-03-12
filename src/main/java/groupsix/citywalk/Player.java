@@ -43,15 +43,19 @@ public class Player {
         this.carbonFP = 0;
         this.gemCollect = 0;
         this.timeSpent = 0;
-        gameSelectedRoutes.add(levelSelectedRoutes);
-        levelSelectedRoutes = new ArrayList<>();
     }
     // Update time and carbonFP after each trip
-    public void updateStatus(Route route) {
+    public void finishTrip(Route route) {
         timeSpent += route.getTime();
         carbonFP += route.getCarbonFP();
     }
-
+    public void finishLevel(){
+        this.carbonFP = 0;
+        this.gemCollect = 0;
+        this.timeSpent = 0;
+        gameSelectedRoutes.add(levelSelectedRoutes);
+        levelSelectedRoutes = new ArrayList<>();
+    }
     // Get player's carbonFP
     public int getCarbonFP() {
         return carbonFP;
