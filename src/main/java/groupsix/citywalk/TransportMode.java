@@ -12,7 +12,7 @@ public class TransportMode {
         this.carbonFactor = carbonFactor;
     }
 
-    public double getSpeed() {
+    public int getSpeed() {
         return time_factor;
     }
 
