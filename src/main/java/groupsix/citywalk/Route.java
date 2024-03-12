@@ -71,7 +71,12 @@ public class Route {
     public int getCarbonFP(){
         return carbonFP;
     }
-
+    public Station getStart(){
+        return start;
+    }
+    public Station getEnd(){
+        return end;
+    }
     private void setWalk(){
         TransportMode transport = City.getTransportByName("Walk");
         Leg walkLeg = new Leg(start, end, transport);

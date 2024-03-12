@@ -28,5 +28,9 @@ public class Leg {
         return transport;
     }
 
+    public String toString(){
+        String string = "";
+        return string;
+    }
 
 }

@@ -18,6 +18,7 @@ public class Score {
     // Add level score to total score
     public void updateScores(int levelScore, int scoreSum) {
         this.scoreSum += levelScore;
+        this.levelScore = 0;
     }
 
     // Getter for level score
