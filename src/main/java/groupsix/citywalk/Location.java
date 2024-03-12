@@ -15,6 +15,15 @@ public class Location {
         return new int[] {this.x, this.y};
 
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
     //Method for calculating the manhattan distance between location and other location
     public int calDistance(Location other) {
         return Math.abs(this.x - other.x) + Math.abs(this.y - other.y);

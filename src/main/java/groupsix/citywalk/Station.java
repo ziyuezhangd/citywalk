@@ -16,21 +16,37 @@ public class Station extends Location {
         allStations.put(stationName, this);  // Adds this station to the allStations map with the stationName as the key.
     }
 
-    public Location nearestBikeStation() {
-        Location nearestBikeStation = null;
-        int nearestDistance = Integer.MAX_VALUE;
+    public Location nearestBikeStationInBikeZone() {
+        //define bike area
+        int bikeAreaStartX = 1;
+        int bikeAreaEndX = 3;
+        int bikeAreaStartY = 1;
+        int bikeAreaEndY = 3;
 
-        for (int[] bikeLoc : MapConfig.bicycleLocs) {
-            Location bikeStationLocation = new Location(bikeLoc[0], bikeLoc[1]);
-            int distance = this.calDistance(bikeStationLocation);
+        if (this.getX() >= bikeAreaStartX && this.getX() <= bikeAreaEndX &&
+                this.getY() >= bikeAreaStartY && this.getY() <= bikeAreaEndY) {
+            // Station is within the bike area
+            return this; // This station is the nearest bike station since it's in the bike zone
+        }
+        //checks if the location is within the station range
+        int zoneX = (this.getX() < bikeAreaStartX) ? 0 : (this.getX() > bikeAreaEndX) ? 2 : 1;
+        int zoneY = (this.getY() < bikeAreaStartY) ? 0 : (this.getY() > bikeAreaEndY) ? 2 : 1;
 
-            if (distance < nearestDistance) {
-                nearestBikeStation = bikeStationLocation;
-                nearestDistance = distance;
-            }
+        // Zone 3 (corners)
+        if (zoneX != 1 && zoneY != 1) {
+            // Get the corner location in the bike zone closest to the station
+            int targetX = (zoneX == 0) ? bikeAreaStartX : bikeAreaEndX;
+            int targetY = (zoneY == 0) ? bikeAreaStartY : bikeAreaEndY;
+            return new Location(targetX, targetY);
         }
 
-        return nearestBikeStation;
+        // Zone 2 (same x or y axis as the bike area)
+        if (zoneX == 1 || zoneY == 1) {
+            int targetX = (zoneX == 1) ? this.getX() : (zoneY == 0) ? bikeAreaStartX : bikeAreaEndX;
+
+            // If the station is on the same Y axis as the bike area, its Y coordinate will be within the bike area's Y bounds
+            int targetY = (zoneY == 1) ? this.getY() : (zoneX == 0) ? bikeAreaStartY : bikeAreaEndY;
+
     }
 
     // Method to get names of all public transport modes supported by the current station
