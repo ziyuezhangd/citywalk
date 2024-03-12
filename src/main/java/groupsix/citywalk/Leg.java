@@ -14,7 +14,6 @@ public class Leg {
     public int getDistance(){
         return start.calDistance(end);
     }
-
     public int getTime(){
         int distance = getDistance();
         return distance * transport.getSpeed();
@@ -23,14 +22,7 @@ public class Leg {
         int distance = getDistance();
         return (int) (distance * transport.getCarbonFactor());
     }
-
     public TransportMode getTransport(){
         return transport;
     }
-
-    public String toString(){
-        String string = "";
-        return string;
-    }
-
 }

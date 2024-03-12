@@ -24,7 +24,16 @@ public class Trip {
         Route taxiRoute = new Route(start, end, "Taxi");
         addRoute(taxiRoute);
         //Bike
+        Route bikeRoute = new Route(start, end, "Bike");
+        addRoute(bikeRoute);
         //Public Transport
+        for (Route route: calPublicRoutes()){
+            addRoute(route);
+        }
+    }
+    private ArrayList<Route> calPublicRoutes(){
+        //Calculate possible public transport routes
+        return null;
     }
 
     private void addRoute(Route route){

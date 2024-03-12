@@ -1,11 +1,14 @@
 package groupsix.citywalk;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
 public class Station extends Location {
     private String stationName;
     private TransportMode[] transportList;
     // A static HashMap to keep track of all stations created, accessible to all Station instances.
     private static HashMap<String, Station> allStations = new HashMap<>();
+
     //Constructor
     public Station(int x, int y, String stationName) {
         super(x,y);
@@ -19,12 +22,13 @@ public class Station extends Location {
         Station.allStations.put(stationName, this);
     }
 
-    public Location nearestBikeStationInBikeZone() {
+    public Location nearestBikeLocation() {
         //define bike area
-        int bikeAreaStartX = 1;
-        int bikeAreaEndX = 3;
-        int bikeAreaStartY = 1;
-        int bikeAreaEndY = 3;
+        Location[] bikeArea = City.getBikeRegion();
+        int bikeAreaStartX = Math.min(bikeArea[0].getX(), bikeArea[1].getX());
+        int bikeAreaEndX = Math.max(bikeArea[0].getX(), bikeArea[1].getX());
+        int bikeAreaStartY = Math.min(bikeArea[0].getY(), bikeArea[1].getY());
+        int bikeAreaEndY = Math.max(bikeArea[0].getY(), bikeArea[1].getY());
 
         if (this.getX() >= bikeAreaStartX && this.getX() <= bikeAreaEndX &&
                 this.getY() >= bikeAreaStartY && this.getY() <= bikeAreaEndY) {
@@ -49,24 +53,10 @@ public class Station extends Location {
 
             // If the station is on the same Y axis as the bike area, its Y coordinate will be within the bike area's Y bounds
             int targetY = (zoneY == 1) ? this.getY() : (zoneX == 0) ? bikeAreaStartY : bikeAreaEndY;
-
+            return new Location(targetX, targetY);
     }
 
-    // Method to get names of all public transport modes supported by the current station
-    public ArrayList<String> getPublicTransportList() {
-        ArrayList<String> publicTransportList = new ArrayList<>();
-        // Check if the current station is in the transportOptions map
-        if (MapConfig.transportOptions.containsKey(this.stationName)) {
-            // If it is, get the array of transport modes for this station
-            String[] transports = MapConfig.transportOptions.get(this.stationName);
-            // Convert the array to an ArrayList and return it
-            publicTransportList.addAll(Arrays.asList(transports));
-        }
-
-        return publicTransportList;
-    }
-
-    public boolean checkTransfer(Station start, Station end) {
+    public boolean checkTransfer(Station start, Station end){
         // Get the transport options for the start and end stations from the MapConfig
         ArrayList<String> startTransports = MapConfig.transportOptions.get(start.getStationName());
         ArrayList<String> endTransports = MapConfig.transportOptions.get(end.getStationName());
@@ -78,7 +68,6 @@ public class Station extends Location {
                 return true;
             }
         }
-
         return false;
     }
     public String getStationName() {

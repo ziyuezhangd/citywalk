@@ -8,8 +8,6 @@ public class Route {
     private Station end;
     private String mainTransport;
     private ArrayList<Leg> legs;
-    private String[] transferStations;
-    private String[] transportLists;
     private int carbonFP;
     private int time;
     private int distance;
@@ -27,9 +25,6 @@ public class Route {
             case "Taxi":
                 setTaxi();
                 break;
-            case "Public":
-                setPublic(transferStations, transportLists);
-                break;
         }
         calCarbonFP();
         calTime();
@@ -38,8 +33,6 @@ public class Route {
     public Route(Station start, Station end, String mainTransport, String[] transferStations, String[] transportLists){
         this.start = start;
         this.end = end;
-        this.transferStations = transferStations;
-        this.transportLists = transportLists;
         switch (mainTransport){
             case "Walk":
                 setWalk();
@@ -61,7 +54,6 @@ public class Route {
     public int getModeNumber(){
         return legs.size();
     }
-
     public int getTime(){
         return time;
     }

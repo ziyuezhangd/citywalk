@@ -27,7 +27,7 @@ public class Level {
     }
     private boolean checkAlive(){
         boolean check = true;
-        if(myPlayer.getTimeSpent() > levelTime || myPlayer.getCarbonFP() > levelFP){
+        if (myPlayer.getTimeSpent() > levelTime || myPlayer.getCarbonFP() > levelFP){
             check =false;
         }
         return check;
@@ -51,23 +51,24 @@ public class Level {
 
             Location end = gemLocation.get(1);
             //user input end location
-            Trip myTrip = new Trip(myPlayer.getLocation(), end); // need to be finished in city class ( func : getStationByLocation)
+            Trip myTrip = new Trip(City.getStationByLocation(myPlayer.getLocation()), City.getStationByLocation(end));
             ArrayList<Route> routePlan = myTrip.getRoutePlan();
             // user will choose  which one they need
             Route myRoute = routePlan.get(0);
             myPlayer.routeSelect(myRoute);
             myPlayer.finishTrip(myRoute);
-            if(checkAlive()){
-                if(checkGem()){
+            if (checkAlive()){
+                if (checkGem()){
                     myPlayer.gemCollect();
                 }
-                if((myPlayer.getTimeSpent() == levelTime || myPlayer.getCarbonFP() == levelFP) && !gemLocation.isEmpty()){
+                if ((myPlayer.getTimeSpent() == levelTime || myPlayer.getCarbonFP() == levelFP)
+                        && !gemLocation.isEmpty()){
                     return false;
                 }
             } else{
                 return false;
             }
         }
-        return  true;
+        return true;
     }
 }
