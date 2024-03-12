@@ -18,7 +18,6 @@ public class City {
         initBicycleRegion();
         initStations();
         initTransport();
-        initPublicTransport();
     }
     public static Station getStationByName(String name){
         return stationList.get(name);
@@ -43,8 +42,8 @@ public class City {
         // Initialise all stations on the map
         for (int i=0; i<MapConfig.stationNames.length; i++){
             String name = MapConfig.stationNames[i];
-            int x = MapConfig.stationLocs[i][0];
-            int y = MapConfig.stationLocs[i][1];
+            int x = MapConfig.stationLocations[i][0];
+            int y = MapConfig.stationLocations[i][1];
             Station station = new Station(name, x, y);
             stationList.put(name, station);
         }
@@ -52,27 +51,26 @@ public class City {
     }
     public void initBicycleRegion(){
         //Initialise the bicycle region on the map
-        bicycleRegion[0] = new Location(MapConfig.bicycleLocs[0][0],MapConfig.bicycleLocs[0][1]);
-        bicycleRegion[1] = new Location(MapConfig.bicycleLocs[1][0],MapConfig.bicycleLocs[1][1]);
+        bicycleRegion[0] = new Location(MapConfig.bicycleLocations[0][0],MapConfig.bicycleLocations[0][1]);
+        bicycleRegion[1] = new Location(MapConfig.bicycleLocations[1][0],MapConfig.bicycleLocations[1][1]);
     }
     public void initTransport(){
         //Initialise the transport mode on the map
-        for (int i=0; i<MapConfig.basicTransportNames.length; i++){
-            String name = MapConfig.basicTransportNames[i];
-            TransportMode transport = new TransportMode(name);
+        for (int i=0; i<MapConfig.allTransportNames.length; i++){
+            String name = MapConfig.allTransportNames[i];
+            int timeFactor = MapConfig.allTimeFactors[i];
+            double carbonFactor = MapConfig.allCarbonFactors[i];
+            TransportMode transport;
+            if (i>=MapConfig.basicTransportNames.length){
+                transport = new PublicTransportMode(name, timeFactor, carbonFactor);
+                publicTransportList.put(name, transport);
+            } else{
+                transport = new TransportMode(name, timeFactor, carbonFactor);
+            }
             transportList.put(name, transport);
         }
     }
 
-    public void initPublicTransport(){
-        //Initialise the public transport mode on the map
-        for (int i=0; i<MapConfig.publicTransportNames.length; i++){
-            String name = MapConfig.publicTransportNames[i];
-            PublicTransportMode publicTransport = new PublicTransportMode(name);
-            publicTransportList.put(name, publicTransport);
-            transportList.put(name, publicTransport);
-        }
-    }
 
 
 }

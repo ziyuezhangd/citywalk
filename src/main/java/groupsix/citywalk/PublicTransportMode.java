@@ -1,4 +1,5 @@
 package groupsix.citywalk;
 
-public class PublicTransportMode {
+public class PublicTransportMode extends TransportMode {
+
 }
