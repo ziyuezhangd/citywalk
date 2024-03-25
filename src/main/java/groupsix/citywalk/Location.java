@@ -13,7 +13,6 @@ public class Location {
     //Method to return location coordinates as an array
     public int [] getLocation() {
         return new int[] {this.x, this.y};
-
     }
 
     public int getX() {
@@ -27,6 +26,10 @@ public class Location {
     //Method for calculating the manhattan distance between location and other location
     public int calDistance(Location other) {
         return Math.abs(this.x - other.x) + Math.abs(this.y - other.y);
+    }
+
+    public boolean isSameLocation(Location other) {
+        return this.x == other.x && this.y == other.y;
     }
   
 }

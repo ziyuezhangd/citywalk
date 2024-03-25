@@ -26,9 +26,9 @@ public class City {
         return transportList.get(name);
     }
     public static Station getStationByLocation(Location location){
-        for (int i=0; i<MapConfig.stationLocations.length; i++){
-            if (MapConfig.stationLocations[i][0] == location.getX() && MapConfig.stationLocations[i][1] == location.getY()) {
-                return getStationByName(MapConfig.stationNames[i]);
+        for (Station station: stationList.values()){
+            if (station.isLocation(location)) {
+                return station;
             }
         }
         return null;

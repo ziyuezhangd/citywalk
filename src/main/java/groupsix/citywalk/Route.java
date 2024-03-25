@@ -33,6 +33,7 @@ public class Route {
     public Route(Station start, Station end, String mainTransport, String[] transferStations, String[] transportLists){
         this.start = start;
         this.end = end;
+        this.mainTransport = mainTransport;
         switch (mainTransport){
             case "Walk":
                 setWalk();
@@ -80,8 +81,33 @@ public class Route {
         addLeg(taxiLeg);
     }
     private void setBike(){
-        TransportMode transport = City.getTransportByName("Bike");
+        TransportMode bikeTransport = City.getTransportByName("Bike");
+        TransportMode walkTransport = City.getTransportByName("Walk");
+        Location bikeStart = start.nearestBikeLocation();
+        Location bikeEnd = end.nearestBikeLocation();
+        if (start.isSameLocation(bikeStart) && end.isSameLocation(bikeEnd)){
+            Leg bikeLeg = new Leg(start, end, bikeTransport);
+            addLeg(bikeLeg);
+        } else if (start.isSameLocation(bikeStart)) {
+            Leg bikeLeg = new Leg(start, bikeEnd, bikeTransport;
+            Leg walkLeg = new Leg(bikeEnd, end, walkTransport);
+            addLeg(bikeLeg);
+            addLeg(walkLeg);
+        } else if (end.isSameLocation(bikeEnd)) {
+            Leg bikeLeg = new Leg(bikeStart, end, bikeTransport);
+            Leg walkLeg = new Leg(start, bikeStart, walkTransport);
+            addLeg(walkLeg);
+            addLeg(bikeLeg);
+        } else {
+            Leg walkLegStart = new Leg(start, bikeStart, walkTransport);
+            Leg walkLegEnd = new Leg(bikeEnd, end, walkTransport);
+            Leg bikeLeg = new Leg(bikeStart, bikeEnd, bikeTransport);
+            addLeg(walkLegStart);
+            addLeg(bikeLeg);
+            addLeg(walkLegEnd);
+        }
     }
+
     private void setPublic(String[] transferStations, String[] transportLists){
 
     }
