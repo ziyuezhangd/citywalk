@@ -3,9 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PublicTransportMode extends TransportMode {
-    private List<Station> stations; // 存储该公共交通方式的经停站列表
+    private List<Station> stations;
 
-    // 构造方法
     public PublicTransportMode(String name, int timeFactor, double carbonFactor) {
         super(name, timeFactor, carbonFactor);
         this.stations = new ArrayList<>();
@@ -21,12 +20,10 @@ public class PublicTransportMode extends TransportMode {
             }
         }
     }
-    // 返回经停站列表
     public List<Station> listStations() {
         return stations;
     }
 
-    // 检查某个站点是否在公共交通线路上
     public boolean checkStation(String stationName) {
         for (Station station : stations) {
             if (station.getStationName().equalsIgnoreCase(stationName)) {
