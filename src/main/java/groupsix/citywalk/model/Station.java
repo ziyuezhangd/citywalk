@@ -58,18 +58,7 @@ public class Station extends Location {
     }
 
     public boolean checkTransfer(Station start, Station end) {
-        // Get the transport options for the start and end stations from the MapConfig
-        ArrayList<String> startTransports = MapConfig.transportOptions.get(start.getStationName());
-        ArrayList<String> endTransports = MapConfig.transportOptions.get(end.getStationName());
-        ArrayList<String> thisTransports = MapConfig.transportOptions.get(this.getStationName());
-
-        // Check if there's at least one common transport mode between start station and this (transfer) station
-        for (String transport : thisTransports) {
-            if (startTransports.contains(transport) && endTransports.contains(transport)) {
-                return true;
-            }
-        }
-        return false;
+        return this.calDistance(start) + this.calDistance(end) <= start.calDistance(end) + 2;
     }
 
     public String getStationName() {

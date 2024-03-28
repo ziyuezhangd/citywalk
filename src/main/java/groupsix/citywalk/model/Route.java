@@ -88,7 +88,7 @@ public class Route {
             Leg bikeLeg = new Leg(start, end, bikeTransport);
             addLeg(bikeLeg);
         } else if (start.isSameLocation(bikeStart)) {
-            Leg bikeLeg = new Leg(start, bikeEnd, bikeTransport;
+            Leg bikeLeg = new Leg(start, bikeEnd, bikeTransport);
             Leg walkLeg = new Leg(bikeEnd, end, walkTransport);
             addLeg(bikeLeg);
             addLeg(walkLeg);

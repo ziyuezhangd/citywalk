@@ -6,32 +6,32 @@ import java.util.Arrays;
 
 public class MapConfig {
     //Define the size of city map
-    static final int[] mapSize = {10,10};
+    public static final int[] mapSize = {10,10};
 
     //Define the stations
-    static final String[] stationNames = {"UCD", "Trinity", "Dundrum"};
-    static final int[][] stationLocations = {{1,2}, {3,1}, {4,6}};
+    public static final String[] stationNames = {"UCD", "Trinity", "Dundrum"};
+    public static final int[][] stationLocations = {{1,2}, {3,1}, {4,6}};
 
     //Define the bicycle region
-    static final int[][] bicycleLocations = {{1,1},{3,3}};
+    public static final int[][] bicycleLocations = {{1,1},{3,3}};
 
     //Define the transport modes
-    static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
-    static final String[] publicTransportNames = {"Bus", "Luas"};
-    static final String[] allTransportNames = {"Walk", "Bike", "Taxi", "Bus", "Luas"};
-    static final int[] allTimeFactors = {5,4,3,2,1};
-    static final double[] allCarbonFactors = {1,1.1,1.2,1.3,1.4};
+    public static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
+    public static final String[] publicTransportNames = {"Bus", "Luas"};
+    public static final String[] allTransportNames = {"Walk", "Bike", "Taxi", "Bus", "Luas"};
+    public static final int[] allTimeFactors = {5,4,3,2,1};
+    public static final double[] allCarbonFactors = {1,1.1,1.2,1.3,1.4};
 
     //Design public transport routes
     //Define the stops for each public transport mode
-    static final HashMap<String,String[]> transportStops;
+    public static final HashMap<String,String[]> transportStops;
     static {
         transportStops = new HashMap<>();
         transportStops.put("Bus", new String[]{"UCD", "Dundrum"});
         transportStops.put("Luas", new String[]{"Trinity", "Dundrum"});
     }
     //Compute the transport options for each station
-    static final HashMap<String,String[]> transportOptions;
+    public static final HashMap<String,String[]> transportOptions;
     static {
         transportOptions = new HashMap<>();
         for (String station: stationNames){
