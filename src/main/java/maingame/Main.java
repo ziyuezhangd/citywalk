@@ -1,4 +1,4 @@
-package groupsix.citywalk;
+package maingame;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
