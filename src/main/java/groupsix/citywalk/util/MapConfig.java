@@ -9,16 +9,21 @@ public class MapConfig {
     public static final int[] mapSize = {10,10};
 
     //Define the stations
-    public static final String[] stationNames = {"UCD", "Trinity", "Dundrum"};
-    public static final int[][] stationLocations = {{1,2}, {3,1}, {4,6}};
+    //Station names
+    public static final String[] stationNames = {"Dundrum","Rathmines","Blackrock","UCD","Dolphins Barn","Merrion",
+            "Stephen's Green","Temple Bar","Trinity","Ballsbridge","The Spire","Sandymount","Docklands","Dublin Zoo",
+            "Phoenix Park","IKEA","Howth"};
+    //Station locations
+    public static final int[][] stationLocations = {{8,0},{2,1},{10,2},{6,3},{0,3},{9,4},{4,4},{1,5},{3,6},{7,6},{5,7},
+            {9,8},{7,9},{2,9},{1,10},{4,10},{10,10}};
 
     //Define the bicycle region
-    public static final int[][] bicycleLocations = {{1,1},{3,3}};
+    public static final int[][] bicycleLocations = {{1,4},{5,7}};
 
     //Define the transport modes
     public static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
-    public static final String[] publicTransportNames = {"Bus", "Luas"};
-    public static final String[] allTransportNames = {"Walk", "Bike", "Taxi", "Bus", "Luas"};
+    public static final String[] publicTransportNames = {"Bus", "Luas", "Dart"};
+    public static final String[] allTransportNames = {"Walk", "Bike", "Taxi", "Bus", "Luas", "Dart"};
     public static final int[] allTimeFactors = {5,4,3,2,1};
     public static final double[] allCarbonFactors = {1,1.1,1.2,1.3,1.4};
 
