@@ -1,4 +1,6 @@
-package groupsix.citywalk;
+package groupsix.citywalk.model;
+
+import groupsix.citywalk.util.MapConfig;
 
 import java.util.ArrayList;
 

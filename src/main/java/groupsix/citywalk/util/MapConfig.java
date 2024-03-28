@@ -1,4 +1,4 @@
-package groupsix.citywalk;
+package groupsix.citywalk.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;

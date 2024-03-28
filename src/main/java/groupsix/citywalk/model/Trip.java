@@ -1,4 +1,7 @@
-package groupsix.citywalk;
+package groupsix.citywalk.model;
+
+import groupsix.citywalk.model.Route;
+import groupsix.citywalk.model.Station;
 
 import java.util.ArrayList;
 

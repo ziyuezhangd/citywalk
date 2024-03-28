@@ -1,7 +1,6 @@
-package groupsix.citywalk;
+package groupsix.citywalk.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Route {
     private Station start;

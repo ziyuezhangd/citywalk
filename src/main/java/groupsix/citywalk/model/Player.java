@@ -1,6 +1,7 @@
-package groupsix.citywalk;
+package groupsix.citywalk.model;
 
-import java.util.List;
+import groupsix.citywalk.Score;
+
 import java.util.ArrayList;
 
 public class Player {

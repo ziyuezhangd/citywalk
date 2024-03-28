@@ -1,6 +1,7 @@
-package groupsix.citywalk;
+package groupsix.citywalk.model;
 
-import java.util.Arrays;
+import groupsix.citywalk.util.MapConfig;
+
 import java.util.HashMap;
 
 public class City {

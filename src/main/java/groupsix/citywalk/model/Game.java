@@ -1,4 +1,4 @@
-package groupsix.citywalk;
+package groupsix.citywalk.model;
 
 public class Game {
     private Player player;
