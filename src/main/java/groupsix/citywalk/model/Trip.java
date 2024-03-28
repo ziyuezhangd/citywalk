@@ -6,8 +6,8 @@ import groupsix.citywalk.model.Station;
 import java.util.ArrayList;
 
 public class Trip {
-    private Station start;
-    private Station end;
+    private final Station start;
+    private final Station end;
     private ArrayList<Route> routePlan;
 
     public Trip(Station start, Station end){
@@ -36,6 +36,13 @@ public class Trip {
     }
     private ArrayList<Route> calPublicRoutes(){
         //Calculate possible public transport routes
+        ArrayList<String> transferFromStart;
+        ArrayList<String> transferFromEnd;
+        for (TransportMode transportStart: start.getTransportList()) {
+            Leg legFromStart = new Leg();
+            legFromStart.setStart(start);
+            legFromStart.setTransport(transportStart);
+        }
         return null;
     }
 
