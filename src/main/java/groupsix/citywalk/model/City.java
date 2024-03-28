@@ -20,6 +20,7 @@ public class City {
         initStations();
         initTransport();
     }
+    //Helper static methods for other classes
     public static Station getStationByName(String name){
         return stationList.get(name);
     }
