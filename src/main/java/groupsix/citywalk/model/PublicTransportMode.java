@@ -37,7 +37,7 @@ public class PublicTransportMode extends TransportMode {
     public void showStationsList() {
         System.out.println("Stations List for " + this.getType() + ":");
         for (Station station : stations) {
-            System.out.println(station.getName());
+            System.out.println(station.getStationName());
         }
     }
 

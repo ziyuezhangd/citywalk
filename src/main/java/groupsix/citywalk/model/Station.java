@@ -9,7 +9,7 @@ public class Station extends Location {
     private String stationName;
     private TransportMode[] transportList;
     // A static HashMap to keep track of all stations created, accessible to all Station instances.
-    private static HashMap<String, Station> allStations = new HashMap<>();
+    public static HashMap<String, Station> allStations = new HashMap<>();
 
     //Constructor
     public Station(int x, int y, String stationName) {
