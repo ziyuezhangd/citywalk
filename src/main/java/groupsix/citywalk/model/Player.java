@@ -1,45 +1,35 @@
 package groupsix.citywalk.model;
 
-import groupsix.citywalk.Score;
-
 import java.util.ArrayList;
 
 public class Player {
     private String playerName;
-
-    // A player has a Score instance
-    private Score playerScore;
-
-    // The player’s carbon footprint consumption in the current level
     private int carbonFP;
-
-    // The number of gems obtained by the player in the current level
     private int gemCollect;
-
-    // The route chosen by the player in the current level
     private ArrayList<Route> levelSelectedRoutes = new ArrayList<>();
     private ArrayList<ArrayList<Route>> gameSelectedRoutes = new ArrayList<>();
 
     // Time the user has spent in the current level
     private int timeSpent;
-
     private Location location;
+    private int levelScore;
+    private int scoreSum;
 
     // Constructor
     public Player(String playerName, Station location) {
         this.playerName = playerName;
-        this.playerScore = new Score();
         this.carbonFP = 0;
         this.gemCollect = 0;
         this.timeSpent = 0;
         this.location = location;
+        //Initialize score
+        this.levelScore = 0;
+        this.scoreSum = 0;
     }
 
-    // Set player name
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public String getPlayerName() {
+        return playerName;
     }
-
     // Update time and carbonFP after each trip
     public void finishTrip(Route route) {
         timeSpent += route.getTime();
@@ -79,5 +69,20 @@ public class Player {
 
     public int getGemCollect(){
         return gemCollect;
+    }
+
+    public void calScore() {
+        this.levelScore = (int) (Math.log(1000 - (1 * Math.log(time)) - (3 * Math.log(playerFP))) * 10);
+        // Update total score
+        this.scoreSum += this.levelScore;
+        // Reset level score for the next level
+        this.levelScore = 0;
+    }
+
+    public int getLevelScore() {
+        return levelScore;
+    }
+    public int getScoreSum() {
+        return scoreSum;
     }
 }

@@ -1,6 +1,12 @@
 package groupsix.citywalk.model;
 
-public class Game {
+import groupsix.citywalk.util.Save;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+
+public class Game implements Save {
     private Player player;
     private City city;
     private int levelCount;
@@ -34,4 +40,11 @@ public class Game {
             System.out.println("Failed!");
         }
     }
+    @Override
+    public void save() throws IOException {
+        try (PrintWriter out = new PrintWriter(new FileWriter("players_scores_sum.txt", true))) {
+            out.println(player.getPlayerName() + "," + player.getPlayerScore());
+        }
+    }
+
 }
