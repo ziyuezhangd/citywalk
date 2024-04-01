@@ -43,7 +43,7 @@ public class Game implements Save {
     @Override
     public void save() throws IOException {
         try (PrintWriter out = new PrintWriter(new FileWriter("players_scores_sum.txt", true))) {
-            out.println(player.getPlayerName() + "," + player.getPlayerScore());
+            out.println(player.getPlayerName() + "," + player.getScoreSum());
         }
     }
 

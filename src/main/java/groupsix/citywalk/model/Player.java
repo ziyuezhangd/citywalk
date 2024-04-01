@@ -72,7 +72,7 @@ public class Player {
     }
 
     public void calScore() {
-        this.levelScore = (int) (Math.log(1000 - (1 * Math.log(time)) - (3 * Math.log(playerFP))) * 10);
+        this.levelScore = (int) (Math.log(1000 - (1 * Math.log(timeSpent)) - (3 * Math.log(carbonFP))) * 10);
         // Update total score
         this.scoreSum += this.levelScore;
         // Reset level score for the next level

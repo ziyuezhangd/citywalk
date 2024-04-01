@@ -3,6 +3,9 @@ package groupsix.citywalk.model;
 import groupsix.citywalk.util.MapConfig;
 import groupsix.citywalk.util.Save;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Level implements Save {
