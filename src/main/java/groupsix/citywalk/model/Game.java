@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 
+
 public class Game implements Save {
     private Player player;
     private City city;
@@ -40,10 +41,34 @@ public class Game implements Save {
             System.out.println("Failed!");
         }
     }
+
+
     @Override
     public void save() throws IOException {
-        try (PrintWriter out = new PrintWriter(new FileWriter("players_scores_sum.txt", true))) {
-            out.println(player.getPlayerName() + "," + player.getScoreSum());
+        Map<String, Integer> scoreMap = new HashMap<>();
+
+        // 读取现有分数
+        Path path = Paths.get("players_scores_sum.txt");
+        if (Files.exists(path)) {
+            List<String> lines = Files.readAllLines(path);
+            for (String line : lines) {
+                String[] parts = line.split(",");
+                scoreMap.put(parts[0], Integer.parseInt(parts[1]));
+            }
+        }
+
+        // 更新当前玩家分数
+        scoreMap.put(player.getPlayerName(), player.getScoreSum());
+
+        // 排序
+        List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(scoreMap.entrySet());
+        sortedEntries.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
+
+        // 重写文件
+        try (PrintWriter out = new PrintWriter(Files.newBufferedWriter(path))) {
+            for (Map.Entry<String, Integer> entry : sortedEntries) {
+                out.println(entry.getKey() + "," + entry.getValue());
+            }
         }
     }
 
