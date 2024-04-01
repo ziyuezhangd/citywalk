@@ -1,7 +1,7 @@
 package groupsix.citywalk.model;
 
 
-public class TransportMode {
+public abstract class TransportMode {
     private int time_factor;
     private double carbonFactor;
     private String name;
@@ -12,7 +12,7 @@ public class TransportMode {
         this.carbonFactor = carbonFactor;
     }
 
-    public int getSpeed() {
+    public int getTime_factor() {
         return time_factor;
     }
 
@@ -29,11 +29,14 @@ public class TransportMode {
         this.carbonFactor = carbonFactor;
     }
 
-    public String getType() {
+    public String getName() {
         return name;
     }
 
-    public void setType(String name) {
+    public void setName(String name) {
         this.name = name;
     }
+
+    public abstract boolean checkLocation (Location location);
+
 }
