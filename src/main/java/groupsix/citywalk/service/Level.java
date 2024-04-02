@@ -1,5 +1,6 @@
-package groupsix.citywalk.model;
+package groupsix.citywalk.service;
 
+import groupsix.citywalk.model.*;
 import groupsix.citywalk.util.MapConfig;
 import groupsix.citywalk.util.Save;
 

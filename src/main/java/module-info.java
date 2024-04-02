@@ -13,4 +13,6 @@ module group6.citywalk {
     opens groupsix.citywalk.util to javafx.fxml;
     exports groupsix.citywalk.api;
     opens groupsix.citywalk.api to javafx.fxml;
+    exports groupsix.citywalk.service;
+    opens groupsix.citywalk.service to javafx.fxml;
 }

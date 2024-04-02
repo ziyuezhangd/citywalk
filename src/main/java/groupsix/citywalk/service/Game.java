@@ -1,8 +1,11 @@
-package groupsix.citywalk.model;
+package groupsix.citywalk.service;
 
+import groupsix.citywalk.model.City;
+import groupsix.citywalk.model.Player;
+import groupsix.citywalk.model.Station;
+import groupsix.citywalk.service.Level;
 import groupsix.citywalk.util.Save;
 
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 
