@@ -2,23 +2,22 @@ package groupsix.citywalk.model;
 
 
 public abstract class TransportMode {
-    private int time_factor;
+    private int timeFactor;
     private double carbonFactor;
     private String name;
 
-    public TransportMode(String name, int time_factor, double carbonFactor) {
+    public TransportMode(String name, int timeFactor, double carbonFactor) {
         this.name = name;
-        this.time_factor = time_factor;
+        this.timeFactor = timeFactor;
         this.carbonFactor = carbonFactor;
     }
 
-    public int getTime_factor() {
-        return time_factor;
+    public int getTimeFactor() {
+        return timeFactor;
     }
 
-
-    public void setSpeed(int time_factor) {
-        this.time_factor = time_factor;
+    public void setTimeFactor(int timeFactor) {
+        this.timeFactor = timeFactor;
     }
 
     public double getCarbonFactor() {

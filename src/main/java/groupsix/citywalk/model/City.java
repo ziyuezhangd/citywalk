@@ -7,7 +7,6 @@ import java.util.HashMap;
 public class City {
     private final int width;
     private final int height;
-    private static Location[] bikeRegion = new Location[2];
     private static HashMap<String, TransportMode> transportList = new HashMap<>();
     private static HashMap<String, PublicTransportMode> publicTransportList = new HashMap<>();
     private static HashMap<String, Station> stationList = new HashMap<>();
@@ -16,7 +15,7 @@ public class City {
         //Initialise the city map
         width = MapConfig.mapSize[0];
         height = MapConfig.mapSize[1];
-        initBicycleRegion();
+        initBikeRegion();
         initStations();
         initTransport();
     }
@@ -44,7 +43,8 @@ public class City {
         return shape;
     }
     public static Location[] getBikeRegion(){
-        return bikeRegion;
+        BasicTransportMode bike = (BasicTransportMode) getTransportByName("Bike");
+        return bike.getRegion();
     }
     private void initStations(){
         // Initialise all stations on the map
@@ -52,14 +52,10 @@ public class City {
             String name = MapConfig.stationNames[i];
             int x = MapConfig.stationLocations[i][0];
             int y = MapConfig.stationLocations[i][1];
-            Station station = new Station(x, y, name);
+
+            Station station = new Station(x, y, name, MapConfig.publicTransportOptions.get(name));
             stationList.put(name, station);
         }
-    }
-    private void initBicycleRegion(){
-        //Initialise the bicycle region on the map
-        bikeRegion[0] = new Location(MapConfig.bicycleLocations[0][0],MapConfig.bicycleLocations[0][1]);
-        bikeRegion[1] = new Location(MapConfig.bicycleLocations[1][0],MapConfig.bicycleLocations[1][1]);
     }
     private void initTransport(){
         //Initialise the transport mode on the map
@@ -68,11 +64,13 @@ public class City {
             int timeFactor = MapConfig.allTimeFactors[i];
             double carbonFactor = MapConfig.allCarbonFactors[i];
             TransportMode transport;
-            if (i >= MapConfig.basicTransportNames.length){
-                transport = new PublicTransportMode(name, timeFactor, carbonFactor);
+            if (i >= MapConfig.basicTransportNames.length) {
+                transport = new PublicTransportMode(name, timeFactor, carbonFactor, MapConfig.publicTransportStops.get(name));
                 publicTransportList.put(name, (PublicTransportMode) transport);
             } else{
-                transport = new TransportMode(name, timeFactor, carbonFactor);
+                Location location1 = new Location(MapConfig.basicTransportRegion[i][0][0],MapConfig.basicTransportRegion[i][0][1]);
+                Location location2 = new Location(MapConfig.basicTransportRegion[i][1][0],MapConfig.basicTransportRegion[i][1][1]);
+                transport = new BasicTransportMode(name, timeFactor, carbonFactor, new Location[]{location1, location2});
             }
             transportList.put(name, transport);
         }

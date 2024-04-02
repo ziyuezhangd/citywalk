@@ -6,30 +6,23 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PublicTransportMode extends TransportMode {
-    private static HashMap<String, Station> stations = new HashMap<>();
+    private String[] stationList;
 
-    public PublicTransportMode(String name, int timeFactor, double carbonFactor, HashMap<String, Station> stations) {
+    public PublicTransportMode(String name, int timeFactor, double carbonFactor, String[] stationList) {
         super(name, timeFactor, carbonFactor);
-        this.stations = stations;
+        this.stationList = stationList;
     }
-    public List<Station> listStations() {
-        return new ArrayList<>(stations.values());
+    public String[] listStations() {
+        return stationList;
     }
 
     public boolean checkLocation(Location location) {
-        for (Station station : stations.values()) {
-            if (station.isLocation(location)) {
+        for (String stationName : stationList) {
+            if (City.getStationByName(stationName).isLocation(location)) {
                 return true;
             }
         }
         return false;
-
-    }
-    public void showStationsList() {
-        System.out.println("Stations List for " + this.getName() + ":");
-        for (Station station : stations.values()) {
-            System.out.println(station.getStationName());
-        }
     }
 
 }

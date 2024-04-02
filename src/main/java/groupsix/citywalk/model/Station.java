@@ -7,21 +7,13 @@ import java.util.HashMap;
 
 public class Station extends Location {
     private String stationName;
-    private TransportMode[] transportList;
-    // A static HashMap to keep track of all stations created, accessible to all Station instances.
-    public static HashMap<String, Station> allStations = new HashMap<>();
+    private String[] publicTransportList;
 
     //Constructor
-    public Station(int x, int y, String stationName) {
+    public Station(int x, int y, String stationName, String[] publicTransportList) {
         super(x, y);
         this.stationName = stationName;
-        String[] transportNameList = MapConfig.transportOptions.get(stationName);
-        transportList = new TransportMode[transportNameList.length];
-        for (String transport : transportNameList) {
-            int i = 0;
-            transportList[i] = City.getTransportByName(transportNameList[i]);
-        }
-        Station.allStations.put(stationName, this);
+        this.publicTransportList = publicTransportList;
     }
 
     public Location nearestBikeLocation() {
@@ -65,8 +57,8 @@ public class Station extends Location {
         return stationName;
     }
 
-    public TransportMode[] getTransportList() {
-        return transportList;
+    public String[] getPublicTransportList() {
+        return publicTransportList;
     }
 
     public boolean isLocation(Location location) {
