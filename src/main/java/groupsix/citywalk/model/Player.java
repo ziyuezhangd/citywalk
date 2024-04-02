@@ -11,7 +11,7 @@ public class Player {
 
     // Time the user has spent in the current level
     private int timeSpent;
-    private Location location;
+    private Location playerLocation;
     private int levelScore;
     private int scoreSum;
 
@@ -21,7 +21,7 @@ public class Player {
         this.carbonFP = 0;
         this.gemCollect = 0;
         this.timeSpent = 0;
-        this.location = location;
+        this.playerLocation = location;
         //Initialize score
         this.levelScore = 0;
         this.scoreSum = 0;
@@ -34,7 +34,7 @@ public class Player {
     public void finishTrip(Route route) {
         timeSpent += route.getTime();
         carbonFP += route.getCarbonFP();
-        location = route.getEnd();
+        playerLocation = route.getEnd();
     }
     public void startNewLevel(){
         this.carbonFP = 0;
@@ -51,7 +51,7 @@ public class Player {
     // Store the routes taken and for each trip in one level
     public void routeSelect(Route route) {
         levelSelectedRoutes.add(route);
-        location = route.getEnd();
+        playerLocation = route.getEnd();
     }
 
     public int gemCollect(){
@@ -59,8 +59,8 @@ public class Player {
         return gemCollect;
     }
 
-    public Location getLocation(){
-        return location;
+    public Location getPlayerLocation(){
+        return playerLocation;
     }
 
     public int getTimeSpent(){

@@ -38,10 +38,10 @@ public class Trip {
         //Calculate possible public transport routes
         ArrayList<String> transferFromStart;
         ArrayList<String> transferFromEnd;
-        for (TransportMode transportStart: start.getTransportList()) {
+        for (String transportStartNames: start.getPublicTransportList()) {
             Leg legFromStart = new Leg();
             legFromStart.setStart(start);
-            legFromStart.setTransport(transportStart);
+            //to be continued
         }
         return null;
     }

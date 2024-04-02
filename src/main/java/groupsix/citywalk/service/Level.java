@@ -13,17 +13,17 @@ public class Level implements Save {
     private int levelCount;
     private int levelTime;
     private int levelGem;
-    private int levelFP;
+    private int levelBudget;
     private Player myPlayer;
     private City myCity;
     private ArrayList<Location> gemLocation = new ArrayList<>();
     private Route myRoute;
 
-    public Level(int levelCount, int levelTime, int levelGem, int levelFP, Player myPlayer, City myCity) {
+    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player myPlayer, City myCity) {
         this.levelCount = levelCount;
         this.levelTime = levelTime;
         this.levelGem = levelGem;
-        this.levelFP = levelFP;
+        this.levelBudget = levelBudget;
         this.myPlayer = myPlayer;
         this.myCity = myCity;
     }
@@ -35,7 +35,7 @@ public class Level implements Save {
     }
     private boolean checkAlive(){
         boolean check = true;
-        if (myPlayer.getTimeSpent() > levelTime || myPlayer.getCarbonFP() > levelFP){
+        if (myPlayer.getTimeSpent() > levelTime || myPlayer.getCarbonFP() > levelBudget){
             check =false;
         }
         return check;
@@ -59,7 +59,7 @@ public class Level implements Save {
 
             Location end = gemLocation.get(1);
             //user input end location
-            Trip myTrip = new Trip(City.getStationByLocation(myPlayer.getLocation()), City.getStationByLocation(end));
+            Trip myTrip = new Trip(City.getStationByLocation(myPlayer.getPlayerLocation()), City.getStationByLocation(end));
             ArrayList<Route> routePlan = myTrip.getRoutePlan();
             // user will choose  which one they need
             myRoute = routePlan.get(0);
@@ -69,7 +69,7 @@ public class Level implements Save {
                 if (checkGem()){
                     myPlayer.gemCollect();
                 }
-                if ((myPlayer.getTimeSpent() == levelTime || myPlayer.getCarbonFP() == levelFP)
+                if ((myPlayer.getTimeSpent() == levelTime || myPlayer.getCarbonFP() == levelBudget)
                         && !gemLocation.isEmpty()){
                     return false;
                 }
@@ -87,7 +87,7 @@ public class Level implements Save {
             out.println("Player: " + myPlayer.getPlayerName());
             out.println("LevelCount: " + levelCount);
             out.println("LevelTime: " + levelTime);
-            out.println("LevelFP: " + levelFP);
+            out.println("LevelFP: " + levelBudget);
             out.println("Route: " + myRoute);
             out.println("Transport Mode : " + myRoute.getModeNumber());
             out.println("Score: " + myPlayer.getLevelScore());

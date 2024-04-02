@@ -8,6 +8,13 @@ import groupsix.citywalk.util.Save;
 
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class Game implements Save {
@@ -17,7 +24,7 @@ public class Game implements Save {
     private int levelNum = 3;//number of level
     private int[] levelTime = {30, 20, 10};
     private int[] levelGem = {1, 2, 3};
-    private int[] levelFP = {30, 20, 10};
+    private int[] levelBudget = {30, 20, 10};
 
     public Game() {
     }
@@ -30,7 +37,7 @@ public class Game implements Save {
     public void playingGame(){
         boolean flag = false;
         for(int i = 0; i < levelNum; i++){
-            Level level = new Level(levelCount, levelTime[i], levelGem[i], levelFP[i], player, city);
+            Level level = new Level(levelCount, levelTime[i], levelGem[i], levelBudget[i], player, city);
             flag = level.levelPlay();
             if(flag){
                 levelCount++;
