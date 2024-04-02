@@ -15,7 +15,6 @@ public class City {
         //Initialise the city map
         width = MapConfig.mapSize[0];
         height = MapConfig.mapSize[1];
-        initBikeRegion();
         initStations();
         initTransport();
     }
