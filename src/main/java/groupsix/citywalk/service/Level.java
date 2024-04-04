@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Level implements Save {
     private int levelCount;
@@ -43,9 +44,16 @@ public class Level implements Save {
 
     private boolean checkGem(){
         boolean check = false;
-        // 查找myPlayer 的location 在不在gemLocation 中。
-        // 如果在gemLocation中删除此location instance 并改变check 为 true
-        // 如果不在，不做任何操作
+        Location currentPlayerLocation = myPlayer.getPlayerLocation();
+        Iterator<Location> iterator = gemLocation.iterator();
+        while (iterator.hasNext()) {
+            Location gem = iterator.next();
+            if (gem.isSameLocation(currentPlayerLocation)) {
+                iterator.remove();
+                check = true;
+                break;
+            }
+        }
         return check;
     }
 
