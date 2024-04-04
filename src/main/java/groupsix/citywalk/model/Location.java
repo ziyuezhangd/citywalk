@@ -31,5 +31,5 @@ public class Location {
     public boolean isSameLocation(Location other) {
         return this.x == other.x && this.y == other.y;
     }
-  
+
 }

@@ -12,7 +12,7 @@ public class PublicTransportMode extends TransportMode {
     public PublicTransportMode(String name, int timeFactor, double carbonFactor) {
         super(name, timeFactor, carbonFactor);
     }
-    public ArrayList<Station> listStations() {
+    public ArrayList<Station> getStations() {
         return stationList;
     }
 
@@ -27,6 +27,18 @@ public class PublicTransportMode extends TransportMode {
 
     public void setStationList(ArrayList<Station> stations) {
         this.stationList = stations;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        PublicTransportMode transport = (PublicTransportMode) obj;
+        return this.getName().equals(transport.getName());
     }
 }
 

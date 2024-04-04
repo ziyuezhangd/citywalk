@@ -65,5 +65,16 @@ public class Station extends Location {
     public boolean isLocation(Location location) {
         return getX() == location.getX() && getY() == location.getY();
     }
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Station station = (Station) obj;
+        return stationName.equals(station.getStationName());
+    }
 
 }

@@ -3,33 +3,12 @@ package groupsix.citywalk.model;
 import java.util.ArrayList;
 
 public class Route {
-    private Station start;
-    private Station end;
-    private String mainTransport;
-    private ArrayList<Leg> legs;
-    private int carbonFP;
-    private int time;
-    private int distance;
+    private final Station start;
+    private final Station end;
+    private final String mainTransport;
+    private ArrayList<Leg> legs = new ArrayList<>();
 
     public Route(Station start, Station end, String mainTransport){
-        this.start = start;
-        this.end = end;
-        switch (mainTransport){
-            case "Walk":
-                setWalk();
-                break;
-            case "Bike":
-                setBike();
-                break;
-            case "Taxi":
-                setTaxi();
-                break;
-        }
-        calCarbonFP();
-        calTime();
-        calDistance();
-    }
-    public Route(Station start, Station end, String mainTransport, String[] transferStations, String[] transportLists){
         this.start = start;
         this.end = end;
         this.mainTransport = mainTransport;
@@ -43,25 +22,32 @@ public class Route {
             case "Taxi":
                 setTaxi();
                 break;
-            case "Public":
-                setPublic(transferStations, transportLists);
-                break;
         }
-        calCarbonFP();
-        calTime();
-        calDistance();
     }
+
     public int getModeNumber(){
         return legs.size();
     }
-    public int getTime(){
+    private int getCarbonFP(){
+        int carbonFP = 0;
+        for (Leg leg: legs){
+            carbonFP += leg.getCarbonFP();
+        }
+        return carbonFP;
+    }
+    private int getTime(){
+        int time = 0;
+        for (Leg leg: legs){
+            time += leg.getTime();
+        }
         return time;
     }
-    public int getDistance(){
+    private int getDistance(){
+        int distance = 0;
+        for (Leg leg: legs) {
+            distance += leg.getDistance();
+        }
         return distance;
-    }
-    public int getCarbonFP(){
-        return carbonFP;
     }
     public Station getStart(){
         return start;
@@ -69,15 +55,16 @@ public class Route {
     public Station getEnd(){
         return end;
     }
+
     private void setWalk(){
         TransportMode transport = City.getTransportByName("Walk");
         Leg walkLeg = new Leg(start, end, transport);
-        addLeg(walkLeg);
+        legs.add(walkLeg);
     }
     private void setTaxi(){
         TransportMode transport = City.getTransportByName("Taxi");
         Leg taxiLeg = new Leg(start, end, transport);
-        addLeg(taxiLeg);
+        legs.add(taxiLeg);
     }
     private void setBike(){
         TransportMode bikeTransport = City.getTransportByName("Bike");
@@ -86,54 +73,44 @@ public class Route {
         Location bikeEnd = end.nearestBikeLocation();
         if (start.isSameLocation(bikeStart) && end.isSameLocation(bikeEnd)){
             Leg bikeLeg = new Leg(start, end, bikeTransport);
-            addLeg(bikeLeg);
+            legs.add(bikeLeg);
         } else if (start.isSameLocation(bikeStart)) {
             Leg bikeLeg = new Leg(start, bikeEnd, bikeTransport);
             Leg walkLeg = new Leg(bikeEnd, end, walkTransport);
-            addLeg(bikeLeg);
-            addLeg(walkLeg);
+            legs.add(bikeLeg);
+            legs.add(walkLeg);
         } else if (end.isSameLocation(bikeEnd)) {
             Leg bikeLeg = new Leg(bikeStart, end, bikeTransport);
             Leg walkLeg = new Leg(start, bikeStart, walkTransport);
-            addLeg(walkLeg);
-            addLeg(bikeLeg);
+            legs.add(walkLeg);
+            legs.add(bikeLeg);
         } else {
             Leg walkLegStart = new Leg(start, bikeStart, walkTransport);
             Leg walkLegEnd = new Leg(bikeEnd, end, walkTransport);
             Leg bikeLeg = new Leg(bikeStart, bikeEnd, bikeTransport);
-            addLeg(walkLegStart);
-            addLeg(bikeLeg);
-            addLeg(walkLegEnd);
+            legs.add(walkLegStart);
+            legs.add(bikeLeg);
+            legs.add(walkLegEnd);
         }
     }
 
-    private void setPublic(String[] transferStations, String[] transportLists){
-
+    public void setPublicRoute(PublicTransportMode transport){
+        Leg directPublicLeg = new Leg(start, end, transport);
+        legs.add(directPublicLeg);
     }
-
-    private void addLeg(Leg leg){
-        legs.add(leg);
+    public void setPublicRoute(PublicTransportMode transportS, Station transfer, PublicTransportMode transportE){
+        Leg startToTransferLeg = new Leg(start, transfer, transportS);
+        Leg transferToEndLeg = new Leg(transfer, end, transportE);
+        legs.add(startToTransferLeg);
+        legs.add(transferToEndLeg);
     }
-
-    private void calCarbonFP(){
-        int carbonFP = 0;
-        for (Leg leg: legs){
-            carbonFP += leg.getCarbonFP();
-        }
-        this.carbonFP = carbonFP;
-    }
-    private void calTime(){
-        int time = 0;
-        for (Leg leg: legs){
-            time += leg.getTime();
-        }
-        this.time = time;
-    }
-    private void calDistance(){
-        int distance = 0;
-        for (Leg leg: legs) {
-            distance += leg.getDistance();
-        }
-        this.distance = distance;
+    public void setPublicRoute(PublicTransportMode transportS, Station transferS, PublicTransportMode transportT,
+                               Station transferE, PublicTransportMode transportE){
+        Leg startToTransferLeg = new Leg(start, transferS, transportS);
+        Leg transferToTransferLeg = new Leg(transferS, transferE, transportT);
+        Leg transferToEndLeg = new Leg(transferE, end, transportE);
+        legs.add(startToTransferLeg);
+        legs.add(transferToTransferLeg);
+        legs.add(transferToEndLeg);
     }
 }
