@@ -31,25 +31,25 @@ public class MapConfig {
 
     //Design public transport routes
     //Define the stops for each public transport mode
-    public static final HashMap<String,String[]> publicTransportStops;
+    public static final HashMap<String,ArrayList<String>> publicTransportStops;
     static {
         publicTransportStops = new HashMap<>();
-        publicTransportStops.put("Bus", new String[]{"UCD", "Dundrum"});
-        publicTransportStops.put("Luas", new String[]{"Trinity", "Dundrum"});
+        publicTransportStops.put("Bus", new ArrayList<>(Arrays.asList("UCD", "Dundrum")));
+        publicTransportStops.put("Luas", new ArrayList<>(Arrays.asList("Trinity", "Dundrum")));
+        publicTransportStops.put("Dart", new ArrayList<>(Arrays.asList("Trinity", "UCD")));
     }
     //Compute the transport options for each station
-    public static final HashMap<String, String[]> publicTransportOptions;
+    public static final HashMap<String, ArrayList<String>> publicTransportOptions;
     static {
         publicTransportOptions = new HashMap<>();
         for (String station: stationNames){
-            ArrayList<String> tempList = new ArrayList<>();
+            ArrayList<String> options = new ArrayList<>();
             for (String transport: publicTransportNames){
-                if (Arrays.asList(publicTransportStops.get(transport)).contains(station)){
-                    tempList.add(transport);
+                if (publicTransportStops.get(transport).contains(station)){
+                    options.add(transport);
                 }
             }
-            String[] tempArray = tempList.toArray(new String[tempList.size()]);
-            publicTransportOptions.put(station, tempArray);
+            publicTransportOptions.put(station, options);
         }
     }
 }

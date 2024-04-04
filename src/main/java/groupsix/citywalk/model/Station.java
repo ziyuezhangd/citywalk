@@ -7,15 +7,16 @@ import java.util.HashMap;
 
 public class Station extends Location {
     private String stationName;
-    private String[] publicTransportList;
+    private ArrayList<PublicTransportMode> publicTransportList;
 
     //Constructor
-    public Station(int x, int y, String stationName, String[] publicTransportList) {
+    public Station(int x, int y, String stationName) {
         super(x, y);
         this.stationName = stationName;
-        this.publicTransportList = publicTransportList;
     }
-
+    public void setPublicTransportList(ArrayList<PublicTransportMode> publicTransport){
+        this.publicTransportList = publicTransport;
+    }
     public Location nearestBikeLocation() {
         //define bike area
         Location[] bikeArea = City.getBikeRegion();
@@ -57,7 +58,7 @@ public class Station extends Location {
         return stationName;
     }
 
-    public String[] getPublicTransportList() {
+    public ArrayList<PublicTransportMode> getPublicTransportList() {
         return publicTransportList;
     }
 
