@@ -25,11 +25,11 @@ public class Leg {
     }
     public int getTime(){
         int distance = getDistance();
-        return distance * transport.getTimeFactor();
+        return (int) (distance * transport.getTimeFactor());
     }
     public int getCarbonFP(){
         int distance = getDistance();
-        return (int) (distance * transport.getCarbonFactor());
+        return distance * transport.getCarbonFactor();
     }
     public TransportMode getTransport(){
         return transport;

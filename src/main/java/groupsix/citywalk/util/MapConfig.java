@@ -23,8 +23,8 @@ public class MapConfig {
     public static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
     public static final String[] publicTransportNames = {"Bus", "Luas", "Dart"};
     public static final String[] allTransportNames = {"Walk", "Bike", "Taxi", "Bus", "Luas", "Dart"};
-    public static final int[] allTimeFactors = {5,4,3,2,1};
-    public static final double[] allCarbonFactors = {1,1.1,1.2,1.3,1.4};
+    public static final double[] allTimeFactors = {7.0,2.4,2.0,3.8,3.0,3.4};  //unit: minute
+    public static final int[] allCarbonFactors = {2,4,48,30,15,18};  //unit: gram
 
     //Design basic transport regions
     public static final int[][][] basicTransportRegion = {{{0,0},{10,10}},{{1,4},{5,7}},{{0,0},{10,10}}};
@@ -34,9 +34,12 @@ public class MapConfig {
     public static final HashMap<String,ArrayList<String>> publicTransportStops;
     static {
         publicTransportStops = new HashMap<>();
-        publicTransportStops.put("Bus", new ArrayList<>(Arrays.asList("UCD", "Dundrum")));
-        publicTransportStops.put("Luas", new ArrayList<>(Arrays.asList("Trinity", "Dundrum")));
-        publicTransportStops.put("Dart", new ArrayList<>(Arrays.asList("Trinity", "UCD")));
+        publicTransportStops.put("Bus", new ArrayList<>(Arrays.asList("Phoenix Park","Dublin Zoo","Trinity","The Spire",
+                "Stephen's Green","UCD","Blackrock","Dundrum")));
+        publicTransportStops.put("Luas", new ArrayList<>(Arrays.asList("Dolphins Barn","Temple Bar","Trinity",
+                "Stephen's Green","The Spire","Ballsbridge","Docklands","Sandymount")));
+        publicTransportStops.put("Dart", new ArrayList<>(Arrays.asList("Howth","Sandymount","Merrion","Blackrock",
+                "Dundrum","Rathmines","Dolphins Barn","Dublin Zoo","Phoenix Park")));
     }
     //Compute the transport options for each station
     public static final HashMap<String, ArrayList<String>> publicTransportOptions;

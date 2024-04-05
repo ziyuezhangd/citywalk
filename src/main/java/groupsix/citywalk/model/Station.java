@@ -51,7 +51,8 @@ public class Station extends Location {
     }
 
     public boolean checkTransfer(Station start, Station end) {
-        return this.calDistance(start) + this.calDistance(end) <= start.calDistance(end) + 2;
+        return (this.calDistance(start) + this.calDistance(end) <= start.calDistance(end) + 2) &&
+                publicTransportList.size() >= 2;
     }
 
     public String getStationName() {
@@ -77,4 +78,9 @@ public class Station extends Location {
         return stationName.equals(station.getStationName());
     }
 
+    public ArrayList<PublicTransportMode> getOtherTransport(PublicTransportMode transport){
+        ArrayList<PublicTransportMode> copy = new ArrayList<>(publicTransportList);
+        copy.remove(transport);
+        return copy;
+    }
 }

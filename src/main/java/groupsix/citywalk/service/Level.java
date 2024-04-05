@@ -69,7 +69,7 @@ public class Level implements Save {
             //user input end location
             Trip myTrip = new Trip(City.getStationByLocation(myPlayer.getPlayerLocation()), City.getStationByLocation(end));
             ArrayList<Route> routePlan = myTrip.getRoutePlan();
-            // user will choose  which one they need
+            // user will choose which one they need
             myRoute = routePlan.get(0);
             myPlayer.routeSelect(myRoute);
             myPlayer.finishTrip(myRoute);

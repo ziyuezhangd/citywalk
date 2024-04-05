@@ -9,7 +9,7 @@ import java.util.List;
 public class PublicTransportMode extends TransportMode {
     private ArrayList<Station> stationList;
 
-    public PublicTransportMode(String name, int timeFactor, double carbonFactor) {
+    public PublicTransportMode(String name, double timeFactor, int carbonFactor) {
         super(name, timeFactor, carbonFactor);
     }
     public ArrayList<Station> getStations() {

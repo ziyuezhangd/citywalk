@@ -36,25 +36,29 @@ public class Trip {
         // Calculate possible public transport routes
         ArrayList<PublicTransportMode> transportS = start.getPublicTransportList();
         ArrayList<PublicTransportMode> transportE = end.getPublicTransportList();
-        // Add direct routes
+
         for (PublicTransportMode transport: transportS){
+            // Add direct routes
             if (transportE.contains(transport)){
                 Route directRoute = new Route(start, end, "Public");
                 directRoute.setPublicRoute(transport);
                 addRoute(directRoute);
             }
-        }
-        // Calculate one-transfer routes from start
-        for (PublicTransportMode transport: transportS){
-            ArrayList<Station> stops = transport.getStations();
-            for (Station stop: stops){
+            // Calculate transfer routes
+            ArrayList<Station> stopsS = transport.getStations();
+            for (Station stop: stopsS){
                 if (stop.checkTransfer(start, end)){
-                    //检查它的交通方式是否有与end一致的
+                    for (PublicTransportMode transferTransport: stop.getOtherTransport(transport)){
+                        // Calculate one-transfer routes
+                        if (transportE.contains(transferTransport)){
+                            Route oneTransferStart = new Route(start, end, "Public");
+                            oneTransferStart.setPublicRoute(transport, stop, transferTransport);
+                            addRoute(oneTransferStart);
+                        }
+                    }
                 }
             }
         }
-        // Calculate one-transfer routes from end
-        // Calculate two-transfer routes
     }
 
     private void addRoute(Route route){

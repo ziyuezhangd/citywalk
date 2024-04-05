@@ -28,21 +28,30 @@ public class Route {
     public int getModeNumber(){
         return legs.size();
     }
-    private int getCarbonFP(){
+    public int getCarbonFP(){
         int carbonFP = 0;
         for (Leg leg: legs){
             carbonFP += leg.getCarbonFP();
         }
         return carbonFP;
     }
-    private int getTime(){
+    public int getTime(){
         int time = 0;
         for (Leg leg: legs){
             time += leg.getTime();
         }
+        switch (mainTransport){
+            case "Bike":
+                time += 4;  // Time to borrow and return a bike
+                break;
+            case "Taxi":
+                time += 7;  // Time to wait for a taxi
+            case "Public":
+                time += getModeNumber() * 3;  // Time to wait for public transports
+        }
         return time;
     }
-    private int getDistance(){
+    public int getDistance(){
         int distance = 0;
         for (Leg leg: legs) {
             distance += leg.getDistance();
@@ -102,15 +111,6 @@ public class Route {
         Leg startToTransferLeg = new Leg(start, transfer, transportS);
         Leg transferToEndLeg = new Leg(transfer, end, transportE);
         legs.add(startToTransferLeg);
-        legs.add(transferToEndLeg);
-    }
-    public void setPublicRoute(PublicTransportMode transportS, Station transferS, PublicTransportMode transportT,
-                               Station transferE, PublicTransportMode transportE){
-        Leg startToTransferLeg = new Leg(start, transferS, transportS);
-        Leg transferToTransferLeg = new Leg(transferS, transferE, transportT);
-        Leg transferToEndLeg = new Leg(transferE, end, transportE);
-        legs.add(startToTransferLeg);
-        legs.add(transferToTransferLeg);
         legs.add(transferToEndLeg);
     }
 }

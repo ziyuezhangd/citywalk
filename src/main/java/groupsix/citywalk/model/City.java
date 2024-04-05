@@ -62,7 +62,7 @@ public class City {
         //Initialise the transport mode on the map
         for (int i=0; i<MapConfig.allTransportNames.length; i++){
             String name = MapConfig.allTransportNames[i];
-            int timeFactor = MapConfig.allTimeFactors[i];
+            double timeFactor = MapConfig.allTimeFactors[i];
             double carbonFactor = MapConfig.allCarbonFactors[i];
             TransportMode transport;
             if (i >= MapConfig.basicTransportNames.length) {

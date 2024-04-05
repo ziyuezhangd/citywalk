@@ -5,11 +5,9 @@ import java.util.ArrayList;
 public class Player {
     private String playerName;
     private int carbonFP;
-    private int gemCollect;
+    private int gemCollected;
     private ArrayList<Route> levelSelectedRoutes = new ArrayList<>();
     private ArrayList<ArrayList<Route>> gameSelectedRoutes = new ArrayList<>();
-
-    // Time the user has spent in the current level
     private int timeSpent;
     private Location playerLocation;
     private int levelScore;
@@ -19,7 +17,7 @@ public class Player {
     public Player(String playerName, Station location) {
         this.playerName = playerName;
         this.carbonFP = 0;
-        this.gemCollect = 0;
+        this.gemCollected = 0;
         this.timeSpent = 0;
         this.playerLocation = location;
         //Initialize score
@@ -38,7 +36,7 @@ public class Player {
     }
     public void startNewLevel(){
         this.carbonFP = 0;
-        this.gemCollect = 0;
+        this.gemCollected = 0;
         this.timeSpent = 0;
         gameSelectedRoutes.add(levelSelectedRoutes);
         levelSelectedRoutes = new ArrayList<>();
@@ -55,8 +53,8 @@ public class Player {
     }
 
     public int gemCollect(){
-        gemCollect += 1;
-        return gemCollect;
+        gemCollected += 1;
+        return gemCollected;
     }
 
     public Location getPlayerLocation(){
@@ -67,8 +65,8 @@ public class Player {
         return timeSpent;
     }
 
-    public int getGemCollect(){
-        return gemCollect;
+    public int getGemCollected(){
+        return gemCollected;
     }
 
     public void calScore() {

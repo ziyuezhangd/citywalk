@@ -21,10 +21,10 @@ public class Game implements Save {
     private Player player;
     private City city;
     private int levelCount;
-    private int levelNum = 3;//number of level
-    private int[] levelTime = {30, 20, 10};
+    private int levelNum = 3;  //number of level
+    private int[] levelTime = {40, 70, 100};
     private int[] levelGem = {1, 2, 3};
-    private int[] levelBudget = {30, 20, 10};
+    private int[] levelBudget = {300, 700, 1200};
 
     public Game() {
     }
