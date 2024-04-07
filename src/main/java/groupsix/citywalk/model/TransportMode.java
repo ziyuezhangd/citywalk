@@ -26,4 +26,15 @@ public abstract class TransportMode {
 
     public abstract boolean checkLocation (Location location);
 
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        TransportMode transport = (TransportMode) obj;
+        return name.equals(transport.getName());
+    }
 }

@@ -47,7 +47,7 @@ public class Route {
             case "Taxi":
                 time += 7;  // Time to wait for a taxi
             case "Public":
-                time += getModeNumber() * 3;  // Time to wait for public transports
+                time += getModeNumber() * 5;  // Time to wait for public transports
         }
         return time;
     }

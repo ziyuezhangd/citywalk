@@ -33,6 +33,8 @@ public class Player {
         timeSpent += route.getTime();
         carbonFP += route.getCarbonFP();
         playerLocation = route.getEnd();
+        levelScore += calScore(route);
+        scoreSum += calScore(route);
     }
     public void startNewLevel(){
         this.carbonFP = 0;
@@ -49,7 +51,6 @@ public class Player {
     // Store the routes taken and for each trip in one level
     public void routeSelect(Route route) {
         levelSelectedRoutes.add(route);
-        playerLocation = route.getEnd();
     }
 
     public int gemCollect(){
@@ -69,27 +70,20 @@ public class Player {
         return gemCollected;
     }
 
-    public void calScore() {
-//        假设地图是20*20的网 一个格代表500m
+    public int calScore(Route route) {
+//        假设地图是10*10的网 一个格代表500m
 //        getModeNumber()的值 1-3
-//        getCarbonFP()的值 0-400g
-//        getTime()的值 看具体 timeFactor 的赋值 假设在1-50内
+//        getCarbonFP()的值 2-960g
+//        getTime()的值 4-140min
 
-
-        // Weightung values of different factors
+        // Weighting values of different factors
         // 目前的权重，最终levelScore范围在1000以内
         double modeNumberWeight = 200.0;
         double carbonFPWeight = 500.0;
         double timeWeight = 300.0;
 
-        levelScore = 0;
-        for (Route route : levelSelectedRoutes) {
-            double carbonFP = (double) Math.max(1, route.getCarbonFP());
-            levelScore += (int) (modeNumberWeight * (1.0 / route.getModeNumber()) + carbonFPWeight * (1.0 / route.getCarbonFP()) + timeWeight * (1.0 / route.getTime()));
-        }
-
-        // 可以选择在这里更新总分,或者放到Level中
-        // this.scoreSum += this.levelScore;
+        int score = (int) (modeNumberWeight * (1.0 / route.getModeNumber()) + carbonFPWeight * (1.0 / route.getCarbonFP()) + timeWeight * (1.0 / route.getTime()));
+        return score;
     }
 
     public int getLevelScore() {
