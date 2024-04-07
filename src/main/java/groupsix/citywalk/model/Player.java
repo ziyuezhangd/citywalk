@@ -70,11 +70,26 @@ public class Player {
     }
 
     public void calScore() {
-        this.levelScore = (int) (Math.log(1000 - (1 * Math.log(timeSpent)) - (3 * Math.log(carbonFP))) * 10);
-        // Update total score
-        this.scoreSum += this.levelScore;
-        // Reset level score for the next level
-        this.levelScore = 0;
+//        假设地图是20*20的网 一个格代表500m
+//        getModeNumber()的值 1-3
+//        getCarbonFP()的值 0-400g
+//        getTime()的值 看具体 timeFactor 的赋值 假设在1-50内
+
+
+        // Weightung values of different factors
+        // 目前的权重，最终levelScore范围在1000以内
+        double modeNumberWeight = 200.0;
+        double carbonFPWeight = 500.0;
+        double timeWeight = 300.0;
+
+        levelScore = 0;
+        for (Route route : levelSelectedRoutes) {
+            double carbonFP = (double) Math.max(1, route.getCarbonFP());
+            levelScore += (int) (modeNumberWeight * (1.0 / route.getModeNumber()) + carbonFPWeight * (1.0 / route.getCarbonFP()) + timeWeight * (1.0 / route.getTime()));
+        }
+
+        // 可以选择在这里更新总分,或者放到Level中
+        // this.scoreSum += this.levelScore;
     }
 
     public int getLevelScore() {
