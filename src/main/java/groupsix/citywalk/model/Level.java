@@ -1,11 +1,10 @@
 package groupsix.citywalk.model;
 
 import groupsix.citywalk.util.MapConfig;
-import groupsix.citywalk.util.Save;
 
 import java.util.ArrayList;
 
-public class Level implements Save {
+public class Level {
     private int levelCount;
     private int levelTime;
     private int levelGem;
@@ -13,7 +12,6 @@ public class Level implements Save {
     private Player myPlayer;
     private City myCity;
     private ArrayList<Location> gemLocation = new ArrayList<>();
-    private Route myRoute;
 
     public Level(int levelCount, int levelTime, int levelGem, int levelFP, Player myPlayer, City myCity) {
         this.levelCount = levelCount;
@@ -58,7 +56,7 @@ public class Level implements Save {
             Trip myTrip = new Trip(City.getStationByLocation(myPlayer.getLocation()), City.getStationByLocation(end));
             ArrayList<Route> routePlan = myTrip.getRoutePlan();
             // user will choose  which one they need
-            myRoute = routePlan.get(0);
+            Route myRoute = routePlan.get(0);
             myPlayer.routeSelect(myRoute);
             myPlayer.finishTrip(myRoute);
             if (checkAlive()){
@@ -74,19 +72,5 @@ public class Level implements Save {
             }
         }
         return true;
-    }
-
-    @Override
-    public void save() throws IOException {
-        String fileName = "level_" + levelCount + "_" + myPlayer.getPlayerName() + ".txt";
-        try (PrintWriter out = new PrintWriter(new FileWriter(fileName))) {
-            out.println("Player: " + myPlayer.getPlayerName());
-            out.println("LevelCount: " + levelCount);
-            out.println("LevelTime: " + levelTime);
-            out.println("LevelFP: " + levelFP);
-            out.println("Route: " + myRoute);
-            out.println("Transport Mode : " + myRoute.getModeNumber());
-            out.println("Score: " + myPlayer.getLevelScore());
-        }
     }
 }
