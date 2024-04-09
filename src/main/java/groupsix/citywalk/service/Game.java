@@ -55,30 +55,15 @@ public class Game implements Save {
 
     @Override
     public void save() throws IOException {
-        Map<String, Integer> scoreMap = new HashMap<>();
-
-        // 读取现有分数
-        Path path = Paths.get("players_scores_sum.txt");
-        if (Files.exists(path)) {
-            List<String> lines = Files.readAllLines(path);
-            for (String line : lines) {
-                String[] parts = line.split(",");
-                scoreMap.put(parts[0], Integer.parseInt(parts[1]));
-            }
-        }
-
-        // 更新当前玩家分数
-        scoreMap.put(player.getPlayerName(), player.getScoreSum());
-
-        // 排序
-        List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(scoreMap.entrySet());
-        sortedEntries.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
-
-        // 重写文件
-        try (PrintWriter out = new PrintWriter(Files.newBufferedWriter(path))) {
-            for (Map.Entry<String, Integer> entry : sortedEntries) {
-                out.println(entry.getKey() + "," + entry.getValue());
-            }
+        String fileName = "level_" + levelCount + "_" + myPlayer.getPlayerName() + ".txt";
+        try (PrintWriter out = new PrintWriter(new FileWriter(fileName))) {
+            out.println("Player: " + myPlayer.getPlayerName());
+            out.println("LevelCount: " + levelCount);
+            out.println("LevelTime: " + levelTime);
+            out.println("LevelFP: " + levelBudget);
+            out.println("Route: " + myRoute);
+            out.println("Transport Mode : " + myRoute.getModeNumber());
+            out.println("Score: " + myPlayer.getLevelScore());
         }
     }
 
