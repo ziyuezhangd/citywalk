@@ -1,0 +1,12 @@
+
+.root {
+    -fx-background-image: url('cityWalkImage.jpg');
+    -fx-background-repeat: stretch;
+    -fx-background-position: center center;
+    -fx-background-size: cover, auto;
+    -fx-font-size: 12pt;
+}
+
+.button{
+    -fx-background-color: linear-gradient(#7CAFC2,deepskyblue);
+}
