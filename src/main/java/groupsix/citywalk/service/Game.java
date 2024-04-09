@@ -52,18 +52,10 @@ public class Game implements Save {
         }
     }
 
-
     @Override
     public void save() throws IOException {
-        String fileName = "level_" + levelCount + "_" + myPlayer.getPlayerName() + ".txt";
-        try (PrintWriter out = new PrintWriter(new FileWriter(fileName))) {
-            out.println("Player: " + myPlayer.getPlayerName());
-            out.println("LevelCount: " + levelCount);
-            out.println("LevelTime: " + levelTime);
-            out.println("LevelFP: " + levelBudget);
-            out.println("Route: " + myRoute);
-            out.println("Transport Mode : " + myRoute.getModeNumber());
-            out.println("Score: " + myPlayer.getLevelScore());
+        try (PrintWriter out = new PrintWriter(new FileWriter("players_scores_sum.txt", true))) {
+            out.println(player.getPlayerName() + "," + player.getScoreSum());
         }
     }
 
