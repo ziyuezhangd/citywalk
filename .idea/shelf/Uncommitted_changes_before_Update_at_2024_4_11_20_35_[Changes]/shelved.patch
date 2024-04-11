@@ -1,0 +1,61 @@
+Index: src/main/java/groupsix/citywalk/view/Scene3.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/groupsix/citywalk/view/Scene3.fxml b/src/main/java/groupsix/citywalk/view/Scene3.fxml
+new file mode 100644
+--- /dev/null	(date 1712862541664)
++++ b/src/main/java/groupsix/citywalk/view/Scene3.fxml	(date 1712862541664)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import java.lang.*?>
++<?import java.util.*?>
++<?import javafx.scene.*?>
++<?import javafx.scene.control.*?>
++<?import javafx.scene.layout.*?>
++
++
++<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="groupsix.citywalk.view.FXController">
++<Button text="Next Level" onAction="#levelUp"/>
++</StackPane>
++
++
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1712859777555)
++++ b/.idea/vcs.xml	(date 1712859777555)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: src/main/java/module-info.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>module groupsix.citywalk {\r\n    requires javafx.controls;\r\n    requires javafx.fxml;\r\n\r\n\r\n//  opens groupsix.citywalk to javafx.fxml;\r\n    exports groupsix.citywalk.maingame;\r\n    opens groupsix.citywalk.maingame to javafx.fxml;\r\n    exports groupsix.citywalk.model;\r\n    opens groupsix.citywalk.model to javafx.fxml;\r\n    exports groupsix.citywalk.util;\r\n    opens groupsix.citywalk.util to javafx.fxml;\r\n    exports groupsix.citywalk.api;\r\n    opens groupsix.citywalk.api to javafx.fxml;\r\n    exports groupsix.citywalk.service;\r\n    opens groupsix.citywalk.service to javafx.fxml;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/module-info.java b/src/main/java/module-info.java
+--- a/src/main/java/module-info.java	(revision fa1477c8ee91efbbc24fa07370ce451f580e9595)
++++ b/src/main/java/module-info.java	(date 1712862541653)
+@@ -14,4 +14,6 @@
+     opens groupsix.citywalk.api to javafx.fxml;
+     exports groupsix.citywalk.service;
+     opens groupsix.citywalk.service to javafx.fxml;
++    exports groupsix.citywalk.view;
++    opens groupsix.citywalk.view to javafx.fxml;
+ }
+\ No newline at end of file
+diff --git a/src/main/java/groupsix/citywalk/view/Scene4.fxml b/src/main/java/groupsix/citywalk/view/Scene4.fxml
+new file mode 100644
