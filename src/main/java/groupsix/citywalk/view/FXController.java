@@ -1,9 +1,12 @@
 package groupsix.citywalk.view;
 import groupsix.citywalk.maingame.*;
 import groupsix.citywalk.service.Game.PlayerScore;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +14,17 @@ import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
+import java.util.Scanner;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class FXController {
     @FXML
@@ -36,11 +49,6 @@ public class FXController {
     @FXML
     private TableColumn<PlayerScore, Number> scoreColumn;
 
-    import javafx.collections.FXCollections;
-    import javafx.collections.ObservableList;
-    import javafx.scene.control.TableColumn;
-    import javafx.scene.control.TableView;
-    import javafx.scene.control.cell.PropertyValueFactory;
 
     public void switchToScene1(ActionEvent event) throws IOException {
 
@@ -103,9 +111,9 @@ public class FXController {
     // 从Game中save的文件获取排行榜数据
     private void loadLeaderboardData() {
         ObservableList<PlayerScore> data = FXCollections.observableArrayList();
-        Path file = Paths.get("players_and_scores.txt");
+        Path file = Path.get("players_and_scores.txt");
         if (Files.exists(file)) {
-            try (Scanner scanner = new Scanner(file.toFile())) {
+            try (Scanner scanner = new Scanner(((java.nio.file.Path) file).toFile())) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
                     String[] parts = line.split(",");
