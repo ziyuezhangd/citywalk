@@ -1,10 +1,9 @@
-module group6.citywalk {
+module groupsix.citywalk {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens groupsix.citywalk to javafx.fxml;
-    exports groupsix.citywalk;
+//  opens groupsix.citywalk to javafx.fxml;
     exports groupsix.citywalk.maingame;
     opens groupsix.citywalk.maingame to javafx.fxml;
     exports groupsix.citywalk.model;
