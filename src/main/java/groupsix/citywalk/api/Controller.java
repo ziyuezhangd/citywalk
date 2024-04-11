@@ -1,46 +1,49 @@
 package groupsix.citywalk.api;
 
+import groupsix.citywalk.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 
 public class Controller {
+    // LogIn View
     @FXML
-    private Label welcomeLabel;
-
-    @FXML
-    private TextField playerNameField;
-
+    private TextField nameTextField;
     @FXML
     private Button startGameButton;
-
     private Stage primaryStage;
-
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
     @FXML
-    // 需绑定登录界面上的Start按钮
-    private void handleStartGame(ActionEvent event) {
-        String playerName = playerNameField.getText();
-        if (playerName.isEmpty()) {
-            // 如果用户名为空，可以显示一个警告信息或者提醒用户输入用户名
-            System.out.println("Please enter your username.");
-            return;
-        }
-
-        // 这里可以进行一些初始化游戏的操作，例如加载游戏数据等
+    private void handleStartGame(ActionEvent event) throws IOException {
+        String playerName = nameTextField.getText();
         switchToGameScene(playerName);
     }
 
-    private void switchToGameScene(String playerName) {
-        // 切换到游戏界面的逻辑
-
+    // Game View
+    private void switchToGameScene(String playerName) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Game.fxml"));
+        Parent root = loader.load();
+        Controller gameController = loader.getController();
+        primaryStage.setScene(new Scene(root));
     }
 
+    private void initGame(){
+        //
+    }
+
+    private void initMap(){
+        Image grass = new Image("/groupsix/citywalk/pics/grass.png");
+        
+    }
 }

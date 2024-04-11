@@ -8,24 +8,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.view.FXController">
    <children>
       <ImageView fitHeight="900.0" fitWidth="1200.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@cityWalkImage.jpg" />
+            <Image url="@pics/cityWalkImage.jpg" />
          </image>
       </ImageView>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="200.0">
          <children>
-            <Label text="Level Up! " textAlignment="CENTER">
+            <Label text="Game Over " textAlignment="CENTER">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
             <Label text="Label" />
-            <Button fx:id="levelUpButton" mnemonicParsing="false" onAction="#switchToGameMain" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Next Level" />
-            <Button fx:id="endGameButton" mnemonicParsing="false" onAction="#switchToSceneGameFinish" text="End Game" textAlignment="CENTER" />
+            <Button fx:id="switchToLeaderBoardButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSceneGameFinish" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue); -fx-text-fill: black; -fx-font-weight: bold;" text="Proceed To Leaderboards" textAlignment="CENTER">
+               <font>
+                  <Font size="24.0" />
+               </font></Button>
          </children>
       </VBox>
    </children>
