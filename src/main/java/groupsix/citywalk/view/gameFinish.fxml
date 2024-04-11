@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
 
-<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1200.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.api.Controller">
+<VBox alignment="CENTER" prefHeight="900.0" prefWidth="1200.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.FXController">
     <children>
         <Label style="-fx-font-size: 40; -fx-text-fill: darkred;" text="Congratulations!">
         </Label>
