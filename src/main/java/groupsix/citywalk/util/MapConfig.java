@@ -36,7 +36,7 @@ public class MapConfig {
     public static final HashMap<String,ArrayList<String>> publicTransportStops = new HashMap<>();
     static {
         publicTransportStops.put("Bus", new ArrayList<>(Arrays.asList("IKEA","TheSpire",
-                "Trinity","TempleBar","Rathmines")));
+                "Trinity","TempleBar","Rathmines","Belfield")));
         publicTransportStops.put("Luas", new ArrayList<>(Arrays.asList("DublinZoo","TheSpire",
                 "Ballsbridge","Donnybrook","UCD","Dundrum")));
         publicTransportStops.put("Dart", new ArrayList<>(Arrays.asList("Belfield","Dundrum","Merrion","Blackrock",
@@ -56,12 +56,4 @@ public class MapConfig {
         }
     }
 
-    public static final ArrayList<String> transferStations = new ArrayList<>();
-    static {
-        for (String station: publicTransportOptions.keySet()){
-            if (publicTransportOptions.get(station).size() > 1) {
-                transferStations.add(station);
-            }
-        }
-    }
 }

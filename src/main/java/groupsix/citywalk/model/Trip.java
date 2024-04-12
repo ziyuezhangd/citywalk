@@ -33,28 +33,27 @@ public class Trip {
         calPublicRoutes();
     }
     private void calPublicRoutes(){
-        // Calculate possible public transport routes
-        ArrayList<PublicTransportMode> transportS = start.getPublicTransportList();
-        ArrayList<PublicTransportMode> transportE = end.getPublicTransportList();
 
-        for (PublicTransportMode transport: transportS){
-            // Add direct routes
-            if (transportE.contains(transport)){
+        // Add direct route if exists
+        ArrayList<PublicTransportMode> sameTransport = start.getSameTransport(end);
+        if (!sameTransport.isEmpty()){
+            for (PublicTransportMode transport: sameTransport) {
                 Route directRoute = new Route(start, end, "Public");
                 directRoute.setPublicRoute(transport);
                 addRoute(directRoute);
             }
-            // Calculate transfer routes
-            ArrayList<Station> stopsS = transport.getStations();
-            for (Station stop: stopsS){
-                if (stop.checkTransfer(start, end)){
-                    for (PublicTransportMode transferTransport: stop.getOtherTransport(transport)){
-                        // Calculate one-transfer routes
-                        if (transportE.contains(transferTransport)){
-                            Route oneTransferStart = new Route(start, end, "Public");
-                            oneTransferStart.setPublicRoute(transport, stop, transferTransport);
-                            addRoute(oneTransferStart);
-                        }
+        }
+        // Calculate transfer routes
+        for (PublicTransportMode transportS: start.getPublicTransportList()) {
+            // One-transfer route
+            for (Station stationT: transportS.getTransferStations()){
+                ArrayList<PublicTransportMode> transferTransport = stationT.getSameTransport(end);
+                transferTransport.remove(transportS);
+                if (!transferTransport.isEmpty()) {
+                    for (PublicTransportMode transportT: transferTransport) {
+                        Route transferRoute = new Route(start, end, "Public");
+                        transferRoute.setPublicRoute(transportS, stationT, transportT);
+                        addRoute(transferRoute);
                     }
                 }
             }
