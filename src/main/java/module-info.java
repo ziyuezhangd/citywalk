@@ -14,6 +14,5 @@ module groupsix.citywalk {
     opens groupsix.citywalk.api to javafx.fxml;
     exports groupsix.citywalk.service;
     opens groupsix.citywalk.service to javafx.fxml;
-    exports groupsix.citywalk.view;
-    opens groupsix.citywalk.view to javafx.fxml;
+
 }

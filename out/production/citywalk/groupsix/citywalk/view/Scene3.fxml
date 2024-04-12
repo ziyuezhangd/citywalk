@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
+=======
 
-<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="groupsix.citywalk.view.FXController">
-<Button text="Next Level" onAction="#levelUp"/>
+>>>>>>> yanwen
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.view.FXController">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1200.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@cityWalkImage.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label text="Level Up! " textAlignment="CENTER">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+<<<<<<< HEAD
+            <Label fx:id="scoreLabel" />
+=======
+            <Label text="Label" />
+>>>>>>> yanwen
+            <Button fx:id="levelUpButton" mnemonicParsing="false" onAction="#switchToGameMain" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Next Level" />
+            <Button fx:id="endGameButton" mnemonicParsing="false" onAction="#switchToSceneGameFinish" text="End Game" textAlignment="CENTER" />
+         </children>
+      </VBox>
+   </children>
 </StackPane>
-
-

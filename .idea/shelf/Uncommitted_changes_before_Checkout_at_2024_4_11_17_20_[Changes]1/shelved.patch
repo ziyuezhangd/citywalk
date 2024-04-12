@@ -1,0 +1,24 @@
+Index: src/main/java/groupsix/citywalk/view/Scene3.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/groupsix/citywalk/view/Scene3.fxml b/src/main/java/groupsix/citywalk/view/Scene3.fxml
+new file mode 100644
+--- /dev/null	
++++ b/src/main/java/groupsix/citywalk/view/Scene3.fxml	
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import java.lang.*?>
++<?import java.util.*?>
++<?import javafx.scene.*?>
++<?import javafx.scene.control.*?>
++<?import javafx.scene.layout.*?>
++
++
++<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="groupsix.citywalk.view.FXController">
++<Button text="Next Level" onAction="#levelUp"/>
++</StackPane>
++
++
