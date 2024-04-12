@@ -1,6 +1,7 @@
 package groupsix.citywalk.maingame;
 
 import groupsix.citywalk.model.Player;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 

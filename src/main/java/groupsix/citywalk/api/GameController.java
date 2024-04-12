@@ -35,11 +35,8 @@ public class GameController extends Controller {
 
     @Override
     public void nextScene() {
-
-    }
-    @FXML
-    private void initGame(String playerName){
-        Game game = new Game();
+        // 触发Education弹窗
+        System.out.println("Education Popup");
     }
 
     @FXML
@@ -72,20 +69,8 @@ public class GameController extends Controller {
         toTextField.setText(null);
     }
     @FXML
-    private void handleStartTrip(ActionEvent event){
-        openEduPopupWindow();
-    }
-
-    //LevelUp View
-
-    //GameOver View
-
-    //GameFinish View
-
-    //Edu Popup View
-    @FXML
-    private void openEduPopupWindow(){
-        //
+    private void handleStartButton(ActionEvent event) {
+        nextScene();
     }
 
 
