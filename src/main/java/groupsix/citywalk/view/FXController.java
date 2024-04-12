@@ -77,7 +77,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 //
 //
 //    public void switchToGameMain(ActionEvent event) throws IOException {
-//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("game.fxml")));
+//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Game.fxml")));
 //        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //        scene = new Scene(root);
 //        stage.setScene(scene);

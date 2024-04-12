@@ -1,5 +1,6 @@
 package groupsix.citywalk.maingame;
 
+import groupsix.citywalk.api.GameController;
 import groupsix.citywalk.model.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -30,9 +31,9 @@ public class Main extends Application {
         primaryStage.show();
     }
     public void showGameScreen() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameScreen.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Game.fxml"));
         Parent root = loader.load();
-        GameScreenController controller = loader.getController();
+        GameController controller = loader.getController();
         controller.setupPlayer(player);
         controller.setMain(this);
         primaryStage.setScene(new Scene(root));
