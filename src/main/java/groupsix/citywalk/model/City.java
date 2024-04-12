@@ -88,7 +88,6 @@ public class City {
             station.setPublicTransportList(options);
         }
     }
-
     private void setStationForPublicTransport(){
         for (PublicTransportMode publicTransport: publicTransportList.values()){
             ArrayList<String> stopNames = MapConfig.publicTransportStops.get(publicTransport.getName());
