@@ -1,7 +1,12 @@
 package groupsix.citywalk.view;
 import groupsix.citywalk.maingame.*;
+import groupsix.citywalk.model.Location;
+import groupsix.citywalk.model.Player;
+import groupsix.citywalk.model.Station;
 import groupsix.citywalk.service.Game.PlayerScore;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -26,12 +31,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
+
 public class FXController {
     @FXML
     TextField nameTextField;
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private IntegerProperty myScore;
 
     @FXML
     private Label playerScoreLabel;
@@ -49,10 +56,15 @@ public class FXController {
     @FXML
     private TableColumn<PlayerScore, Number> scoreColumn;
 
+    @FXML
+    private Label scoreLabel;
+
 
     public void switchToScene1(ActionEvent event) throws IOException {
 
         String username = (String) nameTextField.getText();
+        Station defLocation = new Station(8, 0, "Dundrum");
+        Player myPlayer = new Player(username, defLocation);  // Init Player by the user input name and default Staion (Dundrum)
 
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Scene1.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

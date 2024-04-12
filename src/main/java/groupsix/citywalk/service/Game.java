@@ -34,7 +34,7 @@ public class Game implements Save {
 
     public void startGame() {
         Station location = City.getStationByName("UCD");
-        player = new Player("TestPlayer", location);
+        player = new Player("TestPlayer", location); // Get Player instance from the FXController.java  switchToScene1 func
         city = new City();
         levelCount = 1;
     }
