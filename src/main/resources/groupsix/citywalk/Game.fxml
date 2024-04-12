@@ -652,3 +652,8 @@
       </StackPane>
    </children>
 </GridPane>
+
+
+<!--选择了交通方式之后把参数传递到这里，增加一个对start按钮的监听器-->
+<!--<Button fx:id="StartButton" text="Start" onAction="#onChooseTransport" />-->
+
