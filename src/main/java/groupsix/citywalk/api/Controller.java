@@ -24,8 +24,6 @@ public class Controller {
     // LogIn View
     @FXML
     private TextField nameTextField;
-    @FXML
-    private Button startGameButton;
     private Stage primaryStage;
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
