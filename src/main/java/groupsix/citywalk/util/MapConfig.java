@@ -5,6 +5,7 @@ import groupsix.citywalk.model.PublicTransportMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Arrays;
+import java.util.Map;
 
 public class MapConfig {
     //Define the size of city map
@@ -12,12 +13,13 @@ public class MapConfig {
 
     //Define the stations
     //Station names
-    public static final String[] stationNames = {"Dundrum","Rathmines","Blackrock","UCD","Dolphins Barn","Merrion",
-            "Stephen's Green","Temple Bar","Trinity","Ballsbridge","The Spire","Sandymount","Docklands","Dublin Zoo",
-            "Phoenix Park","IKEA","Howth"};
+    public static final String[] stationNames = {"Dundrum","Rathmines","Blackrock","UCD","Belfield",
+            "Merrion","Donnybrook","TempleBar","Trinity","Ballsbridge",
+            "TheSpire","Sandymount","Docklands","DublinZoo","IKEA"};
     //Station locations
-    public static final int[][] stationLocations = {{8,0},{2,1},{10,2},{6,3},{0,3},{9,4},{4,4},{1,5},{3,6},{7,6},{5,7},
-            {9,8},{7,9},{2,9},{1,10},{4,10},{10,10}};
+    public static final int[][] stationLocations = {{6,9},{2,7},{9,8},{5,8},{3,9},
+            {7,7},{5,6},{1,5},{3,4},{6,4},
+            {5,3},{9,5},{8,3},{2,2},{6,1}};
 
     //Define the transport modes
     public static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
@@ -27,24 +29,22 @@ public class MapConfig {
     public static final int[] allCarbonFactors = {2,4,48,30,15,18};  //unit: gram
 
     //Design basic transport regions
-    public static final int[][][] basicTransportRegion = {{{0,0},{10,10}},{{1,4},{5,7}},{{0,0},{10,10}}};
+    public static final int[][][] basicTransportRegion = {{{0,0},{10,10}},{{2,3},{6,6}},{{0,0},{10,10}}};
 
     //Design public transport routes
     //Define the stops for each public transport mode
-    public static final HashMap<String,ArrayList<String>> publicTransportStops;
+    public static final HashMap<String,ArrayList<String>> publicTransportStops = new HashMap<>();
     static {
-        publicTransportStops = new HashMap<>();
-        publicTransportStops.put("Bus", new ArrayList<>(Arrays.asList("Phoenix Park","Dublin Zoo","Trinity","The Spire",
-                "Stephen's Green","UCD","Blackrock","Dundrum")));
-        publicTransportStops.put("Luas", new ArrayList<>(Arrays.asList("Dolphins Barn","Temple Bar","Trinity",
-                "Stephen's Green","The Spire","Ballsbridge","Docklands","Sandymount")));
-        publicTransportStops.put("Dart", new ArrayList<>(Arrays.asList("Howth","Sandymount","Merrion","Blackrock",
-                "Dundrum","Rathmines","Dolphins Barn","Dublin Zoo","Phoenix Park")));
+        publicTransportStops.put("Bus", new ArrayList<>(Arrays.asList("IKEA","TheSpire",
+                "Trinity","TempleBar","Rathmines")));
+        publicTransportStops.put("Luas", new ArrayList<>(Arrays.asList("DublinZoo","TheSpire",
+                "Ballsbridge","Donnybrook","UCD","Dundrum")));
+        publicTransportStops.put("Dart", new ArrayList<>(Arrays.asList("Belfield","Dundrum","Merrion","Blackrock",
+                "Sandymount","Docklands")));
     }
     //Compute the transport options for each station
-    public static final HashMap<String, ArrayList<String>> publicTransportOptions;
+    public static final HashMap<String, ArrayList<String>> publicTransportOptions = new HashMap<>();
     static {
-        publicTransportOptions = new HashMap<>();
         for (String station: stationNames){
             ArrayList<String> options = new ArrayList<>();
             for (String transport: publicTransportNames){
@@ -53,6 +53,15 @@ public class MapConfig {
                 }
             }
             publicTransportOptions.put(station, options);
+        }
+    }
+
+    public static final ArrayList<String> transferStations = new ArrayList<>();
+    static {
+        for (String station: publicTransportOptions.keySet()){
+            if (publicTransportOptions.get(station).size() > 1) {
+                transferStations.add(station);
+            }
         }
     }
 }

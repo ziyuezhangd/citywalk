@@ -18,8 +18,8 @@
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="800.0" minWidth="800.0" prefWidth="800.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints prefHeight="100.0" vgrow="SOMETIMES" />
-      <RowConstraints prefHeight="800.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="170.0" minHeight="105.0" prefHeight="130.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="795.0" minHeight="730.0" prefHeight="770.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
       <GridPane prefHeight="96.0" prefWidth="1196.0" vgap="5.0" GridPane.columnSpan="2">
@@ -32,13 +32,13 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="250.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="levelLabel" text="LEVEL 1" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER">
                <font>
-                  <Font size="24.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
             <Group GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
@@ -69,13 +69,13 @@
       </GridPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="350.0" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="20.0" layoutY="28.0" text="From" />
-            <Label layoutX="20.0" layoutY="75.0" text="To" />
-            <TextField fx:id="fromTextField" editable="false" layoutX="80.0" layoutY="22.0" prefHeight="36.0" prefWidth="200.0" text="UCD" />
-            <TextField fx:id="toTextField" editable="false" layoutX="80.0" layoutY="69.0" prefHeight="36.0" prefWidth="200.0" promptText="Select destination" />
-            <ListView layoutX="20.0" layoutY="128.0" prefHeight="260.0" prefWidth="261.0" />
-            <Button layoutX="20.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start" />
-            <Button layoutX="129.0" layoutY="421.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset" />
+            <Label layoutX="40.0" layoutY="60.0" text="From" />
+            <Label layoutX="40.0" layoutY="120.0" text="To" />
+            <TextField fx:id="fromTextField" editable="false" layoutX="100.0" layoutY="60.0" prefHeight="36.0" prefWidth="200.0" text="UCD" />
+            <TextField fx:id="toTextField" editable="false" layoutX="100.0" layoutY="118.0" prefHeight="36.0" prefWidth="200.0" promptText="Select destination" />
+            <ListView layoutX="40.0" layoutY="180.0" prefHeight="389.0" prefWidth="261.0" />
+            <Button layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartButton" text="Start" />
+            <Button layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset" />
          </children>
       </AnchorPane>
       <StackPane prefHeight="700.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -624,92 +624,92 @@
             </ImageView>
             <AnchorPane prefHeight="695.0" prefWidth="695.0">
                <children>
-                  <Circle fx:id="IKEACircle" centerX="423.0" centerY="69.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="IKEALabel" layoutX="423.0" layoutY="69.0" onMouseClicked="#handleLabelClick" text="IKEA" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="IKEACircle" centerX="423.0" centerY="65.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="IKEALabel" layoutX="369.0" layoutY="65.0" onMouseClicked="#handleLabelClick" text="IKEA" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="TheSpireCircle" centerX="352.0" centerY="139.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="TheSpireLabel" layoutX="352.0" layoutY="139.0" onMouseClicked="#handleLabelClick" text="TheSpire" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="TheSpireCircle" centerX="352.0" centerY="200.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="TheSpireLabel" layoutX="352.0" layoutY="200.0" onMouseClicked="#handleLabelClick" text="TheSpire" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="DublinZooCircle" centerX="140.0" centerY="139.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="DublinZooLabel" layoutX="140.0" layoutY="139.0" onMouseClicked="#handleLabelClick" text="DublinZoo" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="DublinZooCircle" centerX="139.0" centerY="130.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="DublinZooLabel" layoutX="139.0" layoutY="130.0" onMouseClicked="#handleLabelClick" text="DublinZoo" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="DundrumCircle" centerX="423.0" centerY="631.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="DundrumLabel" layoutX="423.0" layoutY="631.0" onMouseClicked="#handleLabelClick" text="Dundrum" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="DundrumCircle" centerX="424.0" centerY="603.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="DundrumLabel" layoutX="423.0" layoutY="603.0" onMouseClicked="#handleLabelClick" text="Dundrum" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="UCDCircle" centerX="352.0" centerY="562.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="UCDLabel" layoutX="352.0" layoutY="562.0" onMouseClicked="#handleLabelClick" text="UCD" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="UCDCircle" centerX="352.0" centerY="536.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="UCDLabel" layoutX="352.0" layoutY="535.0" onMouseClicked="#handleLabelClick" text="UCD" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="DonnybrookCircle" centerX="352.0" centerY="421.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="DonnybrookLabel" layoutX="352.0" layoutY="421.0" onMouseClicked="#handleLabelClick" text="Donnybrook" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="DonnybrookCircle" centerX="352.0" centerY="400.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="DonnybrookLabel" layoutX="352.0" layoutY="400.0" onMouseClicked="#handleLabelClick" text="Donnybrook" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="BlackrockCircle" centerX="632.0" centerY="562.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="BlackrockLabel" layoutX="595.0" layoutY="562.0" onMouseClicked="#handleLabelClick" text="Blackrock" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="BlackrockCircle" centerX="632.0" centerY="534.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="BlackrockLabel" layoutX="595.0" layoutY="534.0" onMouseClicked="#handleLabelClick" text="Blackrock" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="SandymountCircle" centerX="632.0" centerY="351.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="SandymountLabel" layoutX="566.0" layoutY="351.0" onMouseClicked="#handleLabelClick" text="Sandymount" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="SandymountCircle" centerX="632.0" centerY="331.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="SandymountLabel" layoutX="566.0" layoutY="331.0" onMouseClicked="#handleLabelClick" text="Sandymount" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="TempleBarCircle" centerX="69.0" centerY="351.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="TempleBarLabel" layoutX="69.0" layoutY="351.0" onMouseClicked="#handleLabelClick" text="TempleBar" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="TempleBarCircle" centerX="69.0" centerY="331.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="TempleBarLabel" layoutX="69.0" layoutY="331.0" onMouseClicked="#handleLabelClick" text="TempleBar" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="RathminesCircle" centerX="140.0" centerY="492.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="RathminesLabel" layoutX="140.0" layoutY="492.0" onMouseClicked="#handleLabelClick" text="Rathmines" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="RathminesCircle" centerX="140.0" centerY="468.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="RathminesLabel" layoutX="140.0" layoutY="440.0" onMouseClicked="#handleLabelClick" text="Rathmines" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="MerrionCircle" centerX="493.0" centerY="492.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="MerrionLabel" layoutX="493.0" layoutY="492.0" onMouseClicked="#handleLabelClick" text="Merrion" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="MerrionCircle" centerX="492.0" centerY="468.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="MerrionLabel" layoutX="492.0" layoutY="468.0" onMouseClicked="#handleLabelClick" text="Merrion" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="TrinityCircle" centerX="211.0" centerY="281.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="TrinityLabel" layoutX="211.0" layoutY="281.0" onMouseClicked="#handleLabelClick" text="Trinity" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="TrinityCircle" centerX="211.0" centerY="266.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="TrinityLabel" layoutX="211.0" layoutY="266.0" onMouseClicked="#handleLabelClick" text="Trinity" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="BelfieldCircle" centerX="211.0" centerY="631.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="BelfieldLabel" layoutX="211.0" layoutY="631.0" onMouseClicked="#handleLabelClick" text="Belfield" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="BelfieldCircle" centerX="211.0" centerY="604.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="BelfieldLabel" layoutX="211.0" layoutY="604.0" onMouseClicked="#handleLabelClick" text="Belfield" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="BallsbridgeCircle" centerX="423.0" centerY="281.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="BallsbridgeLabel" layoutX="423.0" layoutY="281.0" onMouseClicked="#handleLabelClick" text="Ballsbridge" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="BallsbridgeCircle" centerX="423.0" centerY="266.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="BallsbridgeLabel" layoutX="423.0" layoutY="266.0" onMouseClicked="#handleLabelClick" text="Ballsbridge" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Circle fx:id="DocklandsCircle" centerX="564.0" centerY="210.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
-                  <Label fx:id="DocklandsLabel" layoutX="564.0" layoutY="210.0" onMouseClicked="#handleLabelClick" text="Docklands" textAlignment="CENTER" textFill="WHITE">
+                  <Circle fx:id="DocklandsCircle" centerX="564.0" centerY="200.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE" />
+                  <Label fx:id="DocklandsLabel" layoutX="564.0" layoutY="200.0" onMouseClicked="#handleLabelClick" text="Docklands" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
