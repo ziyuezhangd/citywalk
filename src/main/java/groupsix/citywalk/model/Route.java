@@ -64,6 +64,9 @@ public class Route {
     public Station getEnd(){
         return end;
     }
+    public ArrayList<Leg> getLegs() {
+        return legs;
+    }
 
     private void setWalk(){
         TransportMode transport = City.getTransportByName("Walk");
@@ -80,15 +83,15 @@ public class Route {
         TransportMode walkTransport = City.getTransportByName("Walk");
         Location bikeStart = start.nearestBikeLocation();
         Location bikeEnd = end.nearestBikeLocation();
-        if (start.isSameLocation(bikeStart) && end.isSameLocation(bikeEnd)){
+        if (start.equals(bikeStart) && end.equals(bikeEnd)){
             Leg bikeLeg = new Leg(start, end, bikeTransport);
             legs.add(bikeLeg);
-        } else if (start.isSameLocation(bikeStart)) {
+        } else if (start.equals(bikeStart)) {
             Leg bikeLeg = new Leg(start, bikeEnd, bikeTransport);
             Leg walkLeg = new Leg(bikeEnd, end, walkTransport);
             legs.add(bikeLeg);
             legs.add(walkLeg);
-        } else if (end.isSameLocation(bikeEnd)) {
+        } else if (end.equals(bikeEnd)) {
             Leg bikeLeg = new Leg(bikeStart, end, bikeTransport);
             Leg walkLeg = new Leg(start, bikeStart, walkTransport);
             legs.add(walkLeg);

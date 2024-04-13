@@ -25,7 +25,7 @@ public class LoginController extends Controller {
         }
     }
 
-    @FXML
+    @Override
     public void nextScene() {
         try {
             main.showGameScene();
