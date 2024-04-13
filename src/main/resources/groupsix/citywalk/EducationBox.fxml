@@ -4,41 +4,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
+<!--暂时不确定启动这个FXML的启动函数是要放在Gamecontroller的哪里所以先放在这里-->
+<!--        public void displayEducationBox() throws Exception {-->
+<!--        // 加载FXML文件-->
+<!--        FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/EducationBox.fxml"));-->
+<!--        Parent root = loader.load();-->
+<!--        // 创建新的舞台(Stage)，用于显示加载的FXML-->
+<!--        Stage stage = new Stage();-->
+<!--        // 设置舞台为应用程序模态，这意味着用户必须先处理此窗口，才能返回到主应用窗口-->
+<!--        stage.initModality(Modality.APPLICATION_MODAL);-->
+<!--        // 设置窗口标题-->
+<!--        stage.setTitle("Education Box");-->
+<!--        // 设置窗口的最小宽度和高度-->
+<!--        stage.setMinWidth(600);-->
+<!--        stage.setMinHeight(400);-->
+<!--        // 将加载的FXML设置为舞台的场景-->
+<!--        stage.setScene(new Scene(root));-->
+<!--        // 禁止窗口大小调整-->
+<!--        stage.setResizable(false);-->
+<!--        // 禁用除通过关闭按钮外的所有关闭选项-->
+<!--        stage.setOnCloseRequest(event -> event.consume()); // 消费掉（忽略）所有的关闭请求，如ALT+F4或点击窗口的关闭按钮-->
+<!--        // 显示窗口并等待它被关闭，只有点击关闭按钮时窗口才会关闭-->
+<!--        stage.showAndWait();-->
+<!--        }-->
+
 <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.EducationBoxController">
    <Label prefHeight="200.0" prefWidth="400.0" text="Label" />
     <Label fx:id="messageLabel" />
     <Button onAction="#handleClose" text="Close" />
 </VBox>
-
-<!--暂时不确定启动这个FXML的启动函数是要放在Gamecontroller的哪里所以先放在这里-->
-
-<!--        public void displayEducationBox() throws Exception {-->
-<!--        // 加载FXML文件-->
-<!--        FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/EducationBox.fxml"));-->
-<!--        Parent root = loader.load();-->
-
-<!--        // 创建新的舞台(Stage)，用于显示加载的FXML-->
-<!--        Stage stage = new Stage();-->
-
-<!--        // 设置舞台为应用程序模态，这意味着用户必须先处理此窗口，才能返回到主应用窗口-->
-<!--        stage.initModality(Modality.APPLICATION_MODAL);-->
-
-<!--        // 设置窗口标题-->
-<!--        stage.setTitle("Education Box");-->
-
-<!--        // 设置窗口的最小宽度和高度-->
-<!--        stage.setMinWidth(600);-->
-<!--        stage.setMinHeight(400);-->
-
-<!--        // 将加载的FXML设置为舞台的场景-->
-<!--        stage.setScene(new Scene(root));-->
-
-<!--        // 禁止窗口大小调整-->
-<!--        stage.setResizable(false);-->
-
-<!--        // 禁用除通过关闭按钮外的所有关闭选项-->
-<!--        stage.setOnCloseRequest(event -> event.consume()); // 消费掉（忽略）所有的关闭请求，如ALT+F4或点击窗口的关闭按钮-->
-
-<!--        // 显示窗口并等待它被关闭，只有点击关闭按钮时窗口才会关闭-->
-<!--        stage.showAndWait();-->
-<!--        }-->
