@@ -2,6 +2,7 @@ package groupsix.citywalk.maingame;
 
 import groupsix.citywalk.api.GameController;
 import groupsix.citywalk.model.Player;
+import groupsix.citywalk.service.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +14,7 @@ public class Main extends Application {
 
     private Stage primaryStage;
     private Player player;
+    private Game game;
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -34,6 +36,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Game.fxml"));
         Parent root = loader.load();
         GameController controller = loader.getController();
+        controller.setUpGame(game);
         controller.setupPlayer(player);
         controller.setMain(this);
         primaryStage.setScene(new Scene(root));
