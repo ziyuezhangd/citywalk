@@ -1,6 +1,7 @@
 package groupsix.citywalk.maingame;
 
 import groupsix.citywalk.api.GameController;
+import groupsix.citywalk.api.LoginController;
 import groupsix.citywalk.model.Player;
 import groupsix.citywalk.service.Game;
 import javafx.application.Application;
@@ -9,73 +10,71 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 public class Main extends Application {
 
     private Stage primaryStage;
-    private Player player;
     private Game game;
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        showStartScreen();
+        showLoginScene();
     }
 
 //场景切换用的
-    private void showStartScreen() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/StartScreen.fxml"));
+    private void showLoginScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Login.fxml"));
         Parent root = loader.load();
-        StartScreenController controller = loader.getController();
+        LoginController controller = loader.getController();
         controller.setMain(this);
-        this.player = controller.getPlayer();
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("StartGame");
+        primaryStage.setTitle("CITYWALK");
         primaryStage.show();
     }
-    public void showGameScreen() throws Exception {
+    public void showGameScene() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Game.fxml"));
         Parent root = loader.load();
         GameController controller = loader.getController();
         controller.setUpGame(game);
-        controller.setupPlayer(player);
         controller.setMain(this);
         primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("PlayingGame");
+        primaryStage.setTitle("CITYWALK");
     }
-//    public void showNextLevelScreen() throws Exception {
+//    public void showNextLevelScene() throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/NextLevelScreen.fxml"));
 //        Parent root = loader.load();
 //        NextLevelController controller = loader.getController();
 //        controller.setupPlayer(player);
 //        controller.setMain(this);
 //        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("Next Level");
+//        primaryStage.setTitle("CITYWALK");
 //    }
 
 
-    //    public void showGameOverScreen() throws Exception {
+    //    public void showGameOverScene() throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameOverScreen.fxml"));
 //        Parent root = loader.load();
 //        GameOverController controller = loader.getController();
 //        controller.setupPlayer(player);
 //        controller.setMain(this);
 //        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("Game Over");
+//        primaryStage.setTitle("CITYWALK");
 //    }
 
-    //    public void showScoreBoardScreen() throws Exception {
+    //    public void showScoreBoardScene() throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/ScoreBoardScreen.fxml"));
 //        Parent root = loader.load();
 //        ScoreBoardController controller = loader.getController();
 //        controller.setupPlayer(player);
 //        controller.setMain(this);
 //        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("Game End");
+//        primaryStage.setTitle("CITYWALK");
 //    }
 
-
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
 

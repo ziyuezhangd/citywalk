@@ -14,12 +14,12 @@ public class Player {
     private int scoreSum;
 
     // Constructor
-    public Player(String playerName, Station location) {
+    public Player(String playerName, Location defaultLocation) {
         this.playerName = playerName;
         this.carbonFP = 0;
         this.gemCollected = 0;
         this.timeSpent = 0;
-        this.playerLocation = location;
+        this.playerLocation = defaultLocation;
         //Initialize score
         this.levelScore = 0;
         this.scoreSum = 0;

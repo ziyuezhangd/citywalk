@@ -1,6 +1,7 @@
 package groupsix.citywalk.service;
 
 import groupsix.citywalk.model.City;
+import groupsix.citywalk.model.Location;
 import groupsix.citywalk.model.Player;
 import groupsix.citywalk.model.Station;
 import groupsix.citywalk.service.Level;
@@ -30,9 +31,10 @@ public class Game implements Save {
     private int[] levelBudget = {300, 700, 1200};
     private Level[] levelLog = new Level[levelNum];
 
-    public Game(Player player) {
-        this.player = player;
+    public Game(String playerName) {
         this.city = new City();
+        Location defaultLocation = (Location) City.getStationByName("UCD");
+        this.player = new Player(playerName, defaultLocation);
         levelCount = 1;
         levelLog[0] = new Level(levelCount, levelTime[0], levelGem[0], levelBudget[0], player, city);
     }
@@ -60,6 +62,9 @@ public class Game implements Save {
         } else {
             System.out.println("Failed!");
         }
+    }
+    public Player getPlayer() {
+        return player;
     }
 
 

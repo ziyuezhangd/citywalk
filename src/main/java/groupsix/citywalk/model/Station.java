@@ -67,6 +67,16 @@ public class Station extends Location {
         return getX() == location.getX() && getY() == location.getY();
     }
 
+    public ArrayList<PublicTransportMode> getSameTransport(Station other) {
+        ArrayList<PublicTransportMode> sameTransport = new ArrayList<>();
+        for (PublicTransportMode transport: this.publicTransportList){
+            if (other.publicTransportList.contains(transport)){
+                sameTransport.add(transport);
+            }
+        }
+        return sameTransport;
+    }
+
     @Override
     public boolean equals(Object obj){
         if (this == obj) {
@@ -77,15 +87,5 @@ public class Station extends Location {
         }
         Station station = (Station) obj;
         return stationName.equals(station.getStationName());
-    }
-
-    public ArrayList<PublicTransportMode> getSameTransport(Station other) {
-        ArrayList<PublicTransportMode> sameTransport = new ArrayList<>();
-        for (PublicTransportMode transport: this.publicTransportList){
-            if (other.publicTransportList.contains(transport)){
-                sameTransport.add(transport);
-            }
-        }
-        return sameTransport;
     }
 }

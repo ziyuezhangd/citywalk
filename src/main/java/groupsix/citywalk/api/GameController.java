@@ -69,7 +69,7 @@ public class GameController extends Controller {
         toTextField.setText(null);
     }
     @FXML
-    private void handleStartButton(ActionEvent event) {
+    private void handleStartTrip(ActionEvent event) {
         nextScene();
     }
 

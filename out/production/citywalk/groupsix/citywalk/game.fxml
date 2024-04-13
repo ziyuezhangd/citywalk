@@ -74,7 +74,7 @@
             <TextField fx:id="fromTextField" editable="false" layoutX="100.0" layoutY="60.0" prefHeight="36.0" prefWidth="200.0" text="UCD" />
             <TextField fx:id="toTextField" editable="false" layoutX="100.0" layoutY="118.0" prefHeight="36.0" prefWidth="200.0" promptText="Select destination" />
             <ListView layoutX="40.0" layoutY="180.0" prefHeight="389.0" prefWidth="261.0" />
-            <Button layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartButton" text="Start" />
+            <Button layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start" />
             <Button layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset" />
          </children>
       </AnchorPane>
