@@ -150,6 +150,8 @@ public class GameController extends Controller {
     @FXML
     private void handleResetButton(ActionEvent event) {
         toTextField.setText(null);
+        ObservableList<String> emptyList = FXCollections.observableArrayList();
+        routesLV.setItems(emptyList);
     }
     @FXML
     private void handleStartTrip(ActionEvent event) {

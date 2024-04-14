@@ -1,17 +1,8 @@
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### IntelliJ IDEA ###
+# IntelliJ IDEA - Partially ignore
 .idea/
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-.idea/workspace.xml
-.idea/misc.xml
-*.class
+!.idea/modules.xml
+!.idea/workspace.xml
+!.idea/misc.xml
 *.iws
 *.iml
 *.ipr
@@ -35,3 +26,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.bak
+
+# Maven specific
+!.mvn/wrapper/maven-wrapper.jar
