@@ -76,12 +76,6 @@
             <ListView fx:id="routesLV" layoutX="40.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="261.0" />
             <Button fx:id="startButton" disable="true" layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start" />
             <Button layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset" />
-            <AnchorPane fx:id="testAnchorPane" layoutX="71.0" layoutY="657.0" prefHeight="79.0" prefWidth="261.0">
-               <children>
-                  <Button fx:id="testButton" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#test" text="Button" />
-               </children>
-            </AnchorPane>
-            <StackPane fx:id="testStackPane" layoutX="252.0" layoutY="593.0" prefHeight="104.0" prefWidth="129.0" />
          </children>
       </AnchorPane>
       <StackPane prefHeight="700.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="1">

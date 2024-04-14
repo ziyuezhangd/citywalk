@@ -161,10 +161,13 @@ public class GameController extends Controller {
     }
     @FXML
     private void handleStartTrip(ActionEvent event) {
-        // 更新游戏进度
+        // 确认路线选择
         int selectedIndex = routesLV.getSelectionModel().getSelectedIndex();
         // 将所选路线传递给Level
         game.getCurrentLevel().startTrip(fromTextField.getText(), toTextField.getText(), selectedIndex);
+        // 弹出教育弹窗
+
+        // 更新界面玩家数据
         double timeP = Math.max(1.0 - ((double) game.getPlayer().getTimeSpent() / (double) game.getCurrentLevel().getLevelTime()), 0.0);
         double carbonP = Math.max(1.0 - ((double) game.getPlayer().getCarbonFP() / (double) game.getCurrentLevel().getLevelBudget()), 0.0);
         double gP = ((double) game.getPlayer().getGemCollected() / (double) game.getCurrentLevel().getLevelGem());
@@ -172,8 +175,6 @@ public class GameController extends Controller {
         carbonProgress.setProgress(carbonP);
         gemProgress.setProgress(gP);
         scoreLabel.setText(String.valueOf(game.getPlayer().getScoreLevel()));
-        // 弹出教育弹窗
-        nextScene();
     }
     @FXML
     public void displayMarker() {
