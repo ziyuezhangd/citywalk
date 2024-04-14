@@ -29,7 +29,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
                 </Label>
-                <Label fx:id="scoreLabel" text="Label" textAlignment="CENTER">
+                <Label fx:id="scoreLabel" text="scorelabel">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -37,9 +37,14 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
                <font>
-                  <Font size="25.0" />
+                  <Font size="20.0" />
                </font></Label>
-                <Button fx:id="switchToLeaderBoardButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchToSceneGameFinish" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue); -fx-text-fill: black;" text="Proceed To Leaderboards" textAlignment="CENTER">
+            <Label fx:id="carbonFPLabel" text="CarbonFP label">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+                <Button fx:id="switchToLeaderBoardButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#nextScene" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue); -fx-text-fill: black;" text="Proceed To Leaderboards" textAlignment="CENTER">
                     <font>
                         <Font size="20.0" />
                     </font></Button>
