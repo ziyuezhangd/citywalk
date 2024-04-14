@@ -1,6 +1,7 @@
 package groupsix.citywalk.service;
 
 import groupsix.citywalk.model.City;
+import groupsix.citywalk.model.Location;
 import groupsix.citywalk.model.Player;
 import groupsix.citywalk.model.Station;
 import groupsix.citywalk.service.Level;
@@ -28,35 +29,44 @@ public class Game implements Save {
     private int[] levelTime = {40, 70, 100};
     private int[] levelGem = {1, 2, 3};
     private int[] levelBudget = {300, 700, 1200};
+    private ArrayList<Level> levelLog = new ArrayList<>();
 
-    public Game() {
-    }
-
-    public void startGame() {
-        Station location = City.getStationByName("UCD");
-        player = new Player("TestPlayer", location);
-        city = new City();
+    public Game(String playerName) {
+        this.city = new City();
+        Location defaultLocation = (Location) City.getStationByName("UCD");
+        this.player = new Player(playerName, defaultLocation);
         levelCount = 1;
+        levelLog.add(new Level(levelCount, levelTime[0], levelGem[0], levelBudget[0], player, city));
     }
 
-    public void playingGame() {
-        boolean flag = false;
-        for (int i = 0; i < levelNum; i++) {
-            Level level = new Level(levelCount, levelTime[i], levelGem[i], levelBudget[i], player, city);
-            flag = level.levelPlay();
-            if (flag) {
-                levelCount++;
-            } else {
-                break;
-            }
-        }
-        if (flag) {
-            System.out.println("Passed!");
-        } else {
-            System.out.println("Failed!");
-        }
+//    public void playingGame() {
+//        boolean flag = false;
+//        for (int i = 0; i < levelNum; i++) {
+//            Level level = new Level(levelCount, levelTime[i], levelGem[i], levelBudget[i], player, city);
+//            flag = level.levelPlay();
+//            if (flag) {
+//                levelCount++;
+//            } else {
+//                break;
+//            }
+//        }
+//        if (flag) {
+//            System.out.println("Passed!");
+//        } else {
+//            System.out.println("Failed!");
+//        }
+//    }
+    public Player getPlayer() {
+        return player;
     }
 
+    public Level getCurrentLevel() {
+        return levelLog.get(levelCount - 1);
+    }
+
+    public int getLevelCount() {
+        return levelCount;
+    }
 
     // An inner class used to save the ranking list
     public static class PlayerScore {

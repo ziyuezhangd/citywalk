@@ -40,5 +40,15 @@ public class PublicTransportMode extends TransportMode {
         PublicTransportMode transport = (PublicTransportMode) obj;
         return this.getName().equals(transport.getName());
     }
+
+    public ArrayList<Station> getTransferStations(){
+        ArrayList<Station> transferStations = new ArrayList<>();
+        for (Station station: stationList){
+            if (station.checkTransfer()) {
+                transferStations.add(station);
+            }
+        }
+        return transferStations;
+    }
 }
 

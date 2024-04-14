@@ -1,5 +1,8 @@
 package groupsix.citywalk.maingame;
-import groupsix.citywalk.api.Controller;
+
+import groupsix.citywalk.api.GameController;
+import groupsix.citywalk.api.LoginController;
+import groupsix.citywalk.service.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,93 +11,76 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static javafx.application.Application.launch;
 
 public class Main extends Application {
+    private Stage primaryStage;
+    private Game game;
     @Override
-    public void start(Stage primaryStage){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Login.fxml"));
-            Parent root = loader.load();
-            Controller controller = loader.getController();
-            controller.setPrimaryStage(primaryStage);
+    public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
+        primaryStage.setResizable(false);
+        showLoginScene();
+    }
 
-            primaryStage.setTitle("CityWalk");
-            primaryStage.setScene(new Scene(root));
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    //场景切换用的
+    private void showLoginScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Login.fxml"));
+        Parent root = loader.load();
+        LoginController controller = loader.getController();
+        controller.setMain(this);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("CITYWALK");
+        primaryStage.show();
+    }
+    public void showGameScene() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Game.fxml"));
+        Parent root = loader.load();
+        GameController controller = loader.getController();
+        controller.setUpGame(game);
+        controller.setUpFXMLLoader(loader);
+        controller.setMain(this);
+        controller.initLevel();
+        controller.initMap();
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("CITYWALK");
+    }
+//    public void showNextLevelScene() throws Exception {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/NextLevelScreen.fxml"));
+//        Parent root = loader.load();
+//        NextLevelController controller = loader.getController();
+//        controller.setupPlayer(player);
+//        controller.setMain(this);
+//        primaryStage.setScene(new Scene(root));
+//        primaryStage.setTitle("CITYWALK");
+//    }
+
+
+    //    public void showGameOverScene() throws Exception {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameOverScreen.fxml"));
+//        Parent root = loader.load();
+//        GameOverController controller = loader.getController();
+//        controller.setupPlayer(player);
+//        controller.setMain(this);
+//        primaryStage.setScene(new Scene(root));
+//        primaryStage.setTitle("CITYWALK");
+//    }
+
+    //    public void showScoreBoardScene() throws Exception {
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/ScoreBoardScreen.fxml"));
+//        Parent root = loader.load();
+//        ScoreBoardController controller = loader.getController();
+//        controller.setupPlayer(player);
+//        controller.setMain(this);
+//        primaryStage.setScene(new Scene(root));
+//        primaryStage.setTitle("CITYWALK");
+//    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public static void main(String[] args) {
         launch(args);
-        }
-}
+    }
 
-//public class Main extends Application {
-//    //test below
-//    Stage window;
-//    Scene scene1, scene2_1, scene2_2, scene2_3,scene3, scene4;
-//    Button button;
-//
-//    public static void main(String[] args) {
-//        launch(args);
-//    }
-//    @Override
-//    public void start(Stage initialStage) throws Exception {
-//        this.window = initialStage;
-//        //Scene 1
-//        Label label1 = new Label("Welcome to CityWalk!");
-//        Button buttonStartGame = new Button();
-//        buttonStartGame.setText("Enter Game");
-//
-//        //uses lambda expressions to handle button events
-//        buttonStartGame.setOnAction(e -> window.setScene(scene2_3));
-//
-//        //Layout
-//        StackPane layout1 = new StackPane();
-//        layout1.getChildren().addAll(label1,buttonStartGame);
-//        scene1 = new Scene(layout1, 700, 500);
-//
-//        //Scene 2.3
-//        Button buttonSelectRoute = new Button("Start Trip");
-//        buttonSelectRoute.setOnAction(e -> {
-//            EducationBox.display("Education message from Education to be added here");
-//            window.setScene(scene3);
-//        });
-//
-//        StackPane layout2_3 = new StackPane();
-//        layout2_3.getChildren().addAll(buttonSelectRoute);
-//        scene2_3 = new Scene(layout2_3, 700, 500);
-//
-//        //Scene 3
-//        Button  buttonLevelUp= new Button("Next Level");
-//        buttonLevelUp.setOnAction(e -> window.setScene(scene4));
-//
-//
-//        StackPane layout3 = new StackPane();
-//        layout3.getChildren().addAll(buttonLevelUp);
-//        scene3 = new Scene(layout3, 700, 500);
-//
-//        //Scene 4
-//        Button buttonEndGame= new Button("End Game");
-//        buttonEndGame.setOnAction(e -> closeProgram());
-//
-//
-//        StackPane layout4 = new StackPane();
-//        layout4.getChildren().addAll(buttonEndGame);
-//        scene4 = new Scene(layout4, 700, 500);
-//
-//        window.setScene(scene1);
-//        window.setTitle("City Walk");
-//        window.show();
-//    }
-//
-//    private void closeProgram(){
-//        System.out.println("Save Game Results");
-//        window.close();
-//    }
-//
-//}
+}

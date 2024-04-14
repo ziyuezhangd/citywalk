@@ -28,8 +28,19 @@ public class Location {
         return Math.abs(this.x - other.x) + Math.abs(this.y - other.y);
     }
 
-    public boolean isSameLocation(Location other) {
-        return this.x == other.x && this.y == other.y;
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        return this.x == ((Location) obj).getX() && this.y == ((Location) obj).getY();
     }
 
+    @Override
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
 }

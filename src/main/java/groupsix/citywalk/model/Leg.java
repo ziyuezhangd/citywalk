@@ -11,11 +11,11 @@ public class Leg {
         this.end = end;
         this.transport = transport;
     }
-    public void setStart(Location start) {
-        this.start = start;
+    public Location getStart() {
+        return start;
     }
-    public void setEnd(Location end){
-        this.end = end;
+    public Location getEnd(){
+        return end;
     }
     public void setTransport(TransportMode transport){
         this.transport = transport;
@@ -33,5 +33,19 @@ public class Leg {
     }
     public TransportMode getTransport(){
         return transport;
+    }
+
+    @Override
+    public String toString() {
+        String description = "";
+        switch (transport.getName()) {
+            case "Walk" -> description += "\uD83D\uDDE6";
+            case "Taxi" -> description += "\uD83D\uDE96";
+            case "Bike" -> description += "\uD83D\uDEB2";
+            case "Bus" -> description += "\uD83D\uDE8D";
+            case "Luas" -> description += "\uD83D\uDE8A";
+            case "Dart" -> description += "\uD83D\uDE89";
+        }
+        return description;
     }
 }
