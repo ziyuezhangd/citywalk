@@ -9,34 +9,57 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class Level implements Save {
     private int levelCount;
     private int levelTime;
     private int levelGem;
     private int levelBudget;
-    private Player myPlayer;
-    private City myCity;
+    private Player player;
+    private City city;
     private ArrayList<Location> gemLocation = new ArrayList<>();
-    private Route myRoute;
+    private ArrayList<Trip> levelTrips = new ArrayList<>();
 
-    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player myPlayer, City myCity) {
+    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player player, City city) {
         this.levelCount = levelCount;
         this.levelTime = levelTime;
         this.levelGem = levelGem;
         this.levelBudget = levelBudget;
-        this.myPlayer = myPlayer;
-        this.myCity = myCity;
+        this.player = player;
+        this.city = city;
+        createGem();
     }
-    public void createGem(){
-        for (int i=0; i<levelGem; i++){
-            Location location = new Location(MapConfig.stationLocations[i][0], MapConfig.stationLocations[i][1]);
-            gemLocation.add(location);
+    public ArrayList<Location> getGemLocation() {
+        return gemLocation;
+    }
+    public int getLevelTime() {
+        return levelTime;
+    }
+    public int getLevelBudget() {
+        return levelBudget;
+    }
+    public int getLevelGem() {
+        return levelGem;
+    }
+    private void createGem(){
+        Random random = new Random();
+        int n = City.getStationList().size();
+        while (gemLocation.size() < levelGem) {
+            int randomNumber = random.nextInt(n);
+            Location testGem = City.getStationList().get(randomNumber);
+            if (!gemLocation.contains(testGem) && !testGem.equals(player.getPlayerLocation())) {
+                gemLocation.add(testGem);
+            }
         }
+    }
+
+    public void startTrip() {
+
     }
     private boolean checkAlive(){
         boolean check = true;
-        if (myPlayer.getTimeSpent() > levelTime || myPlayer.getCarbonFP() > levelBudget){
+        if (player.getTimeSpent() > levelTime || player.getCarbonFP() > levelBudget){
             check =false;
         }
         return check;
@@ -44,11 +67,11 @@ public class Level implements Save {
 
     private boolean checkGem(){
         boolean check = false;
-        Location currentPlayerLocation = myPlayer.getPlayerLocation();
+        Location currentPlayerLocation = player.getPlayerLocation();
         Iterator<Location> iterator = gemLocation.iterator();
         while (iterator.hasNext()) {
             Location gem = iterator.next();
-            if (gem.isSameLocation(currentPlayerLocation)) {
+            if (gem.equals(currentPlayerLocation)) {
                 iterator.remove();
                 check = true;
                 break;
@@ -57,48 +80,48 @@ public class Level implements Save {
         return check;
     }
 
-    public boolean levelPlay(){
-        System.out.println("This is Level: "+ levelCount);
-        if(levelCount != 1){
-            myPlayer.startNewLevel();
-        }
-        createGem();
-        while (!gemLocation.isEmpty()){
-
-            Location end = gemLocation.get(1);
-            //user input end location
-            Trip myTrip = new Trip(City.getStationByLocation(myPlayer.getPlayerLocation()), City.getStationByLocation(end));
-            ArrayList<Route> routePlan = myTrip.getRoutePlan();
-            // user will choose which one they need
-            myRoute = routePlan.get(0);
-            myPlayer.routeSelect(myRoute);
-            myPlayer.finishTrip(myRoute);
-            if (checkAlive()){
-                if (checkGem()){
-                    myPlayer.gemCollect();
-                }
-                if ((myPlayer.getTimeSpent() == levelTime || myPlayer.getCarbonFP() == levelBudget)
-                        && !gemLocation.isEmpty()){
-                    return false;
-                }
-            } else{
-                return false;
-            }
-        }
-        return true;
-    }
+//    public boolean levelPlay(){
+//        System.out.println("This is Level: "+ levelCount);
+//        if(levelCount != 1){
+//            player.startNewLevel();
+//        }
+//        createGem();
+//        while (!gemLocation.isEmpty()){
+//
+//            Location end = gemLocation.get(1);
+//            //user input end location
+//            Trip myTrip = new Trip(City.getStationByLocation(player.getPlayerLocation()), City.getStationByLocation(end));
+//            ArrayList<Route> routePlan = myTrip.getRoutePlan();
+//            // user will choose which one they need
+//            myRoute = routePlan.get(0);
+//            myPlayer.routeSelect(myRoute);
+//            myPlayer.finishTrip(myRoute);
+//            if (checkAlive()){
+//                if (checkGem()){
+//                    player.gemCollect();
+//                }
+//                if ((player.getTimeSpent() == levelTime || player.getCarbonFP() == levelBudget)
+//                        && !gemLocation.isEmpty()){
+//                    return false;
+//                }
+//            } else{
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     @Override
     public void save() throws IOException {
-        String fileName = "level_" + levelCount + "_" + myPlayer.getPlayerName() + ".txt";
+        String fileName = "level_" + levelCount + "_" + player.getPlayerName() + ".txt";
         try (PrintWriter out = new PrintWriter(new FileWriter(fileName))) {
-            out.println("Player: " + myPlayer.getPlayerName());
+            out.println("Player: " + player.getPlayerName());
             out.println("LevelCount: " + levelCount);
             out.println("LevelTime: " + levelTime);
             out.println("LevelFP: " + levelBudget);
-            out.println("Route: " + myRoute);
-            out.println("Transport Mode : " + myRoute.getModeNumber());
-            out.println("Score: " + myPlayer.getLevelScore());
+//            out.println("Route: " + myRoute);
+//            out.println("Transport Mode : " + myRoute.getModeNumber());
+            out.println("Score: " + player.getLevelScore());
         }
     }
 }

@@ -48,6 +48,10 @@ public class City {
         BasicTransportMode bike = (BasicTransportMode) getTransportByName("Bike");
         return bike.getRegion();
     }
+    public static ArrayList<Station> getStationList(){
+        return new ArrayList<>(stationList.values());
+    }
+
     private void initStations(){
         // Initialise all stations on the map
         for (int i=0; i<MapConfig.stationNames.length; i++){

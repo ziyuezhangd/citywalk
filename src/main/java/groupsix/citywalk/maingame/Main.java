@@ -38,7 +38,10 @@ public class Main extends Application {
         Parent root = loader.load();
         GameController controller = loader.getController();
         controller.setUpGame(game);
+        controller.setUpFXMLLoader(loader);
         controller.setMain(this);
+        controller.initLevel();
+        controller.initMap();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("CITYWALK");
     }
@@ -76,7 +79,6 @@ public class Main extends Application {
     public void setGame(Game game) {
         this.game = game;
     }
-
 
     public static void main(String[] args) {
         launch(args);

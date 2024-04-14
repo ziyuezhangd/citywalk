@@ -9,6 +9,8 @@ public class Trip {
     private final Station start;
     private final Station end;
     private ArrayList<Route> routePlan = new ArrayList<>();
+    private Route selectedRoute;
+    private ArrayList<TransportMode> transportTaken = new ArrayList<>();
 
     public Trip(Station start, Station end){
         this.start = start;
@@ -18,7 +20,18 @@ public class Trip {
     public ArrayList<Route> getRoutePlan(){
         return routePlan;
     }
-
+    public Route getSelectedRoute(){
+        return selectedRoute;
+    }
+    public void selectRoute(Route route) {
+        selectedRoute = route;
+        for (Leg leg: route.getLegs()) {
+            TransportMode transport = leg.getTransport();
+            if (!transportTaken.contains(transport)) {
+                transportTaken.add(transport);
+            }
+        }
+    }
     private void calRoutePlan(){
         // Walk
         Route walkRoute = new Route(start, end, "Walk");
@@ -47,13 +60,15 @@ public class Trip {
         for (PublicTransportMode transportS: start.getPublicTransportList()) {
             // One-transfer route
             for (Station stationT: transportS.getTransferStations()){
-                ArrayList<PublicTransportMode> transferTransport = stationT.getSameTransport(end);
-                transferTransport.remove(transportS);
-                if (!transferTransport.isEmpty()) {
-                    for (PublicTransportMode transportT: transferTransport) {
-                        Route transferRoute = new Route(start, end, "Public");
-                        transferRoute.setPublicRoute(transportS, stationT, transportT);
-                        addRoute(transferRoute);
+                if (!stationT.equals(end)) {
+                    ArrayList<PublicTransportMode> transferTransport = stationT.getSameTransport(end);
+                    transferTransport.remove(transportS);
+                    if (!transferTransport.isEmpty()) {
+                        for (PublicTransportMode transportT: transferTransport) {
+                            Route transferRoute = new Route(start, end, "Public");
+                            transferRoute.setPublicRoute(transportS, stationT, transportT);
+                            addRoute(transferRoute);
+                        }
                     }
                 }
             }

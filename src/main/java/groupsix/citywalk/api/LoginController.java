@@ -25,12 +25,13 @@ public class LoginController extends Controller {
         }
     }
 
-    @FXML
+    @Override
     public void nextScene() {
         try {
             main.showGameScene();
         } catch (IOException e) {
-            System.out.println("Error transitioning to the game screen: " + e.getMessage());
+            System.out.println("Error transitioning to the game screen: " );
+            e.printStackTrace();
         }
 
     }
