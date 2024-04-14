@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 # IntelliJ IDEA
+.idea/
+=======
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
 .idea/
 .idea/modules.xml
 .idea/jarRepositories.xml
@@ -6,21 +15,19 @@
 .idea/libraries/
 .idea/workspace.xml
 .idea/misc.xml
+*.class
+>>>>>>> yanwen
+*.iws
+*.iml
+*.ipr
 
 # Java specific
 *.class
 
-# Output folders
-out/
+# Output folder
+.out/
 target/
 build/
-
-# Maven wrapper
-!.mvn/wrapper/maven-wrapper.jar
-
-# Exclude target directories but not specific files in them
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 # Logs and databases
 *.log
