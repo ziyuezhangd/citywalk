@@ -39,7 +39,7 @@ public class Leg {
     public String toString() {
         String description = "";
         switch (transport.getName()) {
-            case "Walk" -> description += "\uD83D\uDDE6";
+            case "Walk" -> description += "\uD83D\uDC63";
             case "Taxi" -> description += "\uD83D\uDE96";
             case "Bike" -> description += "\uD83D\uDEB2";
             case "Bus" -> description += "\uD83D\uDE8D";

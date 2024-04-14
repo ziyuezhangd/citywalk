@@ -1,10 +1,7 @@
 package groupsix.citywalk.api;
 
 import groupsix.citywalk.maingame.Controller;
-import groupsix.citywalk.model.City;
-import groupsix.citywalk.model.Location;
-import groupsix.citywalk.model.Route;
-import groupsix.citywalk.model.Trip;
+import groupsix.citywalk.model.*;
 import groupsix.citywalk.service.Game;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -21,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -37,8 +35,6 @@ public class GameController extends Controller {
     @FXML
     private Label levelLabel;
     @FXML
-    private GridPane mapGrid;
-    @FXML
     private ProgressBar timeProgress;
     @FXML
     private Label timeMaxLabel;
@@ -54,41 +50,48 @@ public class GameController extends Controller {
     private AnchorPane gemAnchorPane;
     @FXML
     private ListView<String> routesLV;
-
+    @FXML
+    private Button startButton;
+    @FXML
+    private Label scoreLabel;
+    @FXML
+    private ImageView markerIV;
     private FXMLLoader fxmlLoader;
 
 
     @FXML
     public void initMap() {
-        Image gem = new Image("file:pics/gem.png");
+        // 绘制Gem
+        Image gem = new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/gem.png"));
         for (Location location: game.getCurrentLevel().getGemLocation()) {
             System.out.println(location.getX());
             System.out.println(location.getY());
             ImageView gemImageView = new ImageView(gem);
-            gemImageView.setFitWidth(40.0);
+            gemImageView.setFitWidth(30.0);
             gemImageView.setPreserveRatio(true);
             gemImageView.setPickOnBounds(false);
-            // 获取位置
+            // 获取对应Station位置
             String stationName = City.getStationByLocation(location).getStationName();
-            System.out.println(stationName);
+            System.out.println("Gem:" + stationName);
             Circle stationCircle = (Circle) fxmlLoader.getNamespace().get(stationName + "Circle");
-            System.out.println(stationCircle.getCenterX() - 20);
-            System.out.println(stationCircle.getCenterY() - 23);
-            gemImageView.setLayoutX(stationCircle.getCenterX() - 20);
-            gemImageView.setLayoutY(stationCircle.getCenterY() - 23);
+            gemImageView.setLayoutX(stationCircle.getCenterX() - 15);
+            gemImageView.setLayoutY(stationCircle.getCenterY() - 21);
             gemAnchorPane.getChildren().add(gemImageView);
         }
+        // 绘制玩家位置
+        displayMarker();
     }
 
     @FXML
     public void initLevel() {
         levelLabel.setText("TESTING: LEVEL" + game.getLevelCount());
-        timeProgress.setProgress(100.0);
-        carbonProgress.setProgress(100.0);
+        timeProgress.setProgress(1.0);
+        carbonProgress.setProgress(1.0);
         gemProgress.setProgress(0.0);
         timeMaxLabel.setText(String.valueOf(game.getCurrentLevel().getLevelTime()));
         carbonMaxLabel.setText(String.valueOf(game.getCurrentLevel().getLevelBudget()));
         gemMaxLabel.setText(String.valueOf(game.getCurrentLevel().getLevelGem()));
+        game.getPlayer().startNewLevel();
     }
 
     @FXML
@@ -98,6 +101,7 @@ public class GameController extends Controller {
         stationName = stationName.substring(0, stationName.length()-"Label".length());
         if (!stationName.equals(fromTextField.getText())){
             toTextField.setText(stationName);
+            startButton.setDisable(true);
             generateRoutes();
         }
     }
@@ -108,6 +112,7 @@ public class GameController extends Controller {
         stationName = stationName.substring(0, stationName.length()-"Circle".length());
         if (!stationName.equals(fromTextField.getText())){
             toTextField.setText(stationName);
+            startButton.setDisable(true);
             generateRoutes();
         }
     }
@@ -141,28 +146,48 @@ public class GameController extends Controller {
         int selectedIndex = routesLV.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             System.out.println("Selected item index: " + selectedIndex);
-            // 在这里编写处理选中项变化的逻辑
+            startButton.setDisable(false);
         } else {
+            startButton.setDisable(true);
             System.out.println("No item selected");
-            // 在这里编写处理没有选中项的逻辑
         }
     }
     @FXML
     private void handleResetButton(ActionEvent event) {
+        // 清空To和ListView
         toTextField.setText(null);
         ObservableList<String> emptyList = FXCollections.observableArrayList();
         routesLV.setItems(emptyList);
     }
     @FXML
     private void handleStartTrip(ActionEvent event) {
-        // 更新游戏进度
+        // 确认路线选择
+        int selectedIndex = routesLV.getSelectionModel().getSelectedIndex();
+        // 将所选路线传递给Level
+        game.getCurrentLevel().startTrip(fromTextField.getText(), toTextField.getText(), selectedIndex);
         // 弹出教育弹窗
-        nextScene();
-    }
 
+        // 更新界面玩家数据
+        double timeP = Math.max(1.0 - ((double) game.getPlayer().getTimeSpent() / (double) game.getCurrentLevel().getLevelTime()), 0.0);
+        double carbonP = Math.max(1.0 - ((double) game.getPlayer().getCarbonFP() / (double) game.getCurrentLevel().getLevelBudget()), 0.0);
+        double gP = ((double) game.getPlayer().getGemCollected() / (double) game.getCurrentLevel().getLevelGem());
+        timeProgress.setProgress(timeP);
+        carbonProgress.setProgress(carbonP);
+        gemProgress.setProgress(gP);
+        scoreLabel.setText(String.valueOf(game.getPlayer().getScoreLevel()));
+    }
+    @FXML
+    public void displayMarker() {
+        Station playerStation = City.getStationByLocation(game.getPlayer().getPlayerLocation());
+        System.out.println(playerStation.getStationName());
+        Circle playerCircle = (Circle) fxmlLoader.getNamespace().get(playerStation.getStationName() + "Circle");
+        markerIV.setLayoutX(playerCircle.getCenterX() - 13);
+        markerIV.setLayoutY(playerCircle.getCenterY() - 23);
+    }
     public void setUpFXMLLoader(FXMLLoader loader) {
         this.fxmlLoader = loader;
     }
+
     @Override
     public void nextScene() {
         // 触发Education弹窗

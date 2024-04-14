@@ -54,7 +54,17 @@ public class Level implements Save {
         }
     }
 
-    public void startTrip() {
+    public void startTrip(String startName, String endName, int routeNo) {
+        // Trip中记录所选路线
+        Station start = City.getStationByName(startName);
+        Station end = City.getStationByName(endName);
+        Trip trip = new Trip(start, end);
+        trip.selectRoute(routeNo);
+        // Level中记录旅程
+        levelTrips.add(trip);
+        // Player中更新玩家数据
+        player.finishTrip(trip);
+        // 检查Gem
 
     }
     private boolean checkAlive(){
@@ -121,7 +131,7 @@ public class Level implements Save {
             out.println("LevelFP: " + levelBudget);
 //            out.println("Route: " + myRoute);
 //            out.println("Transport Mode : " + myRoute.getModeNumber());
-            out.println("Score: " + player.getLevelScore());
+            out.println("Score: " + player.getScoreLevel());
         }
     }
 }

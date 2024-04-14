@@ -4,24 +4,18 @@ import java.util.ArrayList;
 
 public class Player {
     private String playerName;
-    private int carbonFP;
-    private int gemCollected;
-    private ArrayList<Route> levelSelectedRoutes = new ArrayList<>();
-    private ArrayList<ArrayList<Route>> gameSelectedRoutes = new ArrayList<>();
-    private int timeSpent;
+    private int carbonFPLevel;
+    private int gemCollectedLevel;
+    private int timeSpentLevel;
     private Location playerLocation;
-    private int levelScore;
+    private int scoreLevel;
     private int scoreSum;
 
     // Constructor
     public Player(String playerName, Location defaultLocation) {
         this.playerName = playerName;
-        this.carbonFP = 0;
-        this.gemCollected = 0;
-        this.timeSpent = 0;
         this.playerLocation = defaultLocation;
-        //Initialize score
-        this.levelScore = 0;
+        //Initialize total score
         this.scoreSum = 0;
     }
 
@@ -29,33 +23,28 @@ public class Player {
         return playerName;
     }
     // Update time and carbonFP after each trip
-    public void finishTrip(Route route) {
-        timeSpent += route.getTime();
-        carbonFP += route.getCarbonFP();
+    public void finishTrip(Trip trip) {
+        Route route = trip.getSelectedRoute();
+        timeSpentLevel += route.getTime();
+        carbonFPLevel += route.getCarbonFP();
         playerLocation = route.getEnd();
-        levelScore += calScore(route);
+        scoreLevel += calScore(route);
         scoreSum += calScore(route);
     }
     public void startNewLevel(){
-        this.carbonFP = 0;
-        this.gemCollected = 0;
-        this.timeSpent = 0;
-        gameSelectedRoutes.add(levelSelectedRoutes);
-        levelSelectedRoutes = new ArrayList<>();
+        // 初始化玩家当前关卡数据
+        this.carbonFPLevel = 0;
+        this.gemCollectedLevel = 0;
+        this.timeSpentLevel = 0;
+        this.scoreLevel = 0;
     }
-    // Get player's carbonFP
     public int getCarbonFP() {
-        return carbonFP;
-    }
-
-    // Store the routes taken and for each trip in one level
-    public void routeSelect(Route route) {
-        levelSelectedRoutes.add(route);
+        return carbonFPLevel;
     }
 
     public int gemCollect(){
-        gemCollected += 1;
-        return gemCollected;
+        gemCollectedLevel += 1;
+        return gemCollectedLevel;
     }
 
     public Location getPlayerLocation(){
@@ -63,11 +52,11 @@ public class Player {
     }
 
     public int getTimeSpent(){
-        return timeSpent;
+        return timeSpentLevel;
     }
 
     public int getGemCollected(){
-        return gemCollected;
+        return gemCollectedLevel;
     }
 
     public int calScore(Route route) {
@@ -86,8 +75,8 @@ public class Player {
         return score;
     }
 
-    public int getLevelScore() {
-        return levelScore;
+    public int getScoreLevel() {
+        return scoreLevel;
     }
     public int getScoreSum() {
         return scoreSum;

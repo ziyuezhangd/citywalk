@@ -25,7 +25,7 @@ public class MapConfig {
     public static final String[] basicTransportNames = {"Walk", "Bike", "Taxi"};
     public static final String[] publicTransportNames = {"Bus", "Luas", "Dart"};
     public static final String[] allTransportNames = {"Walk", "Bike", "Taxi", "Bus", "Luas", "Dart"};
-    public static final double[] allTimeFactors = {7.0,2.4,2.0,3.8,3.0,3.4};  //unit: minute
+    public static final double[] allTimeFactors = {7.0,2.7,2.0,3.8,3.0,3.4};  //unit: minute
     public static final int[] allCarbonFactors = {2,4,48,30,15,18};  //unit: gram
 
     //Design basic transport regions
