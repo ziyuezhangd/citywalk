@@ -55,15 +55,15 @@ public class Main extends Application {
     }
 
 
-    //    public void showGameOverScene() throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/gameOver.fxml"));
-//        Parent root = loader.load();
-//        GameOverController controller = loader.getController();
-//        controller.setUpGame(game);
-//        controller.setMain(this);
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("CITYWALK");
-//    }
+        public void showGameOverScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/gameOver.fxml"));
+        Parent root = loader.load();
+        GameOverController controller = loader.getController();
+        controller.setUpGame(game);
+        controller.setMain(this);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("CITYWALK");
+    }
 
     //    public void showScoreBoardScene() throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/ScoreBoardScreen.fxml"));
