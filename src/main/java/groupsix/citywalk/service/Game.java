@@ -25,10 +25,10 @@ public class Game implements Save {
     private Player player;
     private City city;
     private int levelCount;
-    private int levelNum = 3;  //number of level
-    private int[] levelTime = {40, 70, 100};
+    private int levelTotal= 3;  // total number of level
+    private int[] levelTime = {50, 70, 100};
     private int[] levelGem = {1, 2, 3};
-    private int[] levelBudget = {300, 700, 1200};
+    private int[] levelBudget = {200, 500, 800};
     private ArrayList<Level> levelLog = new ArrayList<>();
 
     public Game(String playerName) {
@@ -66,6 +66,9 @@ public class Game implements Save {
 
     public int getLevelCount() {
         return levelCount;
+    }
+    public int getLevelTotal() {
+        return levelTotal;
     }
 
     // An inner class used to save the ranking list
