@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.StartScreenController">
-    <padding>
-        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
-    </padding>
-    <Label text="输入用户名：" />
-    <TextField fx:id="nameField" promptText="请输入您的用户名"/>
-    <Button text="Start Game" onAction="#handleStartGame"/>
-</VBox>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.StartScreenController">
+    <children>
+        <ImageView fitHeight="900.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@pics/cityWalkImage.jpg" />
+            </image>
+            <StackPane.margin>
+                <Insets />
+            </StackPane.margin>
+        </ImageView>
+        <VBox alignment="CENTER" prefHeight="30.0" prefWidth="100.0" spacing="10.0" StackPane.alignment="TOP_CENTER">
+            <children>
+                <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Welcome to CityWalk!" textAlignment="CENTER">
+                    <font>
+                        <Font size="44.0" />
+                    </font>
+                </Label>
+                <Label text="Please enter your name:">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="nameField" maxWidth="200.0" minHeight="-Infinity" minWidth="-Infinity" />
+                <Button fx:id="startGameButton" mnemonicParsing="false" onAction="#handleStartGame" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Enter Game" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            </children>
+            <StackPane.margin>
+                <Insets />
+            </StackPane.margin>
+            <padding>
+                <Insets left="300.0" right="300.0" />
+            </padding>
+        </VBox>
+    </children>
+</StackPane>
