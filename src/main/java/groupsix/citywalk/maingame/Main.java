@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 
@@ -44,26 +43,26 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("CITYWALK");
     }
-//    public void showNextLevelScene() throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/NextLevelScreen.fxml"));
-//        Parent root = loader.load();
-//        NextLevelController controller = loader.getController();
-//        controller.setupPlayer(player);
-//        controller.setMain(this);
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("CITYWALK");
-//    }
+    public void showNextUpScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/levelUp.fxml"));
+        Parent root = loader.load();
+        LevelUpController controller = loader.getController();
+        controller.setUpGame(game);
+        controller.setMain(this);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("CITYWALK");
+    }
 
 
-    //    public void showGameOverScene() throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameOverScreen.fxml"));
-//        Parent root = loader.load();
-//        GameOverController controller = loader.getController();
-//        controller.setupPlayer(player);
-//        controller.setMain(this);
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("CITYWALK");
-//    }
+        public void showGameOverScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/gameOver.fxml"));
+        Parent root = loader.load();
+        GameOverController controller = loader.getController();
+        controller.setUpGame(game);
+        controller.setMain(this);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("CITYWALK");
+    }
 
     //    public void showScoreBoardScene() throws Exception {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/ScoreBoardScreen.fxml"));

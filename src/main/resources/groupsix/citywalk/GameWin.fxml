@@ -18,7 +18,7 @@
         </ImageView>
         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="200.0">
             <children>
-                <Label style="-fx-font-weight: bold;" text="Game Over" textAlignment="CENTER">
+                <Label style="-fx-font-weight: bold;" text="Congratulations!" textAlignment="CENTER">
                     <font>
                         <Font size="50.0" />
                     </font>
@@ -29,14 +29,14 @@
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </Label>
-                <Label text="You failed the game">
-                    <font>
-                        <Font size="27.0" />
-                    </font>
-                    <VBox.margin>
-                        <Insets bottom="20.0" />
-                    </VBox.margin>
-                </Label>
+            <Label text="You have completed the game">
+               <font>
+                  <Font size="27.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
                 <Label fx:id="scoreLabel" text="scorelabel" textAlignment="CENTER">
                     <opaqueInsets>
                         <Insets />
@@ -63,9 +63,9 @@
                         <Font size="20.0" />
                     </font></Button>
             </children>
-            <StackPane.margin>
-                <Insets />
-            </StackPane.margin>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
         </VBox>
     </children>
 </StackPane>
