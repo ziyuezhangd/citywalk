@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.GameOverController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.LevelUpController">
     <children>
         <ImageView fitHeight="900.0" fitWidth="1200.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -26,14 +26,18 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
                 </Label>
-                <Label fx:id="scoreLabel" textAlignment="CENTER">
+                <Label fx:id="scoreLabel" text="score label">
                <font>
                   <Font size="20.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Label>
-                <Button fx:id="levelUpButton" mnemonicParsing="false" onAction="#switchToGameMain" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Next Level">
+            <Label fx:id="carbonFPLabel" text="CarbonFP label">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+                <Button fx:id="levelUpButton" mnemonicParsing="false" onAction="#nextScene" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Next Level">
                <VBox.margin>
                   <Insets bottom="15.0" />
                </VBox.margin></Button>
