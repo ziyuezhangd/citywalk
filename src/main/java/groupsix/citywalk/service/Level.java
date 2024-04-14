@@ -67,7 +67,7 @@ public class Level implements Save {
         // 检查Gem
 
     }
-    private boolean checkAlive(){
+    public boolean checkAlive(){
         boolean check = true;
         if (player.getTimeSpent() > levelTime || player.getCarbonFP() > levelBudget){
             check =false;
@@ -75,7 +75,7 @@ public class Level implements Save {
         return check;
     }
 
-    private boolean checkGem(){
+    public boolean checkGem(){
         boolean check = false;
         Location currentPlayerLocation = player.getPlayerLocation();
         Iterator<Location> iterator = gemLocation.iterator();
@@ -84,6 +84,7 @@ public class Level implements Save {
             if (gem.equals(currentPlayerLocation)) {
                 iterator.remove();
                 check = true;
+                player.gemCollect();
                 break;
             }
         }

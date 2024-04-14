@@ -20,11 +20,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class GameController extends Controller {
@@ -56,13 +58,21 @@ public class GameController extends Controller {
     private Label scoreLabel;
     @FXML
     private ImageView markerIV;
+    @FXML
+    private Tooltip timeTooltip;
+    @FXML
+    private Tooltip carbonTooltip;
+    @FXML
+    private Tooltip gemTooltip;
+    @FXML
+    private final Image gem = new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/gem.png"));
+    private HashMap<String, ImageView> gemList = new HashMap<>();
     private FXMLLoader fxmlLoader;
 
 
     @FXML
-    public void initMap() {
+    public void initGem() {
         // 绘制Gem
-        Image gem = new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/gem.png"));
         for (Location location: game.getCurrentLevel().getGemLocation()) {
             System.out.println(location.getX());
             System.out.println(location.getY());
@@ -77,20 +87,25 @@ public class GameController extends Controller {
             gemImageView.setLayoutX(stationCircle.getCenterX() - 15);
             gemImageView.setLayoutY(stationCircle.getCenterY() - 21);
             gemAnchorPane.getChildren().add(gemImageView);
+            gemList.put(stationName, gemImageView);
         }
-        // 绘制玩家位置
-        displayMarker();
     }
 
     @FXML
     public void initLevel() {
-        levelLabel.setText("TESTING: LEVEL" + game.getLevelCount());
+        // 设置标题
+        levelLabel.setText("LEVEL" + game.getLevelCount());
+        // 设置进度条相关
         timeProgress.setProgress(1.0);
         carbonProgress.setProgress(1.0);
         gemProgress.setProgress(0.0);
         timeMaxLabel.setText(String.valueOf(game.getCurrentLevel().getLevelTime()));
         carbonMaxLabel.setText(String.valueOf(game.getCurrentLevel().getLevelBudget()));
         gemMaxLabel.setText(String.valueOf(game.getCurrentLevel().getLevelGem()));
+        timeTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelTime()));
+        carbonTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelBudget()));
+        gemTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelGem()));
+        // 通知Player初始当前关卡数据
         game.getPlayer().startNewLevel();
     }
 
@@ -102,7 +117,7 @@ public class GameController extends Controller {
         if (!stationName.equals(fromTextField.getText())){
             toTextField.setText(stationName);
             startButton.setDisable(true);
-            generateRoutes();
+            displayRoutes();
         }
     }
     @FXML
@@ -113,11 +128,11 @@ public class GameController extends Controller {
         if (!stationName.equals(fromTextField.getText())){
             toTextField.setText(stationName);
             startButton.setDisable(true);
-            generateRoutes();
+            displayRoutes();
         }
     }
     @FXML
-    private void generateRoutes() {
+    private void displayRoutes() {
         String startName = fromTextField.getText();
         String endName = toTextField.getText();
         Trip trip = new Trip(City.getStationByName(startName), City.getStationByName(endName));
@@ -131,6 +146,7 @@ public class GameController extends Controller {
             {
                 setPrefWidth(200);
                 setWrapText(true);
+                setFont(Font.font(18));
             }
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -163,18 +179,48 @@ public class GameController extends Controller {
     private void handleStartTrip(ActionEvent event) {
         // 确认路线选择
         int selectedIndex = routesLV.getSelectionModel().getSelectedIndex();
-        // 将所选路线传递给Level
+        // 将所选路线传递给Level - Level中会更新Player里的数据
         game.getCurrentLevel().startTrip(fromTextField.getText(), toTextField.getText(), selectedIndex);
         // 弹出教育弹窗
 
-        // 更新界面玩家数据
+        // 清空ListView
+        ObservableList<String> emptyList = FXCollections.observableArrayList();
+        routesLV.setItems(emptyList);
+        // 检查Gem是否获取
+        if (game.getCurrentLevel().checkGem()) {
+            ImageView gemCollected = gemList.get(City.getStationByLocation(game.getPlayer().getPlayerLocation()).getStationName());
+            gemCollected.setVisible(false);
+        }
+        // 更新界面玩家数据显示
+        // 更新进度条
         double timeP = Math.max(1.0 - ((double) game.getPlayer().getTimeSpent() / (double) game.getCurrentLevel().getLevelTime()), 0.0);
         double carbonP = Math.max(1.0 - ((double) game.getPlayer().getCarbonFP() / (double) game.getCurrentLevel().getLevelBudget()), 0.0);
         double gP = ((double) game.getPlayer().getGemCollected() / (double) game.getCurrentLevel().getLevelGem());
         timeProgress.setProgress(timeP);
         carbonProgress.setProgress(carbonP);
         gemProgress.setProgress(gP);
+        timeTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelTime() - game.getPlayer().getTimeSpent()));
+        carbonTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelBudget() - game.getPlayer().getCarbonFP()));
+        gemTooltip.setText(String.valueOf(game.getPlayer().getGemCollected()));
+        // 更新分数
         scoreLabel.setText(String.valueOf(game.getPlayer().getScoreLevel()));
+        // 更新From&To label
+        fromTextField.setText(City.getStationByLocation(game.getPlayer().getPlayerLocation()).getStationName());
+        toTextField.setText(null);
+        // 更新玩家位置
+        displayMarker();
+        // 判断玩家状态：进入下一关、死亡、全部通关
+        if (game.getCurrentLevel().checkAlive()) {
+            // 玩家活着
+            if (game.getLevelCount() == game.getLevelTotal()) {
+                gameWin();
+            } else {
+                nextScene();
+            }
+        } else {
+            // 玩家死了
+            gameOver();
+        }
     }
     @FXML
     public void displayMarker() {
@@ -187,11 +233,26 @@ public class GameController extends Controller {
     public void setUpFXMLLoader(FXMLLoader loader) {
         this.fxmlLoader = loader;
     }
-
+    public void gameOver() {
+        try {
+            main.showGameOverScene();
+        } catch (Exception e) {
+            System.out.println("Error transitioning to the gameOver screen" );
+            e.printStackTrace();
+        }
+    }
+    public void gameWin() {
+        // 展示gameWin
+        System.out.println("Winning!" );
+    }
     @Override
     public void nextScene() {
-        // 触发Education弹窗
-        System.out.println("Education Popup");
+        try {
+            main.showNextUpScene();
+        } catch (Exception e) {
+            System.out.println("Error transitioning to the levelUp screen" );
+            e.printStackTrace();
+        }
     }
 
 }

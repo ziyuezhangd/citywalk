@@ -39,7 +39,8 @@ public class Main extends Application {
         controller.setUpFXMLLoader(loader);
         controller.setMain(this);
         controller.initLevel();
-        controller.initMap();
+        controller.initGem();
+        controller.displayMarker();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("CITYWALK");
     }
