@@ -37,8 +37,6 @@ public class GameController extends Controller {
     @FXML
     private Label levelLabel;
     @FXML
-    private GridPane mapGrid;
-    @FXML
     private ProgressBar timeProgress;
     @FXML
     private Label timeMaxLabel;
@@ -54,6 +52,8 @@ public class GameController extends Controller {
     private AnchorPane gemAnchorPane;
     @FXML
     private ListView<String> routesLV;
+    @FXML
+    private Button startButton;
 
     private FXMLLoader fxmlLoader;
 
@@ -98,6 +98,7 @@ public class GameController extends Controller {
         stationName = stationName.substring(0, stationName.length()-"Label".length());
         if (!stationName.equals(fromTextField.getText())){
             toTextField.setText(stationName);
+            startButton.setDisable(true);
             generateRoutes();
         }
     }
@@ -108,6 +109,7 @@ public class GameController extends Controller {
         stationName = stationName.substring(0, stationName.length()-"Circle".length());
         if (!stationName.equals(fromTextField.getText())){
             toTextField.setText(stationName);
+            startButton.setDisable(true);
             generateRoutes();
         }
     }
@@ -141,14 +143,17 @@ public class GameController extends Controller {
         int selectedIndex = routesLV.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             System.out.println("Selected item index: " + selectedIndex);
+            startButton.setDisable(false);
             // 在这里编写处理选中项变化的逻辑
         } else {
+            startButton.setDisable(true);
             System.out.println("No item selected");
             // 在这里编写处理没有选中项的逻辑
         }
     }
     @FXML
     private void handleResetButton(ActionEvent event) {
+        // 清空To和ListView
         toTextField.setText(null);
         ObservableList<String> emptyList = FXCollections.observableArrayList();
         routesLV.setItems(emptyList);
