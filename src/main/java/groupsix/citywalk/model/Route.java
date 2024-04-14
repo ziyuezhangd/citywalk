@@ -46,6 +46,7 @@ public class Route {
                 break;
             case "Taxi":
                 time += 7;  // Time to wait for a taxi
+                break;
             case "Public":
                 time += getModeNumber() * 5;  // Time to wait for public transports
         }
@@ -115,5 +116,23 @@ public class Route {
         Leg transferToEndLeg = new Leg(transfer, end, transportE);
         legs.add(startToTransferLeg);
         legs.add(transferToEndLeg);
+    }
+
+    @Override
+    public String toString() {
+        String description = "";
+        for (Leg leg: legs) {
+            Station stationStart = City.getStationByLocation(leg.getStart());
+            if (stationStart != null) {
+                description += stationStart.getStationName() + " > " + leg.toString() + " > ";
+            } else {
+                description += "BikeStation@" + leg.getStart().toString() + " > " + leg.toString() + " > ";
+            }
+            if (end.isLocation(leg.getEnd())) {
+                description += end.getStationName();
+            }
+        }
+        description += "\n" + getTime() + "min\n" + getCarbonFP() + "g CO2 footprint";
+        return description;
     }
 }

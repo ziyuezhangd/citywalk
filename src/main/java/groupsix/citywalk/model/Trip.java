@@ -60,13 +60,15 @@ public class Trip {
         for (PublicTransportMode transportS: start.getPublicTransportList()) {
             // One-transfer route
             for (Station stationT: transportS.getTransferStations()){
-                ArrayList<PublicTransportMode> transferTransport = stationT.getSameTransport(end);
-                transferTransport.remove(transportS);
-                if (!transferTransport.isEmpty()) {
-                    for (PublicTransportMode transportT: transferTransport) {
-                        Route transferRoute = new Route(start, end, "Public");
-                        transferRoute.setPublicRoute(transportS, stationT, transportT);
-                        addRoute(transferRoute);
+                if (!stationT.equals(end)) {
+                    ArrayList<PublicTransportMode> transferTransport = stationT.getSameTransport(end);
+                    transferTransport.remove(transportS);
+                    if (!transferTransport.isEmpty()) {
+                        for (PublicTransportMode transportT: transferTransport) {
+                            Route transferRoute = new Route(start, end, "Public");
+                            transferRoute.setPublicRoute(transportS, stationT, transportT);
+                            addRoute(transferRoute);
+                        }
                     }
                 }
             }

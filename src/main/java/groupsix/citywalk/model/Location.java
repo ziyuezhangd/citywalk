@@ -38,4 +38,9 @@ public class Location {
         }
         return this.x == ((Location) obj).getX() && this.y == ((Location) obj).getY();
     }
+
+    @Override
+    public String toString() {
+        return "(" + x + "," + y + ")";
+    }
 }

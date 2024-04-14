@@ -6,15 +6,15 @@ import groupsix.citywalk.model.Location;
 import groupsix.citywalk.model.Route;
 import groupsix.citywalk.model.Trip;
 import groupsix.citywalk.service.Game;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +23,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class GameController extends Controller {
@@ -113,8 +116,35 @@ public class GameController extends Controller {
         String startName = fromTextField.getText();
         String endName = toTextField.getText();
         Trip trip = new Trip(City.getStationByName(startName), City.getStationByName(endName));
+        ArrayList<String> routeList = new ArrayList<>();
         for (Route route: trip.getRoutePlan()) {
-
+            routeList.add(route.toString());
+        }
+        ObservableList<String> observableList = FXCollections.observableArrayList(routeList);
+        // 设置自动换行
+        routesLV.setCellFactory(param -> new ListCell<String>() {
+            {
+                setPrefWidth(200);
+                setWrapText(true);
+            }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(item);
+            }
+        });
+        // 添加路线
+        routesLV.setItems(observableList);
+    }
+    @FXML
+    private void handleRouteSelect(MouseEvent event) {
+        int selectedIndex = routesLV.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            System.out.println("Selected item index: " + selectedIndex);
+            // 在这里编写处理选中项变化的逻辑
+        } else {
+            System.out.println("No item selected");
+            // 在这里编写处理没有选中项的逻辑
         }
     }
     @FXML
