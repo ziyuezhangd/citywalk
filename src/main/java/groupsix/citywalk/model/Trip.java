@@ -8,52 +8,32 @@ import java.util.ArrayList;
 public class Trip {
     private final Station start;
     private final Station end;
-    private ArrayList<Route> routePlan = new ArrayList<>();
     private Route selectedRoute;
     private ArrayList<TransportMode> transportTaken = new ArrayList<>();
 
     public Trip(Station start, Station end){
         this.start = start;
         this.end = end;
-        calRoutePlan();
     }
     public ArrayList<Route> getRoutePlan(){
-        return routePlan;
-    }
-    public Route getSelectedRoute(){
-        return selectedRoute;
-    }
-    public void selectRoute(Route route) {
-        selectedRoute = route;
-        for (Leg leg: route.getLegs()) {
-            TransportMode transport = leg.getTransport();
-            if (!transportTaken.contains(transport)) {
-                transportTaken.add(transport);
-            }
-        }
-    }
-    private void calRoutePlan(){
+        ArrayList<Route> routePlan = new ArrayList<>();
         // Walk
         Route walkRoute = new Route(start, end, "Walk");
-        addRoute(walkRoute);
+        routePlan.add(walkRoute);
         // Taxi
         Route taxiRoute = new Route(start, end, "Taxi");
-        addRoute(taxiRoute);
+        routePlan.add(taxiRoute);
         // Bike
         Route bikeRoute = new Route(start, end, "Bike");
-        addRoute(bikeRoute);
+        routePlan.add(bikeRoute);
         // Public Transport
-        calPublicRoutes();
-    }
-    private void calPublicRoutes(){
-
         // Add direct route if exists
         ArrayList<PublicTransportMode> sameTransport = start.getSameTransport(end);
         if (!sameTransport.isEmpty()){
             for (PublicTransportMode transport: sameTransport) {
                 Route directRoute = new Route(start, end, "Public");
                 directRoute.setPublicRoute(transport);
-                addRoute(directRoute);
+                routePlan.add(directRoute);
             }
         }
         // Calculate transfer routes
@@ -67,15 +47,24 @@ public class Trip {
                         for (PublicTransportMode transportT: transferTransport) {
                             Route transferRoute = new Route(start, end, "Public");
                             transferRoute.setPublicRoute(transportS, stationT, transportT);
-                            addRoute(transferRoute);
+                            routePlan.add(transferRoute);
                         }
                     }
                 }
             }
         }
+        return routePlan;
     }
-
-    private void addRoute(Route route){
-        routePlan.add(route);
+    public Route getSelectedRoute(){
+        return selectedRoute;
+    }
+    public void selectRoute(int routeNo) {
+        selectedRoute = getRoutePlan().get(routeNo);
+        for (Leg leg: selectedRoute.getLegs()) {
+            TransportMode transport = leg.getTransport();
+            if (!transportTaken.contains(transport)) {
+                transportTaken.add(transport);
+            }
+        }
     }
 }
