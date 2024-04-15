@@ -100,7 +100,9 @@ public class GameController extends Controller {
     @FXML
     public void initLevel() {
         // 设置标题
-        levelLabel.setText("LEVEL" + game.getLevelCount());
+        levelLabel.setText("LEVEL " + game.getLevelCount());
+        // 设置From
+        fromTextField.setText(City.getStationByLocation(game.getPlayer().getPlayerLocation()).getStationName());
         // 设置进度条相关
         timeProgress.setProgress(1.0);
         carbonProgress.setProgress(1.0);
