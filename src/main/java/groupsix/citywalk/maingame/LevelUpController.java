@@ -16,6 +16,7 @@ public class LevelUpController extends Controller {
     @FXML
     public void nextScene() {
         try {
+            game.levelUp();
             main.showGameScene();
         } catch (Exception e) {
             System.out.println("Error transitioning to the game screen: " + e.getMessage());

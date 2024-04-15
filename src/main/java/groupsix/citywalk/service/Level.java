@@ -17,17 +17,15 @@ public class Level implements Save {
     private int levelGem;
     private int levelBudget;
     private Player player;
-    private City city;
     private ArrayList<Location> gemLocation = new ArrayList<>();
     private ArrayList<Trip> levelTrips = new ArrayList<>();
 
-    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player player, City city) {
+    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player player) {
         this.levelCount = levelCount;
         this.levelTime = levelTime;
         this.levelGem = levelGem;
         this.levelBudget = levelBudget;
         this.player = player;
-        this.city = city;
         createGem();
     }
     public ArrayList<Location> getGemLocation() {
@@ -95,36 +93,6 @@ public class Level implements Save {
         return checkAlive() && player.getGemCollected() < levelGem;
     }
 
-//    public boolean levelPlay(){
-//        System.out.println("This is Level: "+ levelCount);
-//        if(levelCount != 1){
-//            player.startNewLevel();
-//        }
-//        createGem();
-//        while (!gemLocation.isEmpty()){
-//
-//            Location end = gemLocation.get(1);
-//            //user input end location
-//            Trip myTrip = new Trip(City.getStationByLocation(player.getPlayerLocation()), City.getStationByLocation(end));
-//            ArrayList<Route> routePlan = myTrip.getRoutePlan();
-//            // user will choose which one they need
-//            myRoute = routePlan.get(0);
-//            myPlayer.routeSelect(myRoute);
-//            myPlayer.finishTrip(myRoute);
-//            if (checkAlive()){
-//                if (checkGem()){
-//                    player.gemCollect();
-//                }
-//                if ((player.getTimeSpent() == levelTime || player.getCarbonFP() == levelBudget)
-//                        && !gemLocation.isEmpty()){
-//                    return false;
-//                }
-//            } else{
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 
     @Override
     public void save() throws IOException {

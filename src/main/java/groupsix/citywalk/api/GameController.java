@@ -111,6 +111,8 @@ public class GameController extends Controller {
         timeTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelTime()));
         carbonTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelBudget()));
         gemTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelGem()));
+        // 设置分数
+        scoreLabel.setText(String.valueOf(game.getPlayer().getScoreSum()));
         // 通知Player初始当前关卡数据
         game.getPlayer().startNewLevel();
     }
@@ -215,7 +217,7 @@ public class GameController extends Controller {
         carbonTooltip.setText(String.valueOf(game.getCurrentLevel().getLevelBudget() - game.getPlayer().getCarbonFP()));
         gemTooltip.setText(String.valueOf(game.getPlayer().getGemCollected()));
         // 更新分数
-        scoreLabel.setText(String.valueOf(game.getPlayer().getScoreLevel()));
+        scoreLabel.setText(String.valueOf(game.getPlayer().getScoreSum()));
         // 更新From&To label
         fromTextField.setText(City.getStationByLocation(game.getPlayer().getPlayerLocation()).getStationName());
         toTextField.setText(null);

@@ -36,26 +36,9 @@ public class Game implements Save {
         Location defaultLocation = (Location) City.getStationByName("UCD");
         this.player = new Player(playerName, defaultLocation);
         levelCount = 1;
-        levelLog.add(new Level(levelCount, levelTime[0], levelGem[0], levelBudget[0], player, city));
+        levelLog.add(new Level(levelCount, levelTime[0], levelGem[0], levelBudget[0], player));
     }
 
-//    public void playingGame() {
-//        boolean flag = false;
-//        for (int i = 0; i < levelNum; i++) {
-//            Level level = new Level(levelCount, levelTime[i], levelGem[i], levelBudget[i], player, city);
-//            flag = level.levelPlay();
-//            if (flag) {
-//                levelCount++;
-//            } else {
-//                break;
-//            }
-//        }
-//        if (flag) {
-//            System.out.println("Passed!");
-//        } else {
-//            System.out.println("Failed!");
-//        }
-//    }
     public Player getPlayer() {
         return player;
     }
@@ -69,6 +52,14 @@ public class Game implements Save {
     }
     public int getLevelTotal() {
         return levelTotal;
+    }
+    public void levelUp() {
+        if (levelCount != levelTotal) {
+            levelCount++;
+            int levelIndex = levelCount - 1;
+            levelLog.add(new Level(levelCount, levelTime[levelIndex], levelGem[levelIndex], levelBudget[levelIndex],
+                    player));
+        }
     }
 
     // An inner class used to save the ranking list
