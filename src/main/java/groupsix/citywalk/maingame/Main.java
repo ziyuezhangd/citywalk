@@ -2,7 +2,6 @@ package groupsix.citywalk.maingame;
 
 import groupsix.citywalk.api.GameController;
 import groupsix.citywalk.api.LoginController;
-import groupsix.citywalk.model.Player;
 import groupsix.citywalk.service.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,17 +12,17 @@ import java.io.IOException;
 
 
 public class Main extends Application {
-
     private Stage primaryStage;
     private Game game;
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        //showLoginScene();
-        showScoreBoardScene();
+        primaryStage.setResizable(false);
+        showLoginScene();
+
     }
 
-//场景切换用的
+    //场景切换用的
     private void showLoginScene() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Login.fxml"));
         Parent root = loader.load();
@@ -41,7 +40,8 @@ public class Main extends Application {
         controller.setUpFXMLLoader(loader);
         controller.setMain(this);
         controller.initLevel();
-        controller.initMap();
+        controller.initGem();
+        controller.displayMarker();
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("CITYWALK");
     }

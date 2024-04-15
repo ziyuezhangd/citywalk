@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="900.0" fitWidth="1200.0" opacity="0.7" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../resources/groupsix/citywalk/pics/cityWalkImage.jpg" />
+            <Image url="@pics/cityWalkImage.jpg" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="200.0">

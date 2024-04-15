@@ -43,8 +43,14 @@
             </Label>
             <Group GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <children>
-                  <Label text="Time" />
-                  <ProgressBar fx:id="timeProgress" layoutX="50.0" prefWidth="300.0" progress="0.0" />
+                  <Label text="Time">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="timeProgress" layoutX="55.0" prefWidth="300.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip fx:id="timeTooltip" text="Empty Tooltip" />
+                     </tooltip></ProgressBar>
                   <Label layoutX="50.0" layoutY="25.0" text="0" />
                   <Label fx:id="timeMaxLabel" layoutX="337.0" layoutY="25.0" text="100" />
                </children>
@@ -52,30 +58,69 @@
             <Group GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <children>
                   <Label fx:id="carbonMaxLabel" layoutX="390.0" layoutY="25.0" text="100" />
-                  <Label text="CO2 Budget" />
-                  <ProgressBar fx:id="carbonProgress" layoutX="110.0" prefWidth="300.0" progress="0.0" />
+                  <Label text="CO2 Budget">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="carbonProgress" layoutX="123.0" prefWidth="300.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip fx:id="carbonTooltip" text="Empty Tooltip" />
+                     </tooltip></ProgressBar>
                   <Label layoutX="110.0" layoutY="25.0" text="0" />
                </children>
             </Group>
             <Group GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <children>
                   <Label layoutX="45.0" layoutY="25.0" text="0" />
-                  <Label text="Gem" />
-                  <ProgressBar fx:id="gemProgress" layoutX="45.0" prefWidth="200.0" progress="0.0" />
+                  <Label text="Gem">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="gemProgress" layoutX="50.0" prefWidth="200.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip fx:id="gemTooltip" text="Empty Tooltip" />
+                     </tooltip></ProgressBar>
                   <Label fx:id="gemMaxLabel" layoutX="240.0" layoutY="25.0" text="2" />
                </children>
             </Group>
          </children>
       </GridPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="350.0" GridPane.rowIndex="1">
+    <AnchorPane fx:id="controlAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="350.0" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="40.0" layoutY="60.0" text="From" />
-            <Label layoutX="40.0" layoutY="120.0" text="To" />
-            <TextField fx:id="fromTextField" editable="false" layoutX="100.0" layoutY="60.0" prefHeight="36.0" prefWidth="200.0" text="UCD" />
-            <TextField fx:id="toTextField" editable="false" layoutX="100.0" layoutY="118.0" prefHeight="36.0" prefWidth="200.0" promptText="Select destination" />
-            <ListView fx:id="routesLV" layoutX="40.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="261.0" />
-            <Button layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start" />
-            <Button layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset" />
+            <Label layoutX="40.0" layoutY="60.0" text="From">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="40.0" layoutY="120.0" text="To">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="fromTextField" editable="false" layoutX="104.0" layoutY="60.0" prefHeight="41.0" prefWidth="228.0" text="UCD">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <TextField fx:id="toTextField" editable="false" layoutX="104.0" layoutY="118.0" prefHeight="41.0" prefWidth="228.0" promptText="Select destination">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <ListView fx:id="routesLV" layoutX="45.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="288.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ListView>
+            <Button fx:id="startButton" disable="true" layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="resetButton" layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <StackPane prefHeight="700.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -805,6 +850,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
+                  <ImageView fx:id="markerIV" fitHeight="30.0" fitWidth="25.0" layoutX="252.0" layoutY="385.0" preserveRatio="true">
+                     <image>
+                        <Image url="@pics/marker.png" />
+                     </image>
+                  </ImageView>
                </children>
                <StackPane.margin>
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
@@ -815,7 +865,7 @@
                   <Font name="System Bold" size="42.0" />
                </font>
                <StackPane.margin>
-                  <Insets bottom="50.0" left="50.0" right="55.0" top="50.0" />
+                  <Insets bottom="50.0" left="50.0" right="55.0" top="40.0" />
                </StackPane.margin>
             </Label>
          </children>

@@ -30,14 +30,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-//
-//
 //public class FXController {
 //    @FXML
 //    TextField nameTextField;
 //    private Stage stage;
 //    private Scene scene;
 //    private Parent root;
+
 //    private IntegerProperty myScore;
 //
 //    @FXML
@@ -155,5 +154,3 @@ import javafx.scene.control.cell.PropertyValueFactory;
 //        leaderboardTable.setItems(data);
 //    }
 //
-
-

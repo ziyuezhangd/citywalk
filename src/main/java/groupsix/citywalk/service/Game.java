@@ -25,10 +25,10 @@ public class Game {
     private Player player;
     private City city;
     private int levelCount;
-    private int levelNum = 3;  //number of level
-    private int[] levelTime = {40, 70, 100};
+    private int levelTotal= 3;  // total number of level
+    private int[] levelTime = {50, 70, 100};
     private int[] levelGem = {1, 2, 3};
-    private int[] levelBudget = {300, 700, 1200};
+    private int[] levelBudget = {200, 500, 800};
     private ArrayList<Level> levelLog = new ArrayList<>();
 
 
@@ -38,7 +38,7 @@ public class Game {
         Location defaultLocation = (Location) City.getStationByName("UCD");
         this.player = new Player(playerName, defaultLocation);
         levelCount = 1;
-        levelLog.add(new Level(levelCount, levelTime[0], levelGem[0], levelBudget[0], player, city));
+        levelLog.add(new Level(levelCount, levelTime[0], levelGem[0], levelBudget[0], player));
     }
 
     public Player getPlayer() {
@@ -51,6 +51,17 @@ public class Game {
 
     public int getLevelCount() {
         return levelCount;
+    }
+    public int getLevelTotal() {
+        return levelTotal;
+    }
+    public void levelUp() {
+        if (levelCount != levelTotal) {
+            levelCount++;
+            int levelIndex = levelCount - 1;
+            levelLog.add(new Level(levelCount, levelTime[levelIndex], levelGem[levelIndex], levelBudget[levelIndex],
+                    player));
+        }
     }
 
     // An inner class used to save the ranking list

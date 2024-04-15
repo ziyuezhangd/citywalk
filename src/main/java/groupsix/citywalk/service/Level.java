@@ -17,17 +17,15 @@ public class Level implements Save {
     private int levelGem;
     private int levelBudget;
     private Player player;
-    private City city;
     private ArrayList<Location> gemLocation = new ArrayList<>();
     private ArrayList<Trip> levelTrips = new ArrayList<>();
 
-    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player player, City city) {
+    public Level(int levelCount, int levelTime, int levelGem, int levelBudget, Player player) {
         this.levelCount = levelCount;
         this.levelTime = levelTime;
         this.levelGem = levelGem;
         this.levelBudget = levelBudget;
         this.player = player;
-        this.city = city;
         createGem();
     }
     public ArrayList<Location> getGemLocation() {
@@ -54,10 +52,20 @@ public class Level implements Save {
         }
     }
 
-    public void startTrip() {
+    public void startTrip(String startName, String endName, int routeNo) {
+        // Trip中记录所选路线
+        Station start = City.getStationByName(startName);
+        Station end = City.getStationByName(endName);
+        Trip trip = new Trip(start, end);
+        trip.selectRoute(routeNo);
+        // Level中记录旅程
+        levelTrips.add(trip);
+        // Player中更新玩家数据
+        player.finishTrip(trip);
+        // 检查Gem
 
     }
-    private boolean checkAlive(){
+    public boolean checkAlive(){
         boolean check = true;
         if (player.getTimeSpent() > levelTime || player.getCarbonFP() > levelBudget){
             check =false;
@@ -65,7 +73,7 @@ public class Level implements Save {
         return check;
     }
 
-    private boolean checkGem(){
+    public boolean checkGem(){
         boolean check = false;
         Location currentPlayerLocation = player.getPlayerLocation();
         Iterator<Location> iterator = gemLocation.iterator();
@@ -74,42 +82,17 @@ public class Level implements Save {
             if (gem.equals(currentPlayerLocation)) {
                 iterator.remove();
                 check = true;
+                player.gemCollect();
                 break;
             }
         }
         return check;
     }
 
-//    public boolean levelPlay(){
-//        System.out.println("This is Level: "+ levelCount);
-//        if(levelCount != 1){
-//            player.startNewLevel();
-//        }
-//        createGem();
-//        while (!gemLocation.isEmpty()){
-//
-//            Location end = gemLocation.get(1);
-//            //user input end location
-//            Trip myTrip = new Trip(City.getStationByLocation(player.getPlayerLocation()), City.getStationByLocation(end));
-//            ArrayList<Route> routePlan = myTrip.getRoutePlan();
-//            // user will choose which one they need
-//            myRoute = routePlan.get(0);
-//            myPlayer.routeSelect(myRoute);
-//            myPlayer.finishTrip(myRoute);
-//            if (checkAlive()){
-//                if (checkGem()){
-//                    player.gemCollect();
-//                }
-//                if ((player.getTimeSpent() == levelTime || player.getCarbonFP() == levelBudget)
-//                        && !gemLocation.isEmpty()){
-//                    return false;
-//                }
-//            } else{
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+    public boolean checkContinue() {
+        return checkAlive() && player.getGemCollected() < levelGem;
+    }
+
 
     @Override
     public void save() throws IOException {
@@ -121,7 +104,7 @@ public class Level implements Save {
             out.println("LevelFP: " + levelBudget);
 //            out.println("Route: " + myRoute);
 //            out.println("Transport Mode : " + myRoute.getModeNumber());
-            out.println("Score: " + player.getLevelScore());
+            out.println("Score: " + player.getScoreLevel());
         }
     }
 }
