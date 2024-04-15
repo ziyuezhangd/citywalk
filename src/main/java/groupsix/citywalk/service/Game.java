@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 
-public class Game implements Save {
+public class Game {
     private Player player;
     private City city;
     private int levelCount;
@@ -30,6 +30,8 @@ public class Game implements Save {
     private int[] levelGem = {1, 2, 3};
     private int[] levelBudget = {200, 500, 800};
     private ArrayList<Level> levelLog = new ArrayList<>();
+
+
 
     public Game(String playerName) {
         this.city = new City();
@@ -82,39 +84,5 @@ public class Game implements Save {
 
     }
 
-    @Override
-    public void save() throws IOException {
-        List<PlayerScore> scores = new ArrayList<>();
-        File file = new File("players_and_scores.txt");
-        if (file.exists()) {
-            try (Scanner scanner = new Scanner(file)) {
-                while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine();
-                    String[] parts = line.split(",");
-                    String name = parts[0];
-                    int score = Integer.parseInt(parts[1].trim());
-                    scores.add(new PlayerScore(name, score));
-                }
-            }
-        }
 
-        // Add the current player
-        scores.add(new PlayerScore(player.getPlayerName(), player.getScoreSum()));
-
-        // Sort by score in descending order
-        // If the scores are the same then sort by player name in ascending order
-        scores.sort((p1, p2) -> {
-            if (p1.getScoreSum() == p2.getScoreSum()) {
-                return p1.getPlayerName().compareTo(p2.getPlayerName());
-            }
-            return Integer.compare(p2.getScoreSum(), p1.getScoreSum());
-        });
-
-        // Write sorted data back to file
-        try (PrintWriter out = new PrintWriter(new FileWriter(file, false))) {
-            for (PlayerScore ps : scores) {
-                out.println(ps.getPlayerName() + "," + ps.getScoreSum());
-            }
-        }
-    }
 }
