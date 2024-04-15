@@ -19,7 +19,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        showLoginScene();
+        //showLoginScene();
+        showScoreBoardScene();
     }
 
 //场景切换用的
@@ -65,15 +66,16 @@ public class Main extends Application {
         primaryStage.setTitle("CITYWALK");
     }
 
-    //    public void showScoreBoardScene() throws Exception {
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/ScoreBoardScreen.fxml"));
-//        Parent root = loader.load();
-//        ScoreBoardController controller = loader.getController();
-//        controller.setupPlayer(player);
-//        controller.setMain(this);
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.setTitle("CITYWALK");
-//    }
+    public void showScoreBoardScene() throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/scoreBoard.fxml"));
+        Parent root = loader.load();
+        ScoreBoardController controller = loader.getController();
+        controller.setUpGame(game);
+        controller.setMain(this);
+        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("CITYWALK");
+        primaryStage.show();
+    }
 
     public void setGame(Game game) {
         this.game = game;
@@ -81,6 +83,10 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void closeApplication() {
+        primaryStage.close();
     }
 
 }
