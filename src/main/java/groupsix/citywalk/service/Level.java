@@ -91,6 +91,10 @@ public class Level implements Save {
         return check;
     }
 
+    public boolean checkContinue() {
+        return checkAlive() && player.getGemCollected() < levelGem;
+    }
+
 //    public boolean levelPlay(){
 //        System.out.println("This is Level: "+ levelCount);
 //        if(levelCount != 1){
