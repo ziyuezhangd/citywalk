@@ -71,7 +71,7 @@ public class GameController extends Controller {
     @FXML
     private AnchorPane controlAnchorPane;
     @FXML
-    private final Image gem = new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/gem.png"));
+    private final Image gem = new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/purplegem.png"));
     private HashMap<String, ImageView> gemList = new HashMap<>();
     private FXMLLoader fxmlLoader;
 
@@ -83,15 +83,15 @@ public class GameController extends Controller {
             System.out.println(location.getX());
             System.out.println(location.getY());
             ImageView gemImageView = new ImageView(gem);
-            gemImageView.setFitWidth(30.0);
+            gemImageView.setFitWidth(35.0);
             gemImageView.setPreserveRatio(true);
             gemImageView.setPickOnBounds(false);
             // 获取对应Station位置
             String stationName = City.getStationByLocation(location).getStationName();
             System.out.println("Gem:" + stationName);
             Circle stationCircle = (Circle) fxmlLoader.getNamespace().get(stationName + "Circle");
-            gemImageView.setLayoutX(stationCircle.getCenterX() - 15);
-            gemImageView.setLayoutY(stationCircle.getCenterY() - 21);
+            gemImageView.setLayoutX(stationCircle.getCenterX() - 17);
+            gemImageView.setLayoutY(stationCircle.getCenterY() - 22);
             gemAnchorPane.getChildren().add(gemImageView);
             gemList.put(stationName, gemImageView);
         }
@@ -261,6 +261,9 @@ public class GameController extends Controller {
                 nextLevelButton.setLayoutX(40);
                 nextLevelButton.setLayoutY(650);
                 nextLevelButton.setCursor(Cursor.HAND);
+                nextLevelButton.setStyle("-fx-background-color: #0080ff; -fx-text-fill: white; -fx-font-size: 20px;");
+                nextLevelButton.setPrefWidth(160);
+                nextLevelButton.setPrefHeight(20);
                 EventHandler<ActionEvent> nextLevelHandler = event -> {
                     try {
                         main.showNextUpScene();
