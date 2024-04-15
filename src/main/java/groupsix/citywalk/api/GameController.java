@@ -7,8 +7,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -55,6 +57,8 @@ public class GameController extends Controller {
     @FXML
     private Button startButton;
     @FXML
+    private Button resetButton;
+    @FXML
     private Label scoreLabel;
     @FXML
     private ImageView markerIV;
@@ -64,6 +68,8 @@ public class GameController extends Controller {
     private Tooltip carbonTooltip;
     @FXML
     private Tooltip gemTooltip;
+    @FXML
+    private AnchorPane controlAnchorPane;
     @FXML
     private final Image gem = new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/gem.png"));
     private HashMap<String, ImageView> gemList = new HashMap<>();
@@ -111,24 +117,30 @@ public class GameController extends Controller {
 
     @FXML
     private void handleLabelClick(MouseEvent event) {
-        Label chosenLabel = (Label) event.getSource();
-        String stationName = chosenLabel.getId();
-        stationName = stationName.substring(0, stationName.length()-"Label".length());
-        if (!stationName.equals(fromTextField.getText())){
-            toTextField.setText(stationName);
-            startButton.setDisable(true);
-            displayRoutes();
+        // 当玩家不处于Continue状态时-死亡/下一关，标签无法点击
+        if (game.getCurrentLevel().checkContinue()) {
+            Label chosenLabel = (Label) event.getSource();
+            String stationName = chosenLabel.getId();
+            stationName = stationName.substring(0, stationName.length()-"Label".length());
+            if (!stationName.equals(fromTextField.getText())){
+                toTextField.setText(stationName);
+                startButton.setDisable(true);
+                displayRoutes();
+            }
         }
     }
     @FXML
     private void handleCircleClick(MouseEvent event) {
-        Circle chosenCircle = (Circle) event.getSource();
-        String stationName = chosenCircle.getId();
-        stationName = stationName.substring(0, stationName.length()-"Circle".length());
-        if (!stationName.equals(fromTextField.getText())){
-            toTextField.setText(stationName);
-            startButton.setDisable(true);
-            displayRoutes();
+        // 当玩家不处于Continue状态时-死亡/下一关，圆点无法点击
+        if (game.getCurrentLevel().checkContinue()) {
+            Circle chosenCircle = (Circle) event.getSource();
+            String stationName = chosenCircle.getId();
+            stationName = stationName.substring(0, stationName.length()-"Circle".length());
+            if (!stationName.equals(fromTextField.getText())){
+                toTextField.setText(stationName);
+                startButton.setDisable(true);
+                displayRoutes();
+            }
         }
     }
     @FXML
@@ -209,17 +221,10 @@ public class GameController extends Controller {
         toTextField.setText(null);
         // 更新玩家位置
         displayMarker();
-        // 判断玩家状态：进入下一关、死亡、全部通关
-        if (game.getCurrentLevel().checkAlive()) {
-            // 玩家活着
-            if (game.getLevelCount() == game.getLevelTotal()) {
-                gameWin();
-            } else {
-                nextScene();
-            }
-        } else {
-            // 玩家死了
-            gameOver();
+        // 判断玩家状态：是否继续本关
+        if (!game.getCurrentLevel().checkContinue()) {
+            // 切换下个页面
+            nextScene();
         }
     }
     @FXML
@@ -233,25 +238,44 @@ public class GameController extends Controller {
     public void setUpFXMLLoader(FXMLLoader loader) {
         this.fxmlLoader = loader;
     }
-    public void gameOver() {
-        try {
-            main.showGameOverScene();
-        } catch (Exception e) {
-            System.out.println("Error transitioning to the gameOver screen" );
-            e.printStackTrace();
-        }
-    }
-    public void gameWin() {
-        // 展示gameWin
-        System.out.println("Winning!" );
-    }
+
     @Override
     public void nextScene() {
-        try {
-            main.showNextUpScene();
-        } catch (Exception e) {
-            System.out.println("Error transitioning to the levelUp screen" );
-            e.printStackTrace();
+        // 判断：玩家是否活着
+        if (game.getCurrentLevel().checkAlive()) {
+            // 玩家活着，判断：是否为最后一关
+            if (game.getLevelCount() == game.getLevelTotal()) {
+                // 切换到GameWin
+                System.out.println("Winning!");
+            } else {
+                // 切换到LevelUp - 需交互
+                // disable Game界面其他交互 - 此处仅控制按钮，标签在对应OnAction中通过if控制
+                startButton.setDisable(true);
+                resetButton.setDisable(true);
+                // 弹出NextLevel按钮，点击时切换到LevelUp
+                Button nextLevelButton = new Button("Next Level");
+                nextLevelButton.setLayoutX(40);
+                nextLevelButton.setLayoutY(650);
+                nextLevelButton.setCursor(Cursor.HAND);
+                EventHandler<ActionEvent> nextLevelHandler = event -> {
+                    try {
+                        main.showNextUpScene();
+                    } catch (Exception e) {
+                        System.out.println("Error transitioning to the levelUp screen");
+                        e.printStackTrace();
+                    }
+                };
+                nextLevelButton.setOnAction(nextLevelHandler);
+                controlAnchorPane.getChildren().add(nextLevelButton);
+            }
+        } else {
+            // 玩家死了，切换到GameOver
+            try {
+                main.showGameOverScene();
+            } catch (Exception e) {
+                System.out.println("Error transitioning to the gameOver screen" );
+                e.printStackTrace();
+            }
         }
     }
 
