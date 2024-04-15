@@ -78,6 +78,7 @@ public class Player implements Save {
 //        getTime()的值 4-140min
 
         // 防止分母为零的情况
+
         double modeValue = route.getModeNumber() == 0 ? 1 : route.getModeNumber();
         double fpValue = route.getCarbonFP() == 0 ? 1 : route.getCarbonFP();
         double timeValue = route.getTime() == 0 ? 1 : route.getTime();
@@ -87,14 +88,13 @@ public class Player implements Save {
         double timeScore = timeValue / 140.0;
 
         // 并限制最大值为1
-        double invertedModeScore = Math.min(1.0, 1.0 / modeScore);
-        double invertedFPScore = Math.min(1.0, 1.0 / FPScore);
-        double invertedTimeScore = Math.min(1.0, 1.0 / timeScore);
+        double invertedModeScore = (1 - modeScore) * 60;
+        double invertedFPScore = (1 - FPScore) * 120;
+        double invertedTimeScore = (1 - timeScore) * 100;
 
-        double totalScore = invertedModeScore + invertedFPScore + invertedTimeScore;
+        int totalScore = (int) Math.round(invertedModeScore + invertedFPScore + invertedTimeScore);
 
-        scoreSum = (int) Math.round(totalScore);
-        return scoreSum;
+        return totalScore;
     }
 
     public int getScoreLevel() {

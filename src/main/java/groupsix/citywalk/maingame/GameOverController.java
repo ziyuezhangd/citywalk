@@ -14,7 +14,8 @@ public class GameOverController extends Controller {
     @Override
     public void nextScene() {
         try {
-//            main.showScoreBoardScene();
+            game.getPlayer().save();
+            main.showScoreBoardScene();
         } catch (Exception e) {
             System.out.println("Error transitioning to the score board screen: " + e.getMessage());
         }
