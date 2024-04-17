@@ -162,7 +162,7 @@ public class GameController extends Controller {
             {
                 setPrefWidth(200);
                 setWrapText(true);
-                setFont(Font.font(18));
+                setFont(Font.font(16));
             }
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -249,6 +249,13 @@ public class GameController extends Controller {
         if (game.getCurrentLevel().checkAlive()) {
             // 玩家活着，判断：是否为最后一关
             if (game.getLevelCount() == game.getLevelTotal()) {
+                // 保存最后一关结果
+                try {
+                    game.getCurrentLevel().save();
+                } catch (IOException e) {
+                    System.out.println("Failed to save level result");
+                    e.printStackTrace();
+                }
                 // 切换到GameWin
                 try {
                     main.showGameWinScene();
