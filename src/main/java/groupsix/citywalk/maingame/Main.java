@@ -7,6 +7,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -17,9 +18,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/groupsix/citywalk/pics/gem.png")));
         primaryStage.setResizable(false);
         showLoginScene();
-
     }
 
     //场景切换用的
