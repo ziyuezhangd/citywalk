@@ -32,7 +32,12 @@ public class LevelUpController extends Controller {
 
     @FXML
     private void switchToSceneGameFinish() {
-//        main.showGameOverScene();
+        try {
+            game.getPlayer().save();
+            main.showScoreBoardScene();
+        } catch (Exception e) {
+            System.out.println("Error transitioning to the score board screen: " + e.getMessage());
+        }
     }
 
 }
