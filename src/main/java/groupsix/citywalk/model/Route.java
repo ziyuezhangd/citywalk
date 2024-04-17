@@ -69,6 +69,20 @@ public class Route {
         return legs;
     }
 
+    public String details() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("The starting point is ").append(getStart().getStationName())
+                .append(", and the end point is ").append(getEnd().getStationName())
+                .append(". \nTransportation methods used include: ");
+
+        // 获取所有Legs并将每个Leg的toString结果追加到输出中
+        for (Leg leg : getLegs()) {
+            sb.append("\n").append(leg.getTransport().getName());
+        }
+
+        return sb.toString();
+    }
+
     private void setWalk(){
         TransportMode transport = City.getTransportByName("Walk");
         Leg walkLeg = new Leg(start, end, transport);

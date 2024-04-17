@@ -102,8 +102,9 @@ public class Level implements Save {
             out.println("LevelCount: " + levelCount);
             out.println("LevelTime: " + levelTime);
             out.println("LevelFP: " + levelBudget);
-//            out.println("Route: " + myRoute);
-//            out.println("Transport Mode : " + myRoute.getModeNumber());
+            for (Trip trip : levelTrips) {
+                out.println(trip.getSelectedRoute().details());
+            }
             out.println("Score: " + player.getScoreLevel());
         }
     }
