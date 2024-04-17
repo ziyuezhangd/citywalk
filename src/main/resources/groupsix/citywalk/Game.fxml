@@ -87,34 +87,34 @@
       </GridPane>
     <AnchorPane fx:id="controlAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="350.0" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="40.0" layoutY="60.0" text="From">
+            <Label layoutX="43.0" layoutY="65.0" text="From">
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <Label layoutX="40.0" layoutY="120.0" text="To">
+            <Label layoutX="43.0" layoutY="125.0" text="To">
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <TextField fx:id="fromTextField" editable="false" layoutX="104.0" layoutY="60.0" prefHeight="41.0" prefWidth="228.0" text="UCD">
+            <TextField fx:id="fromTextField" editable="false" layoutX="112.0" layoutY="60.0" prefHeight="41.0" prefWidth="236.0" text="UCD">
                <font>
                   <Font size="20.0" />
                </font></TextField>
-            <TextField fx:id="toTextField" editable="false" layoutX="104.0" layoutY="118.0" prefHeight="41.0" prefWidth="228.0" promptText="Select destination">
+            <TextField fx:id="toTextField" editable="false" layoutX="112.0" layoutY="118.0" prefHeight="41.0" prefWidth="236.0" promptText="Select destination">
                <font>
                   <Font size="20.0" />
                </font></TextField>
-            <ListView fx:id="routesLV" layoutX="45.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="288.0">
+            <ListView fx:id="routesLV" layoutX="45.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="302.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></ListView>
-            <Button fx:id="startButton" disable="true" layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start">
+            <Button fx:id="startButton" disable="true" layoutX="45.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" prefWidth="120.0" text="Start">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font size="20.0" />
                </font></Button>
-            <Button fx:id="resetButton" layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset">
+            <Button fx:id="resetButton" layoutX="226.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" prefWidth="120.0" text="Reset">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
