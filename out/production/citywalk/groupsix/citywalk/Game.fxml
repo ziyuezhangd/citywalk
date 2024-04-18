@@ -43,8 +43,14 @@
             </Label>
             <Group GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <children>
-                  <Label text="Time" />
-                  <ProgressBar fx:id="timeProgress" layoutX="50.0" prefWidth="300.0" progress="0.0" />
+                  <Label text="Time">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="timeProgress" layoutX="55.0" prefWidth="300.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip fx:id="timeTooltip" text="Empty Tooltip" />
+                     </tooltip></ProgressBar>
                   <Label layoutX="50.0" layoutY="25.0" text="0" />
                   <Label fx:id="timeMaxLabel" layoutX="337.0" layoutY="25.0" text="100" />
                </children>
@@ -52,36 +58,69 @@
             <Group GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <children>
                   <Label fx:id="carbonMaxLabel" layoutX="390.0" layoutY="25.0" text="100" />
-                  <Label text="CO2 Budget" />
-                  <ProgressBar fx:id="carbonProgress" layoutX="110.0" prefWidth="300.0" progress="0.0" />
+                  <Label text="CO2 Budget">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="carbonProgress" layoutX="123.0" prefWidth="300.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip fx:id="carbonTooltip" text="Empty Tooltip" />
+                     </tooltip></ProgressBar>
                   <Label layoutX="110.0" layoutY="25.0" text="0" />
                </children>
             </Group>
             <Group GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <children>
                   <Label layoutX="45.0" layoutY="25.0" text="0" />
-                  <Label text="Gem" />
-                  <ProgressBar fx:id="gemProgress" layoutX="45.0" prefWidth="200.0" progress="0.0" />
+                  <Label text="Gem">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <ProgressBar fx:id="gemProgress" layoutX="50.0" prefWidth="200.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip fx:id="gemTooltip" text="Empty Tooltip" />
+                     </tooltip></ProgressBar>
                   <Label fx:id="gemMaxLabel" layoutX="240.0" layoutY="25.0" text="2" />
                </children>
             </Group>
          </children>
       </GridPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="350.0" GridPane.rowIndex="1">
+    <AnchorPane fx:id="controlAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="350.0" GridPane.rowIndex="1">
          <children>
-            <Label layoutX="40.0" layoutY="60.0" text="From" />
-            <Label layoutX="40.0" layoutY="120.0" text="To" />
-            <TextField fx:id="fromTextField" editable="false" layoutX="100.0" layoutY="60.0" prefHeight="36.0" prefWidth="200.0" text="UCD" />
-            <TextField fx:id="toTextField" editable="false" layoutX="100.0" layoutY="118.0" prefHeight="36.0" prefWidth="200.0" promptText="Select destination" />
-            <ListView fx:id="routesLV" layoutX="40.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="261.0" />
-            <Button fx:id="startButton" disable="true" layoutX="40.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" text="Start" />
-            <Button layoutX="129.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" text="Reset" />
-            <AnchorPane fx:id="testAnchorPane" layoutX="71.0" layoutY="657.0" prefHeight="79.0" prefWidth="261.0">
-               <children>
-                  <Button fx:id="testButton" layoutX="26.0" layoutY="22.0" mnemonicParsing="false" onAction="#test" text="Button" />
-               </children>
-            </AnchorPane>
-            <StackPane fx:id="testStackPane" layoutX="252.0" layoutY="593.0" prefHeight="104.0" prefWidth="129.0" />
+            <Label layoutX="43.0" layoutY="65.0" text="From">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="43.0" layoutY="125.0" text="To">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <TextField fx:id="fromTextField" editable="false" layoutX="112.0" layoutY="60.0" prefHeight="41.0" prefWidth="236.0" text="UCD">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <TextField fx:id="toTextField" editable="false" layoutX="112.0" layoutY="118.0" prefHeight="41.0" prefWidth="236.0" promptText="Select destination">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
+            <ListView fx:id="routesLV" layoutX="45.0" layoutY="180.0" onMouseClicked="#handleRouteSelect" prefHeight="389.0" prefWidth="302.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ListView>
+            <Button fx:id="startButton" disable="true" layoutX="45.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleStartTrip" prefWidth="120.0" text="Start">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="resetButton" layoutX="226.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleResetButton" prefWidth="120.0" text="Reset">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <StackPane prefHeight="700.0" prefWidth="700.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -630,7 +669,7 @@
             </ImageView>
             <AnchorPane fx:id="gemAnchorPane" prefHeight="695.0" prefWidth="695.0">
                <children>
-                  <Circle fx:id="IKEACircle" centerX="423.0" centerY="65.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="IKEACircle" centerX="423.0" centerY="65.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
@@ -642,11 +681,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="TheSpireCircle" centerX="352.0" centerY="200.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="TheSpireCircle" centerX="353.0" centerY="199.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="TheSpireLabel" layoutX="352.0" layoutY="200.0" onMouseClicked="#handleLabelClick" text="TheSpire" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="TheSpireLabel" layoutX="353.0" layoutY="200.0" onMouseClicked="#handleLabelClick" text="TheSpire" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -654,12 +693,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="DublinZooCircle" centerX="139.0" centerY="130.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="DublinZooCircle" centerX="139.0" centerY="130.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Circle>
-                  <Label fx:id="DublinZooLabel" layoutX="139.0" layoutY="130.0" onMouseClicked="#handleLabelClick" text="DublinZoo" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="DublinZooLabel" layoutX="140.0" layoutY="130.0" onMouseClicked="#handleLabelClick" text="DublinZoo" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -667,11 +706,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="DundrumCircle" centerX="424.0" centerY="603.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="DundrumCircle" centerX="425.0" centerY="603.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="DundrumLabel" layoutX="423.0" layoutY="603.0" onMouseClicked="#handleLabelClick" text="Dundrum" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="DundrumLabel" layoutX="424.0" layoutY="603.0" onMouseClicked="#handleLabelClick" text="Dundrum" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -679,11 +718,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="UCDCircle" centerX="352.0" centerY="536.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="UCDCircle" centerX="352.0" centerY="535.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="UCDLabel" layoutX="352.0" layoutY="535.0" onMouseClicked="#handleLabelClick" text="UCD" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="UCDLabel" layoutX="353.0" layoutY="535.0" onMouseClicked="#handleLabelClick" text="UCD" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -691,11 +730,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="DonnybrookCircle" centerX="352.0" centerY="400.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="DonnybrookCircle" centerX="352.0" centerY="400.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="DonnybrookLabel" layoutX="352.0" layoutY="400.0" onMouseClicked="#handleLabelClick" text="Donnybrook" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="DonnybrookLabel" layoutX="353.0" layoutY="400.0" onMouseClicked="#handleLabelClick" text="Donnybrook" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -703,7 +742,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="BlackrockCircle" centerX="632.0" centerY="534.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="BlackrockCircle" centerX="634.0" centerY="534.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
@@ -715,7 +754,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="SandymountCircle" centerX="632.0" centerY="331.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="SandymountCircle" centerX="634.0" centerY="331.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
@@ -727,7 +766,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="TempleBarCircle" centerX="69.0" centerY="331.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="TempleBarCircle" centerX="69.0" centerY="331.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
@@ -739,11 +778,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="RathminesCircle" centerX="140.0" centerY="468.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="RathminesCircle" centerX="141.0" centerY="468.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="RathminesLabel" layoutX="140.0" layoutY="468.0" onMouseClicked="#handleLabelClick" text="Rathmines" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="RathminesLabel" layoutX="141.0" layoutY="468.0" onMouseClicked="#handleLabelClick" text="Rathmines" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -751,11 +790,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="MerrionCircle" centerX="492.0" centerY="468.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="MerrionCircle" centerX="493.0" centerY="468.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="MerrionLabel" layoutX="492.0" layoutY="468.0" onMouseClicked="#handleLabelClick" text="Merrion" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="MerrionLabel" layoutX="493.0" layoutY="468.0" onMouseClicked="#handleLabelClick" text="Merrion" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -763,7 +802,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="TrinityCircle" centerX="211.0" centerY="266.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="TrinityCircle" centerX="211.0" centerY="266.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
@@ -775,11 +814,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="BelfieldCircle" centerX="211.0" centerY="604.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="BelfieldCircle" centerX="211.0" centerY="603.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="BelfieldLabel" layoutX="211.0" layoutY="604.0" onMouseClicked="#handleLabelClick" text="Belfield" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="BelfieldLabel" layoutX="212.0" layoutY="604.0" onMouseClicked="#handleLabelClick" text="Belfield" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -787,11 +826,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="BallsbridgeCircle" centerX="423.0" centerY="266.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="BallsbridgeCircle" centerX="423.0" centerY="266.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" radius="8.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="BallsbridgeLabel" layoutX="423.0" layoutY="266.0" onMouseClicked="#handleLabelClick" text="Ballsbridge" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="BallsbridgeLabel" layoutX="424.0" layoutY="266.0" onMouseClicked="#handleLabelClick" text="Ballsbridge" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -799,11 +838,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Circle fx:id="DocklandsCircle" centerX="564.0" centerY="200.0" fill="DODGERBLUE" onMouseClicked="#handleCircleClick" radius="8.0" stroke="DODGERBLUE" strokeType="INSIDE">
+                  <Circle fx:id="DocklandsCircle" centerX="564.0" centerY="199.0" fill="#9e9e9e" onMouseClicked="#handleCircleClick" pickOnBounds="true" radius="7.0" stroke="#9e9e9e" strokeType="INSIDE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Circle>
-                  <Label fx:id="DocklandsLabel" layoutX="564.0" layoutY="200.0" onMouseClicked="#handleLabelClick" text="Docklands" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="DocklandsLabel" layoutX="565.0" layoutY="200.0" onMouseClicked="#handleLabelClick" text="Docklands" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

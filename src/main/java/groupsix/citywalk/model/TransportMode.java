@@ -1,6 +1,9 @@
 package groupsix.citywalk.model;
 
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class TransportMode {
     private final double timeFactor;
     private final int carbonFactor;
@@ -36,5 +39,10 @@ public abstract class TransportMode {
         }
         TransportMode transport = (TransportMode) obj;
         return name.equals(transport.getName());
+    }
+
+    public boolean isEcoFriendly() {
+        List<String> nonEcoFriendlyModes = Arrays.asList("Taxi");
+        return !nonEcoFriendlyModes.contains(this.getName());
     }
 }

@@ -4,6 +4,7 @@ import groupsix.citywalk.model.Route;
 import groupsix.citywalk.model.Station;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Trip {
     private final Station start;
@@ -66,5 +67,9 @@ public class Trip {
                 transportTaken.add(transport);
             }
         }
+    }
+
+    public List<TransportMode> getTransportTaken() {
+        return new ArrayList<>(transportTaken); // 返回列表的一个新副本或只读视图
     }
 }
