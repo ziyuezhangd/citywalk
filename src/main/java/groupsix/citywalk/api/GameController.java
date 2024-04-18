@@ -2,6 +2,7 @@ package groupsix.citywalk.api;
 
 import groupsix.citywalk.maingame.Controller;
 import groupsix.citywalk.maingame.EducationWindowController;
+import groupsix.citywalk.maingame.Main;
 import groupsix.citywalk.model.*;
 import groupsix.citywalk.service.Game;
 import javafx.beans.value.ChangeListener;
@@ -77,6 +78,11 @@ public class GameController extends Controller {
     private HashMap<String, ImageView> gemList = new HashMap<>();
     private FXMLLoader fxmlLoader;
 
+    private Main mainApp;
+
+    public void setMain(Main main) {
+        this.mainApp = main; // 保存Main实例的引用
+    }
 
     @FXML
     public void initGem() {
@@ -201,17 +207,15 @@ public class GameController extends Controller {
         game.getCurrentLevel().startTrip(fromTextField.getText(), toTextField.getText(), selectedIndex);
         // 弹出教育弹窗
         try {
-            // 加载FXML文件
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/EducationWindow.fxml"));
             Parent root = loader.load();
 
-            // 获取控制器并设置Stage
             EducationWindowController controller = loader.getController();
-            controller.setUpGame(game); // 将game实例传递给EducationWindowController
             Stage stage = new Stage();
             controller.setCurrentStage(stage);
-
-            // 设置窗口属性
+            controller.setUpGame(game);
+            controller.setMain(mainApp);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle("Education Window");
             stage.setScene(new Scene(root));
@@ -283,7 +287,7 @@ public class GameController extends Controller {
                 }
                 // 切换到GameWin
                 try {
-                    main.showGameWinScene();
+                    mainApp.showGameWinScene();
                 } catch (Exception e) {
                     System.out.println("Error transitioning to the gameWin screen");
                     e.printStackTrace();
@@ -303,7 +307,7 @@ public class GameController extends Controller {
                 nextLevelButton.setPrefHeight(20);
                 EventHandler<ActionEvent> nextLevelHandler = event -> {
                     try {
-                        main.showNextUpScene();
+                        mainApp.showNextUpScene();
                     } catch (Exception e) {
                         System.out.println("Error transitioning to the levelUp screen");
                         e.printStackTrace();
@@ -315,7 +319,7 @@ public class GameController extends Controller {
         } else {
             // 玩家死了，切换到GameOver
             try {
-                main.showGameOverScene();
+                mainApp.showGameOverScene();
             } catch (Exception e) {
                 System.out.println("Error transitioning to the gameOver screen" );
                 e.printStackTrace();

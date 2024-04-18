@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 public class Level implements Save {
@@ -40,6 +41,12 @@ public class Level implements Save {
     public int getLevelGem() {
         return levelGem;
     }
+
+    public List<Trip> getLevelTrips() {
+        return new ArrayList<>(levelTrips);
+    }
+
+
     private void createGem(){
         Random random = new Random();
         int n = City.getStationList().size();

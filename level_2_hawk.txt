@@ -1,0 +1,12 @@
+Player: hawk
+LevelCount: 2
+LevelTime: 70
+LevelFP: 500
+The starting point is Sandymount, and the end point is Ballsbridge. 
+Transportation methods used include: 
+Dart
+Luas
+The starting point is Ballsbridge, and the end point is TheSpire. 
+Transportation methods used include: 
+Bike
+Score: 434

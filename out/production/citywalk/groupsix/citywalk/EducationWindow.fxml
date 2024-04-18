@@ -11,11 +11,11 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.EducationWindowController">
     <children>
-        <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@pics/cityWalkImage.jpg" />
-            </image>
-        </ImageView>
+<!--        <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">-->
+<!--            <image>-->
+<!--                <Image url="@pics/cityWalkImage.jpg" />-->
+<!--            </image>-->
+<!--        </ImageView>-->
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
                 <Label style="-fx-font-weight: bold;" text="On your way..." textAlignment="CENTER">
@@ -26,7 +26,7 @@
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </Label>
-                <Label fx:id="educationLabel" text="Education label">
+                <Label fx:id="educationLabel" wrapText="true">
                     <font>
                         <Font size="20.0" />
                     </font>

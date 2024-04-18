@@ -1,0 +1,8 @@
+Player: lll
+LevelCount: 1
+LevelTime: 50
+LevelFP: 200
+The starting point is UCD, and the end point is Dundrum. 
+Transportation methods used include: 
+Taxi
+Score: 240
