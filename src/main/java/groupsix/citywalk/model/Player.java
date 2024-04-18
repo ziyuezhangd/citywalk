@@ -24,12 +24,6 @@ public class Player implements Save {
         this.scoreSum = 0;
     }
 
-    //Test save method
-//    public Player(String playerName, int scoreSum) {
-//        this.playerName = playerName;
-//        this.scoreSum = scoreSum;
-//    }
-
     public String getPlayerName() {
         return playerName;
     }
@@ -71,14 +65,7 @@ public class Player implements Save {
     }
 
     public int calScore(Route route) {
-
-
-//        getModeNumber()的值 1-3
-//        getCarbonFP()的值 2-960g
-//        getTime()的值 4-140min
-
         // 防止分母为零的情况
-
         double modeValue = route.getModeNumber() == 0 ? 1 : route.getModeNumber();
         double fpValue = route.getCarbonFP() == 0 ? 1 : route.getCarbonFP();
         double timeValue = route.getTime() == 0 ? 1 : route.getTime();

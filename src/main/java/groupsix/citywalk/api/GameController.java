@@ -5,7 +5,6 @@ import groupsix.citywalk.maingame.EducationWindowController;
 import groupsix.citywalk.maingame.Main;
 import groupsix.citywalk.model.*;
 import groupsix.citywalk.service.Game;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,14 +19,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -78,11 +73,11 @@ public class GameController extends Controller {
     private HashMap<String, ImageView> gemList = new HashMap<>();
     private FXMLLoader fxmlLoader;
 
-    private Main mainApp;
+//    private Main mainApp;
 
-    public void setMain(Main main) {
-        this.mainApp = main; // 保存Main实例的引用
-    }
+//    public void setMain(Main main) {
+//        this.mainApp = main; // 保存Main实例的引用
+//    }
 
     @FXML
     public void initGem() {
@@ -206,28 +201,7 @@ public class GameController extends Controller {
         // 将所选路线传递给Level - Level中会更新Player里的数据
         game.getCurrentLevel().startTrip(fromTextField.getText(), toTextField.getText(), selectedIndex);
         // 弹出教育弹窗
-        try {
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/EducationWindow.fxml"));
-            Parent root = loader.load();
-
-            EducationWindowController controller = loader.getController();
-            Stage stage = new Stage();
-            controller.setCurrentStage(stage);
-            controller.setUpGame(game);
-            controller.setMain(mainApp);
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Education Window");
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-            // 适当的错误处理，例如弹窗通知用户错误信息
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot load the Education window: " + e.getMessage());
-            alert.showAndWait();
-            return; // 中断执行
-        }
-
+        popUpEduWindow();
         // 清空ListView
         ObservableList<String> emptyList = FXCollections.observableArrayList();
         routesLV.setItems(emptyList);
@@ -272,6 +246,28 @@ public class GameController extends Controller {
         this.fxmlLoader = loader;
     }
 
+    private void popUpEduWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/EducationWindow.fxml"));
+            Parent root = loader.load();
+
+            EducationWindowController controller = loader.getController();
+            Stage stage = new Stage();
+            controller.setCurrentStage(stage);
+            controller.setUpGame(game);
+            controller.setMain(main);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Education Window");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 适当的错误处理，例如弹窗通知用户错误信息
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot load the Education window: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
     @Override
     public void nextScene() {
         // 判断：玩家是否活着
@@ -287,7 +283,7 @@ public class GameController extends Controller {
                 }
                 // 切换到GameWin
                 try {
-                    mainApp.showGameWinScene();
+                    main.showGameWinScene();
                 } catch (Exception e) {
                     System.out.println("Error transitioning to the gameWin screen");
                     e.printStackTrace();
@@ -307,7 +303,7 @@ public class GameController extends Controller {
                 nextLevelButton.setPrefHeight(20);
                 EventHandler<ActionEvent> nextLevelHandler = event -> {
                     try {
-                        mainApp.showNextUpScene();
+                        main.showNextUpScene();
                     } catch (Exception e) {
                         System.out.println("Error transitioning to the levelUp screen");
                         e.printStackTrace();
@@ -319,7 +315,7 @@ public class GameController extends Controller {
         } else {
             // 玩家死了，切换到GameOver
             try {
-                mainApp.showGameOverScene();
+                main.showGameOverScene();
             } catch (Exception e) {
                 System.out.println("Error transitioning to the gameOver screen" );
                 e.printStackTrace();
