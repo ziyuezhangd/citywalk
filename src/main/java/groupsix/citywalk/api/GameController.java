@@ -1,6 +1,7 @@
 package groupsix.citywalk.api;
 
 import groupsix.citywalk.maingame.Controller;
+import groupsix.citywalk.maingame.EducationWindowController;
 import groupsix.citywalk.model.*;
 import groupsix.citywalk.service.Game;
 import javafx.beans.value.ChangeListener;
@@ -23,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -198,6 +200,29 @@ public class GameController extends Controller {
         // 将所选路线传递给Level - Level中会更新Player里的数据
         game.getCurrentLevel().startTrip(fromTextField.getText(), toTextField.getText(), selectedIndex);
         // 弹出教育弹窗
+        try {
+            // 加载FXML文件
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/EducationWindow.fxml"));
+            Parent root = loader.load();
+
+            // 获取控制器并设置Stage
+            EducationWindowController controller = loader.getController();
+            controller.setUpGame(game); // 将game实例传递给EducationWindowController
+            Stage stage = new Stage();
+            controller.setCurrentStage(stage);
+
+            // 设置窗口属性
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Education Window");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 适当的错误处理，例如弹窗通知用户错误信息
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot load the Education window: " + e.getMessage());
+            alert.showAndWait();
+            return; // 中断执行
+        }
 
         // 清空ListView
         ObservableList<String> emptyList = FXCollections.observableArrayList();
