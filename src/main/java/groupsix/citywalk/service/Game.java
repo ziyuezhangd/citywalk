@@ -57,6 +57,12 @@ public class Game {
     }
     public void levelUp() {
         if (levelCount != levelTotal) {
+            try {
+                getCurrentLevel().save();
+            } catch (IOException e) {
+                System.out.println("Failed to save level results");
+                e.printStackTrace();
+            }
             levelCount++;
             int levelIndex = levelCount - 1;
             levelLog.add(new Level(levelCount, levelTime[levelIndex], levelGem[levelIndex], levelBudget[levelIndex],

@@ -164,7 +164,7 @@ public class GameController extends Controller {
             {
                 setPrefWidth(200);
                 setWrapText(true);
-                setFont(Font.font(18));
+                setFont(Font.font(16));
             }
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -274,8 +274,20 @@ public class GameController extends Controller {
         if (game.getCurrentLevel().checkAlive()) {
             // 玩家活着，判断：是否为最后一关
             if (game.getLevelCount() == game.getLevelTotal()) {
+                // 保存最后一关结果
+                try {
+                    game.getCurrentLevel().save();
+                } catch (IOException e) {
+                    System.out.println("Failed to save level result");
+                    e.printStackTrace();
+                }
                 // 切换到GameWin
-                System.out.println("Winning!");
+                try {
+                    main.showGameWinScene();
+                } catch (Exception e) {
+                    System.out.println("Error transitioning to the gameWin screen");
+                    e.printStackTrace();
+                }
             } else {
                 // 切换到LevelUp - 需交互
                 // disable Game界面其他交互 - 此处仅控制按钮，标签在对应OnAction中通过if控制
@@ -283,11 +295,11 @@ public class GameController extends Controller {
                 resetButton.setDisable(true);
                 // 弹出NextLevel按钮，点击时切换到LevelUp
                 Button nextLevelButton = new Button("Next Level");
-                nextLevelButton.setLayoutX(40);
+                nextLevelButton.setLayoutX(45);
                 nextLevelButton.setLayoutY(650);
                 nextLevelButton.setCursor(Cursor.HAND);
                 nextLevelButton.setStyle("-fx-background-color: #0080ff; -fx-text-fill: white; -fx-font-size: 20px;");
-                nextLevelButton.setPrefWidth(160);
+                nextLevelButton.setPrefWidth(301);
                 nextLevelButton.setPrefHeight(20);
                 EventHandler<ActionEvent> nextLevelHandler = event -> {
                     try {
