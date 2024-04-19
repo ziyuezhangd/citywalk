@@ -70,25 +70,4 @@ public class Game {
         }
     }
 
-    // An inner class used to save the ranking list
-    public static class PlayerScore {
-        private String playerName;
-        private int scoreSum;
-
-        public PlayerScore(String playerName, int scoreSum) {
-            this.playerName = playerName;
-            this.scoreSum = scoreSum;
-        }
-
-        public String getPlayerName() {
-            return playerName;
-        }
-
-        public int getScoreSum() {
-            return scoreSum;
-        }
-
-    }
-
-
 }
