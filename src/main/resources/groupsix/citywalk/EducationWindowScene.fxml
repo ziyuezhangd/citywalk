@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,7 +12,12 @@
     <children>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
-                <Label style="-fx-font-weight: bold;" text="On your way..." textAlignment="CENTER">
+            <ImageView  fx:id="transportModeView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </ImageView>
+                <Label style="-fx-font-weight: bold;" text="On your way..." textAlignment="CENTER" textFill="#14b0d7">
                     <font>
                         <Font size="30.0" />
                     </font>
@@ -21,13 +25,16 @@
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </Label>
-                <Label fx:id="educationLabel" wrapText="true">
-                    <font>
-                        <Font size="20.0" />
-                    </font>
+                <Label fx:id="educationLabel" text="Education Label" wrapText="true">
                     <VBox.margin>
                         <Insets bottom="10.0" />
-                    </VBox.margin></Label>
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="funFactLabel" style="-fx-font-weight: bold;" alignment="CENTER" text="Fun Fact" textAlignment="CENTER" textFill="#14b0d7" wrapText="true">
+                    <VBox.margin>
+                        <Insets bottom="10.0" left="50.0" right="50.0" />
+                    </VBox.margin>
+                </Label>
                 <Button fx:id="CloseButton" mnemonicParsing="false" onAction="#nextScene" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Close" textAlignment="CENTER" />
             </children>
         </VBox>
