@@ -1,5 +1,7 @@
-package groupsix.citywalk.maingame;
+package groupsix.citywalk.controller;
 
+import groupsix.citywalk.controller.Controller;
+import groupsix.citywalk.maingame.Main;
 import groupsix.citywalk.service.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.MapValueFactory;
@@ -12,11 +14,10 @@ import javafx.collections.ObservableList;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ScoreBoardController  extends Controller{
+public class ScoreBoardController  extends Controller {
 
     @FXML
     private TableView<Map<String, Object>> leaderboardTable;

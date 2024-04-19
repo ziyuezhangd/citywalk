@@ -1,0 +1,9 @@
+Player: nges
+LevelCount: 1
+LevelTime: 50
+LevelFP: 200
+The starting point is UCD, and the end point is IKEA. 
+Transportation methods used include: 
+Luas
+Bus
+Score: 194

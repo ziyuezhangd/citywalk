@@ -1,7 +1,5 @@
-package groupsix.citywalk.api;
+package groupsix.citywalk.controller;
 
-import groupsix.citywalk.maingame.Controller;
-import groupsix.citywalk.model.Player;
 import groupsix.citywalk.service.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

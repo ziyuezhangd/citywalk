@@ -1,10 +1,6 @@
-package groupsix.citywalk.api;
+package groupsix.citywalk.controller;
 
-import groupsix.citywalk.maingame.Controller;
-import groupsix.citywalk.maingame.EducationWindowController;
-import groupsix.citywalk.maingame.Main;
 import groupsix.citywalk.model.*;
-import groupsix.citywalk.service.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

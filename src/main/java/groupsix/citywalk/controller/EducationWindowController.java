@@ -1,15 +1,12 @@
-package groupsix.citywalk.maingame;
-import groupsix.citywalk.model.Player;
+package groupsix.citywalk.controller;
+import groupsix.citywalk.controller.Controller;
+import groupsix.citywalk.maingame.Main;
 import groupsix.citywalk.model.TransportMode;
 import groupsix.citywalk.model.Trip;
 import groupsix.citywalk.service.Game;
-import groupsix.citywalk.service.Level;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.MapValueFactory;
 import javafx.stage.Stage;
 
 import java.util.List;

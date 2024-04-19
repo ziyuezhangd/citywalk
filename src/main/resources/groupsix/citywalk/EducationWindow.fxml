@@ -9,13 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.maingame.EducationWindowController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groupsix.citywalk.controller.EducationWindowController">
     <children>
-<!--        <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">-->
-<!--            <image>-->
-<!--                <Image url="@pics/cityWalkImage.jpg" />-->
-<!--            </image>-->
-<!--        </ImageView>-->
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
                 <Label style="-fx-font-weight: bold;" text="On your way..." textAlignment="CENTER">

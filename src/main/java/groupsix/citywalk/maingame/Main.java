@@ -1,7 +1,6 @@
 package groupsix.citywalk.maingame;
 
-import groupsix.citywalk.api.GameController;
-import groupsix.citywalk.api.LoginController;
+import groupsix.citywalk.controller.*;
 import groupsix.citywalk.service.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
