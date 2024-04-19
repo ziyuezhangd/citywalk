@@ -1,12 +1,11 @@
 package groupsix.citywalk.controller;
-import groupsix.citywalk.controller.Controller;
 import groupsix.citywalk.model.Player;
 import groupsix.citywalk.service.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 
-public class GameOverController extends Controller {
+public class GameFinishController extends Controller {
     @FXML
     private Label scoreLabel;
     @FXML

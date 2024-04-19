@@ -24,7 +24,7 @@ public class Main extends Application {
 
     //场景切换用的
     private void showLoginScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/LoginScene.fxml"));
         Parent root = loader.load();
         LoginController controller = loader.getController();
         controller.setMain(this);
@@ -33,7 +33,7 @@ public class Main extends Application {
         primaryStage.show();
     }
     public void showGameScene() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/Game.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameScene.fxml"));
         Parent root = loader.load();
         GameController controller = loader.getController();
         controller.setUpGame(game);
@@ -46,7 +46,7 @@ public class Main extends Application {
         primaryStage.setTitle("CITYWALK");
     }
     public void showNextUpScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/levelUp.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/LevelUpScene.fxml"));
         Parent root = loader.load();
         LevelUpController controller = loader.getController();
         controller.setUpGame(game);
@@ -57,9 +57,9 @@ public class Main extends Application {
 
 
     public void showGameOverScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/gameOver.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameOverScene.fxml"));
         Parent root = loader.load();
-        GameOverController controller = loader.getController();
+        GameFinishController controller = loader.getController();
         controller.setUpGame(game);
         controller.setMain(this);
         primaryStage.setScene(new Scene(root));
@@ -67,9 +67,9 @@ public class Main extends Application {
     }
 
     public void showGameWinScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/gameWin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/GameWinScene.fxml"));
         Parent root = loader.load();
-        GameOverController controller = loader.getController();
+        GameFinishController controller = loader.getController();
         controller.setUpGame(game);
         controller.setMain(this);
         primaryStage.setScene(new Scene(root));
@@ -77,7 +77,7 @@ public class Main extends Application {
     }
 
     public void showScoreBoardScene() throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/scoreBoard.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/ScoreBoardScene.fxml"));
         Parent root = loader.load();
         ScoreBoardController controller = loader.getController();
         controller.setUpGame(game);

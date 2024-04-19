@@ -244,7 +244,7 @@ public class GameController extends Controller {
 
     private void popUpEduWindow() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/EducationWindow.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/groupsix/citywalk/EducationWindowScene.fxml"));
             Parent root = loader.load();
 
             EducationWindowController controller = loader.getController();
