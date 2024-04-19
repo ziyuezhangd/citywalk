@@ -1,2 +1,2 @@
 # citywalk
-This is an educational game aiming to encourage players to use shared communication
+This is an educational game aiming to encourage players to use shared mobility
