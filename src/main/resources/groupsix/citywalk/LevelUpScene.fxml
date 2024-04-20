@@ -36,12 +36,21 @@
             <Label fx:id="carbonFPLabel" text="CarbonFP label">
                <font>
                   <Font size="20.0" />
-               </font></Label>
-                <Button fx:id="levelUpButton" mnemonicParsing="false" onAction="#nextScene" opacity="0.9" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Next Level">
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+                <Button fx:id="levelUpButton" mnemonicParsing="false" onAction="#nextScene" opacity="0.9" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="Next Level">
                <VBox.margin>
                   <Insets bottom="15.0" />
-               </VBox.margin></Button>
-                <Button fx:id="switchToLeaderBoardButton" mnemonicParsing="false" onAction="#switchToSceneGameFinish" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="End Game" textAlignment="CENTER" />
+               </VBox.margin>
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+                <Button fx:id="switchToLeaderBoardButton" mnemonicParsing="false" onAction="#switchToSceneGameFinish" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color: linear-gradient(#7CAFC2,deepskyblue);" text="End Game" textAlignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
             </children>
         </VBox>
     </children>

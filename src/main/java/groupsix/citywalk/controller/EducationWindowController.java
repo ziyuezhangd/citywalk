@@ -119,7 +119,7 @@ public class EducationWindowController extends Controller {
             sb.append("You chose ").append(tm.getName())
                     .append(", which is ")
                     .append(tm.isEcoFriendly() ? "eco-friendly.\nGreat choice for the planet!" : "not so eco-friendly.\nConsider greener options next time.")
-                    .append(".\n");
+                    .append("\n");
         }
         educationLabel.setText(sb.toString());
     }
