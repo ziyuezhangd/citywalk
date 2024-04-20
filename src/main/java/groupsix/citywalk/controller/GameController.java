@@ -292,9 +292,10 @@ public class GameController extends Controller {
                 // 弹出NextLevel按钮，点击时切换到LevelUp
                 Button nextLevelButton = new Button("Next Level");
                 nextLevelButton.setLayoutX(45);
-                nextLevelButton.setLayoutY(650);
+                nextLevelButton.setLayoutY(680);
                 nextLevelButton.setCursor(Cursor.HAND);
-                nextLevelButton.setStyle("-fx-background-color: #0080ff; -fx-text-fill: white; -fx-font-size: 20px;");
+                nextLevelButton.setOpacity(0.9);
+                nextLevelButton.setStyle("-fx-background-color: #0080ff; -fx-font-size: 20px; -fx-background-color: linear-gradient(#7CAFC2,deepskyblue);");
                 nextLevelButton.setPrefWidth(301);
                 nextLevelButton.setPrefHeight(20);
                 EventHandler<ActionEvent> nextLevelHandler = event -> {
